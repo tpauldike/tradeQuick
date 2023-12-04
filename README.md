@@ -1,7 +1,9 @@
 # tradeQuick
-***An app that let people within a locality buy/sell used items (ALX portfolio project)***
+*An app that let people within a locality buy/sell used items (ALX portfolio project)*
+
 **Web URL:** [https://tradequick.vercel.app](https://tradequick.vercel.app)
-![the_landing_page](https://github.com/tpauldike/rough_work/designs/tradeQuick-landing-page.jpg)
+
+![the_landing_page](https://github.com/tpauldike/rough_work/blob/main/designs/tradeQuick-landing-page.jpg)
 
 ## About the project
 The web app is a market place for selling used items that someone else might be interested in, the seller uploads certain information such as the photos of it,
