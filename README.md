@@ -24,9 +24,9 @@ not responsible for the outcome of the deal.
 6. Items management (viewing, uploading, editing and deleting own items, and marking the sold ones as sold)
 7. Search for items (public)
 8. Social interaction
- - Comment on items for sale
- - like/dislike items for sale
- - Chat privately with the seller
+  - Comment on items for sale
+  - like/dislike items for sale
+  - Chat privately with the seller
 7. Compulsory mobile number verification
 8. SMS and email notifications, based on the user's preference.
   
@@ -42,6 +42,7 @@ Version 1.0 of the app is designed to be used within Nigeria only
 ## Team
 **Front End**
 - [Topman Paul-Dike](https://github.com/tpauldike)
+
 **Back End**
 - [David Gregs](https://github.com/davidgregs87)
 - [Otueh Chibueze](https://github.com/OChibu)
@@ -53,8 +54,10 @@ Version 1.0 of the app is designed to be used within Nigeria only
 - `HTML`
 - `CSS`
 - `JavaScript`
+
 **API**
 - `Python` (`Flask`)
+
 **Database**
 - `MySQL`
 
@@ -75,3 +78,5 @@ The file [AUTHOR.md](./AUTHOR.md) contains the names of the authors and their em
 
 Feel free to contribute to the project, outside contributors from February 2024 and not before then, please. You may refer to [CONTRIBUTION.md](./CONTRIBUTION.md)
 to know how to make an acceptable contribution to this project
+
+###### &copy; 2023 tradeQuick. All rights reserved.
