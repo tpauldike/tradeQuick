@@ -49,6 +49,7 @@ CREATE TABLE
 -- Create index on item_id, for it to be used as a foreign key
 CREATE INDEX idx_items_item_id ON items (item_id);
 
+-- Crate table for comments
 CREATE TABLE
     IF NOT EXISTS comments (
         comment_id VARCHAR(36) NOT NULL,
@@ -58,7 +59,7 @@ CREATE TABLE
         created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
         updated_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
         PRIMARY KEY (comment_id),
-        FOREIGN KEY (commenter) REFERENCES user (user_id),
+        FOREIGN KEY (commenter) REFERENCES users (user_id),
         FOREIGN KEY (item_id) REFERENCES items (item_id)
     );
 
@@ -91,7 +92,7 @@ CREATE TABLE
 
 -- Create rating table
 CREATE TABLE
-    IF NOT EXISTS rating (
+    IF NOT EXISTS ratings (
         rating_id VARCHAR(36) NOT NULL PRIMARY KEY,
         user_id VARCHAR(36) NOT NULL,
         rating INT CHECK (rating > 0 AND rating <= 5),
