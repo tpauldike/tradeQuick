@@ -12,6 +12,7 @@ CREATE TABLE
         fullname VARCHAR(30) NOT NULL,
         verified BOOLEAN NOT NULL DEFAULT FALSE,
         email VARCHAR(225) NOT NULL UNIQUE,
+        password VARCHAR(225) NOT NULL,
         gender ENUM ('Male', 'Female', 'Other') NOT NULL,
         phone1 VARCHAR(15) NOT NULL,
         phone2 VARCHAR(15),
