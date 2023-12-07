@@ -68,9 +68,25 @@ Version 1.0 of the app is designed to be used within Nigeria only
 4. Brevo (mailing/SMS services)
 
 ## Usage/Installation
-You only need to dial the web URL and start using the app. However, if you are a backend developer and will like to run the server locally, kindly follow
-the instructions below:
+To install and run the app locally or in a development environment, follow the instructions below:
+### Front End
+```bash
+# Clone the git repository
+:$ git clone https://github.com/tpauldike/tradeQuick.git
 
+# Move into the directory
+:$ cd tradeQuick
+
+# Open it with your code editor (VScode for instance)
+:$ code .
+
+# Make sure you have the live server extension installed, then render index.html on your browser
+# You may as well change the environment variables in the scripts to that of the local server, you're using.
+```
+
+> To have the app server and the database-serrver running locally as well , follow the instructions for server installation below:
+
+### Back End
 *(instructions unavailable at the moment...)*
 
 ## Authors
