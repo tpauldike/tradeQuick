@@ -6,7 +6,35 @@
 
 body {
   font-family: "Arial", sans-serif;
-  color: #333;
+  color: #D5D5D5;
+}
+
+header {
+  display: flex;
+  flex-direction: row;
+  position: fixed;
+  background-color: #323232;
+  width: 100%;
+  padding: 5px;
+  align-items: center;
+  justify-content: flex-start;
+  align-content: center;
+  left: 0;
+  top: 0;
+}
+
+#logo {
+  max-width: 60px;
+}
+
+#search-bar {
+  border: none;
+  border-radius: 5px;
+  background-color: #D5D5D5;
+}
+
+#search-icon {
+  max-width: 20px;
 }
 
 .container {
@@ -16,7 +44,7 @@ body {
 }
 
 #trade {
-    color: #bdda18;
+    color: #ebdd63;
 }
 
 h1,
@@ -26,7 +54,8 @@ h3 {
 }
 
 a {
-  color: #007bff;
+  color: #ebdd63;
+  font-size: large;
   text-decoration: none;
 }
 
@@ -35,9 +64,11 @@ a:hover {
 }
 
 button {
-  padding: 10px 20px;
-  background-color: #007bff;
-  color: #fff;
+  padding: 7px 17px;
+  background-color: #ebdd63;
+  color: #007bff;
+  font-weight: 550;
+  font-size: 15px;
   border: none;
   border-radius: 5px;
   cursor: pointer;
@@ -45,6 +76,7 @@ button {
 
 button:hover {
   background-color: #0056b3;
+  color: #ebdd63
 }
 
 footer {
