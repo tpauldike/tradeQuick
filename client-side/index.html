@@ -10,20 +10,29 @@
   <body>
     <div class="container">
       <header>
-        <div id="logo"></div>
+        <div id="logo">
+          <a href="#"> <img src="./assets/logo.png" alt="logo" id="logo" /></a>
+        </div>
         <h1><span id="trade">trade</span>Quick</h1>
-        <div id="search-bar"></div>
-        <nav></nav>
+        <div id="search-bar">
+          <input type="text" /><img
+            src="./assets/search.png"
+            alt="search"
+            id="search-icon"
+          />
+        </div>
+        <nav>
+          <a href="#">Home</a>
+          <a href="#">Portfolio</a>
+          <a href="#">About</a>
+          <a href="#"><button id="login-btn">Login</button></a>
+          <a href="#"><button id="register-btn">Register</button></a>
+        </nav>
       </header>
 
       <main>
         <section id="home-banner"></section>
-        <section class="items-for-sale">
-          <marquee behavior="left" direction="left"
-          >Portfolio project by David Gregs, Otueh Chibueze and
-          Topman Paul-Dike</marquee
-          >
-        </section>
+        <section class="items-for-sale"></section>
         <section class="reviews"></section>
         <section class="contact-us"></section>
       </main>
