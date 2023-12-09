@@ -4,22 +4,29 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="./styles/common.css" />
+    <link rel="stylesheet" href="./styles/landing-page.css" />
     <link rel="stylesheet" href="./styles/temporary.css" />
     <title>tradeQuick</title>
   </head>
   <body>
     <div class="container">
       <header>
-        <div id="logo">
-          <a href="#"> <img src="./assets/logo.png" alt="logo" id="logo" /></a>
-        </div>
-        <h1><span id="trade">trade</span>Quick</h1>
-        <div id="search-bar">
-          <input type="text" /><img
-            src="./assets/search.png"
-            alt="search"
-            id="search-icon"
-          />
+        <div id="excluding-nav">
+          <div id="logo">
+            <a href="#">
+              <img src="./assets/logo.png" alt="logo" id="logo"
+            /></a>
+          </div>
+          <div>
+            <h1 id="title"><span id="trade">trade</span>Quick</h1>
+          </div>
+          <div id="search-bar">
+            <input
+              type="text"
+              name="search"
+              placeholder="Search for an item"
+            /><img src="./assets/search.png" alt="search" id="search-icon" />
+          </div>
         </div>
         <nav>
           <a href="#">Home</a>
@@ -29,9 +36,9 @@
           <a href="#"><button id="register-btn">Register</button></a>
         </nav>
       </header>
-
+      
       <main>
-        <section id="home-banner"></section>
+        <!-- <section id="banner-container"><img src="./assets/banner.jpg" alt="product banner" id="banner"></section> -->
         <section class="items-for-sale"></section>
         <section class="reviews"></section>
         <section class="contact-us"></section>
