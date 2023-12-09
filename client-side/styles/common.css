@@ -1,3 +1,12 @@
+:root {
+  --primary-color: #FFF9C4;
+  --secondary-color: #0d7ef8;
+  --header-background: #323232;
+  --background-color: #D5D5D5;
+  --text-input-color: #0d355f;
+  --cta-color: rgb(255, 0, 0);
+}
+
 * {
   margin: 0;
   padding: 0;
@@ -6,21 +15,44 @@
 
 body {
   font-family: "Arial", sans-serif;
-  color: #D5D5D5;
+  background-color: var(--background-color);
 }
 
 header {
+  user-select: none;
   display: flex;
   flex-direction: row;
   position: fixed;
-  background-color: #323232;
+  background-color: var(--header-background);
   width: 100%;
   padding: 5px;
   align-items: center;
-  justify-content: flex-start;
+  justify-content: space-between;
   align-content: center;
   left: 0;
   top: 0;
+}
+
+#excluding-nav {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+#excluding-nav div {
+  margin-left: 10px;
+}
+
+#excluding-nav #search-bar {
+  margin-left: 40px;
+}
+
+nav {
+  margin: 10px;
+}
+
+nav a {
+  margin: 15px;
 }
 
 #logo {
@@ -28,13 +60,29 @@ header {
 }
 
 #search-bar {
-  border: none;
+  display: flex;
   border-radius: 5px;
-  background-color: #D5D5D5;
+  background-color: var(--background-color);
+  align-items: center;
+  justify-content: center;
+  padding: 4px;
+}
+
+#search-bar input {
+  border: none;
+  background-color: var(--background-color);
+  border-radius: 5px;
+  font-size: 18px;
+  color: var(--text-input-color);
+  margin-left: 5px;
 }
 
 #search-icon {
   max-width: 20px;
+}
+
+#search-icon:hover {
+  cursor: pointer;
 }
 
 .container {
@@ -44,29 +92,34 @@ header {
 }
 
 #trade {
-    color: #ebdd63;
+    color: var(--primary-color);
+}
+
+h1#title {
+  color: #b4cfec; /* unique color for the app name */
 }
 
 h1,
 h2,
 h3 {
-  color: #007bff;
+  color: var(--secondary-color);
 }
-
+  
 a {
-  color: #ebdd63;
+  color: var(--primary-color);
   font-size: large;
   text-decoration: none;
 }
 
 a:hover {
+  color: var(--secondary-color);
   text-decoration: underline;
 }
 
 button {
   padding: 7px 17px;
-  background-color: #ebdd63;
-  color: #007bff;
+  background-color: var(--primary-color);
+  color: var(--secondary-color);
   font-weight: 550;
   font-size: 15px;
   border: none;
@@ -75,8 +128,8 @@ button {
 }
 
 button:hover {
-  background-color: #0056b3;
-  color: #ebdd63
+  background-color: var(--secondary-color);
+  color: var(--primary-color);
 }
 
 footer {
@@ -86,7 +139,7 @@ footer {
     width: 100%;
     padding: 10px;
     text-align: center;
-    background-color: #f8f9fa;
+    background-color: var(--header-background);
     border-top: 1px solid #ddd;
   }
 
