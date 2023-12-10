@@ -1,5 +1,4 @@
 -- The MySQL syntax for implementing the database schema for tradeQuick application
-
 -- Create database and use it
 CREATE DATABASE IF NOT EXISTS tradequick;
 
@@ -44,7 +43,7 @@ CREATE TABLE
         created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
         updated_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
         PRIMARY KEY (item_id),
-        FOREIGN KEY (user_id) REFERENCES users (user_id)
+        FOREIGN KEY (user_id) REFERENCES users (user_id) ON DELETE CASCADE
     );
 
 -- Create index on item_id, for it to be used as a foreign key
@@ -60,8 +59,8 @@ CREATE TABLE
         created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
         updated_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
         PRIMARY KEY (comment_id),
-        FOREIGN KEY (commenter) REFERENCES users (user_id),
-        FOREIGN KEY (item_id) REFERENCES items (item_id)
+        FOREIGN KEY (commenter) REFERENCES users (user_id) ON DELETE CASCADE,
+        FOREIGN KEY (item_id) REFERENCES items (item_id) ON DELETE CASCADE
     );
 
 -- Create likes/dislikes table
@@ -73,8 +72,8 @@ CREATE TABLE
         created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
         updated_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
         PRIMARY KEY (item_id, user_id),
-        FOREIGN KEY (item_id) REFERENCES items (item_id),
-        FOREIGN KEY (user_id) REFERENCES users (user_id)
+        FOREIGN KEY (item_id) REFERENCES items (item_id) ON DELETE CASCADE,
+        FOREIGN KEY (user_id) REFERENCES users (user_id) ON DELETE CASCADE
     );
 
 -- Create the table to store private chats
@@ -87,15 +86,18 @@ CREATE TABLE
         created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
         updated_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
         PRIMARY KEY (message_id),
-        FOREIGN KEY (sender_id) REFERENCES users (user_id),
-        FOREIGN KEY (receiver_id) REFERENCES users (user_id)
+        FOREIGN KEY (sender_id) REFERENCES users (user_id) ON DELETE CASCADE,
+        FOREIGN KEY (receiver_id) REFERENCES users (user_id) ON DELETE CASCADE
     );
 
 -- Create rating table
 CREATE TABLE
     IF NOT EXISTS ratings (
-        rating_id VARCHAR(36) NOT NULL PRIMARY KEY,
+        rating_id VARCHAR(36) NOT NULL,
         user_id VARCHAR(36) NOT NULL,
-        rating INT CHECK (rating > 0 AND rating <= 5),
-        created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
+        rating INT CHECK (rating > 0 AND rating <= 5) NOT NULL,
+        comment VARCHAR(225),
+        created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+        PRIMARY KEY (rating_id),
+        FOREIGN KEY (user_id) REFERENCES users (user_id)
     );
