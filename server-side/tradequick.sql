@@ -95,9 +95,10 @@ CREATE TABLE
     IF NOT EXISTS ratings (
         rating_id VARCHAR(36) NOT NULL,
         user_id VARCHAR(36) NOT NULL,
-        rating INT NOT NULL CHECK (rating > 0 AND rating <= 5),
+        rating ENUM('1', '2', '3', '4', '5') NOT NULL,
         comment VARCHAR(225),
         created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
         PRIMARY KEY (rating_id),
         FOREIGN KEY (user_id) REFERENCES users (user_id)
     );
+
