@@ -1,5 +1,5 @@
 -- The MySQL syntax for implementing the database schema for tradeQuick application
--- Create database and use it
+-- Create database and make use of it
 CREATE DATABASE IF NOT EXISTS tradequick;
 
 USE tradequick;
