@@ -1,7 +1,7 @@
 # Contibuting to the Project (tradeQuick)
 
 This project is open sourced, and as a result, we appreciate every contribution that we can get from developers who are proficient or
-just confident enough to add to the codebase, for any relevant necessary improvement of any kind.
+just confident enough to add to the codebase, for any relevant addition or necessary improvement of any kind.
 Hence, the following standard or rules are for the purpose of avoiding bugs, unecessary conflicts and crashing the application.
 
 ## Steps to Follow
@@ -9,7 +9,7 @@ Hence, the following standard or rules are for the purpose of avoiding bugs, une
 ### Fork the Repository
 
 To contribute to [tradeQuick](https://github.com/tpauldike/tradeQuick), the first thing you should do (after identifying the problem
-you want to solve and knowing the application is about) is to fork [the repository](https://github.com/tpauldike/tradeQuick) and clone
+you want to solve and knowing what the application is about) is to fork [the repository](https://github.com/tpauldike/tradeQuick) and clone
 it on your local machine.
 
 ### Create a New Branch
@@ -20,13 +20,12 @@ from the main codebase.
 #### Branch Naming and Commit Messages
 
 You are to adhere to the following naming conventions while creating your branch.
-Begin the branch name with the `<prefix>` followed by a forward slash `/` and a `<a_very_short_description>`; you may use hyphens or underscores
+Begin the branch name with the `<prefix>` followed by a forward slash (`/`) and `<a_very_short_description>`; you may use hyphens (`-`) or underscores (`_`)
 to separate words. For example; `docs/correct-typo`. You may include issue or task number but that's optional.
 
-The commit messages (when you push to git) should as well take the format `<prefix>(<short_subject>): (<a_brief_and_precise_description>)`.
-For example `docs(README): updated the instruction for usage`
+The commit messages (when you push to git) should as well take the format `<prefix>(<short_subject>): <a_brief_and_precise_description>`. For example `docs(README): updated the instruction for usage`
 
-Below are the prefixes that you might want to use, based on the kind of contribution you make to the project, and their brief description,
+Below are the prefixes that you might want to use, based on the kind of contribution you want to make to the project, and the brief descriptions,
 so that you'll choose the right one for naming your branch and writing your commit messages.
 
 | Prefix | Description |
@@ -46,8 +45,13 @@ project goals and adhere to the project coding conventions.
 
 ### Create a Pull Request
 
-When your modifications and contributions are ready, create a pull request. When creating a pull request, be sure to include (where necessary)
-a detailed description and the necessary information such as screenshots, videos, or GIFs. Before submitting the pull request, review all
+When your modifications and contributions are ready, create a pull request to the `development` branch. 
+> *Note that there is a branch named `development`*, you're not allowed to push to the `production` branch
+
+When creating a pull request, be sure to include (where necessary)
+a detailed description and the necessary information such as screenshots, videos, or GIFs.
+
+Before submitting the pull request, review all
 changes thoroughly to make sure they meet the project goals and coding conventions. Your contribution may have to pass certain requirements
 and tests for the pull request to be accepted
 

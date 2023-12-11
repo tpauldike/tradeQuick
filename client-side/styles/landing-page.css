@@ -7,3 +7,15 @@
 --text-input-color: #0d355f;
 --cta-color: rgb(255, 0, 0); */
 
+#banner-container {
+    display: flex;
+    justify-content: center;
+    background-color: #000;
+    position: relative;
+    top: 65px;
+    padding: 20px;
+}
+
+#banner {
+    width: 70%;
+}

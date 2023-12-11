@@ -1,8 +1,8 @@
 :root {
-  --primary-color: #FFF9C4;
+  --primary-color: #fff9c4;
   --secondary-color: #0d7ef8;
   --header-background: #323232;
-  --background-color: #D5D5D5;
+  --background-color: #d5d5d5;
   --text-input-color: #0d355f;
   --cta-color: rgb(255, 0, 0);
 }
@@ -55,6 +55,10 @@ nav a {
   margin: 15px;
 }
 
+#menu-container {
+  display: none;
+}
+
 #logo {
   max-width: 60px;
 }
@@ -92,7 +96,7 @@ nav a {
 }
 
 #trade {
-    color: var(--primary-color);
+  color: var(--primary-color);
 }
 
 h1#title {
@@ -104,7 +108,7 @@ h2,
 h3 {
   color: var(--secondary-color);
 }
-  
+
 a {
   color: var(--primary-color);
   font-size: large;
@@ -133,21 +137,87 @@ button:hover {
 }
 
 footer {
-    position: fixed;
-    left: 0;
-    bottom: 0;
-    width: 100%;
-    padding: 10px;
-    text-align: center;
-    background-color: var(--header-background);
-    border-top: 1px solid #ddd;
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  padding: 10px;
+  text-align: center;
+  background-color: var(--header-background);
+  border-top: 1px solid #ddd;
+}
+
+@media screen and (max-width: 1098px) {
+  nav a {
+    display: none;
   }
 
-@media (max-width: 768px) {
+  #menu-container {
+    display: flex;
+    align-items: center;
+  }
+
+  .menu-toggle {
+    display: none;
+    flex-direction: column;
+    cursor: pointer;
+  }
+
+  .menu-toggle span {
+    height: 3px;
+    width: 25px;
+    background-color: var(--primary-color);
+    margin: 5px 0;
+    display: block;
+  }
+
+  .nav-list {
+    list-style: none;
+    display: flex;
+  }
+
+  .nav-list li {
+    margin: 0 15px;
+  }
+
+  .nav-list a {
+    text-decoration: none;
+    color: #fff;
+  }
+
+  .menu-toggle {
+    display: flex;
+  }
+
+  .nav-list {
+    display: none;
+    flex-direction: column;
+    position: absolute;
+    top: 65px;
+    left: 0;
+    width: 100%;
+    background-color: var(--primary-color);
+  }
+
+  .nav-list.show {
+    display: flex;
+  }
+
+  .nav-list li {
+    margin: 15px 0;
+    text-align: center;
+  }
+}
+
+@media screen and (max-width: 768px) {
+}
+
+/* @media screen and (max-width: 550px)
+@media screen and (max-width: 430px)
   .container {
     padding: 10px;
   }
   footer {
     margin-top: 10px;
   }
-}
+} */

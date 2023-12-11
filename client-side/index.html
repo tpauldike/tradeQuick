@@ -3,6 +3,12 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="apple-touch-icon" sizes="192x192" href="./android-chrome-192x192.png" />
+    <link rel="apple-touch-icon" sizes="512x512" href="./android-chrome-512x512.png" />
+    <link rel="apple-touch-icon" sizes="180x180" href="./apple-touch-icon.png" />
+    <link rel="icon" type="image/png" sizes="32x32" href="./favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="./favicon-16x16.png" />
+    <link rel="manifest" href="./site.webmanifest" />
     <link rel="stylesheet" href="./styles/common.css" />
     <link rel="stylesheet" href="./styles/landing-page.css" />
     <link rel="stylesheet" href="./styles/temporary.css" />
@@ -34,11 +40,26 @@
           <a href="#">About</a>
           <a href="#"><button id="login-btn">Login</button></a>
           <a href="#"><button id="register-btn">Register</button></a>
+
+          <div id="menu-container">
+            <div class="menu-toggle" id="mobile-menu">
+              <span></span>
+              <span></span>
+              <span></span>
+            </div>
+            <ul class="nav-list">
+              <li><a href="#">Home</a></li>
+              <li><a href="#">Portfolio</a></li>
+              <li><a href="#">About</a></li>
+              <li><a href="#">Help</a></li>
+              <li><a href="#">Login</a></li>
+            </ul>
+          </div>
         </nav>
       </header>
-      
+
       <main>
-        <!-- <section id="banner-container"><img src="./assets/banner.jpg" alt="product banner" id="banner"></section> -->
+        <section id="banner-container"><img src="./assets/banner.jpg" alt="product banner" id="banner"></section>
         <section class="items-for-sale"></section>
         <section class="reviews"></section>
         <section class="contact-us"></section>
@@ -48,5 +69,6 @@
         <p>&copy; 2023 tradeQuick. All rights reserved.</p>
       </footer>
     </div>
+    <script src="./scripts/index.js"></script>
   </body>
 </html>
