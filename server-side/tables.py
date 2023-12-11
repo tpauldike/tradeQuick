@@ -129,7 +129,7 @@ class Like(BaseModel, Base):
     updated_at = Column(TIMESTAMP, default=func.now(),
                         onupdate=func.now(), nullable=False)
 
-    # Define relationships with User and Item classes
+    # Define relationships with User and Item class
     user = relationship('User', back_populates='likes')
     items = relationship('Item', back_populates='likes')
 
