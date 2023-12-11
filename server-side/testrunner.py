@@ -5,14 +5,14 @@ try:
     db = DBStorage()
 
     mock_data = {
-        'fullname': 'Nsikak Ben',
+        'fullname': 'Adam Ben',
         'verified': False,
-        'email': 'bennyNSK@example.com',
+        'email': 'bennyAdam@example.com',
         'password': 'sd@#@sds',
         'gender': 'Male',
         'phone1': '3453453456',
         'phone2': '8674532345',
-        'about': "I don't give two shit bout' anyone.",
+        'about': "A Lover of God.",
         'address': '2E4 Qyade way',
         'town': 'Brooklyn',
         'city': 'Texas',
