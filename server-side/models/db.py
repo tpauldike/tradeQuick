@@ -99,3 +99,15 @@ class DBStorage:
         except Exception as e:
             print(f"Error during find_all_users: {e}")
             return None
+
+    def create_user(self, user_data):
+        """Create a user."""
+        from models.tables import User
+        try:
+            user = User(**user_data)
+            self.new(user)
+            self.save()
+            return user
+        except Exception as e:
+            print(f"Error during create_user: {e}")
+            return None
