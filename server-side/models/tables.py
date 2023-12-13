@@ -49,6 +49,24 @@ class User(BaseModel, Base):
 
     __table_args__ = (Index('idx_users_user_id', 'user_id'),)
 
+    def to_dict(self):
+        """Convert object to dictionary"""
+        user_dict = {
+            'user_id': self.user_id,
+            'fullname': self.fullname,
+            'verified': self.verified,
+            'email': self.email,
+            'gender': self.gender,
+            'phone1': self.phone1,
+            'phone2': self.phone2,
+            'about': self.about,
+            'address': self.address,
+            'town': self.town,
+            'city': self.city,
+            'state': self.state,
+        }
+        return user_dict
+
 
 class Item(BaseModel, Base):
     """Item class"""
