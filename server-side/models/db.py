@@ -2,7 +2,7 @@ from os import getenv
 from dotenv import load_dotenv
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker, scoped_session
-from tables import Base
+from models.tables import Base
 from sqlalchemy import inspect
 
 load_dotenv()
@@ -72,3 +72,30 @@ class DBStorage:
     def close(self):
         """Close the session."""
         self.__session.close()
+
+    def find_user_by_email(self, email):
+        """Find a user by email."""
+        from models.tables import User
+        try:
+            return self.__session.query(User).filter_by(email=email).first()
+        except Exception as e:
+            print(f"Error during find_user_by_email: {e}")
+            return None
+
+    def find_user_by_id(self, user_id):
+        """Find a user by id."""
+        from models.tables import User
+        try:
+            return self.__session.query(User).filter_by(user_id=user_id).first()
+        except Exception as e:
+            print(f"Error during find_user_by_id: {e}")
+            return None
+
+    def find_all_users(self):
+        """Find all users."""
+        from models.tables import User
+        try:
+            return self.__session.query(User).all()
+        except Exception as e:
+            print(f"Error during find_all_users: {e}")
+            return None
