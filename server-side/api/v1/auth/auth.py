@@ -2,7 +2,6 @@
 Auth class
 """
 
-from flask import request
 from typing import List, TypeVar
 
 
@@ -43,3 +42,12 @@ class Auth:
         current_user
         """
         return None
+
+    def session_cookie(self, request=None):
+        """
+        - Returns a cookie value from a requests
+        """
+        if request is None:
+            return None
+        cookie_value = request.cookies.get('_my_session_id')
+        return cookie_value

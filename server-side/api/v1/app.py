@@ -20,7 +20,13 @@ if AUTH_TYPE == "auth":
     auth = Auth()
 if AUTH_TYPE == "basic_auth":
     from api.v1.auth.basic_auth import BasicAuth
-    basic_auth = BasicAuth()
+    auth = BasicAuth()
+if AUTH_TYPE == "session_auth":
+    from api.v1.auth.session_auth import SessionAuth
+    auth = SessionAuth()
+if AUTH_TYPE == "session_exp_auth":
+    from api.v1.auth.session_exp_auth import SessionExpAuth
+    auth = SessionExpAuth()
 
 
 @app.errorhandler(404)
@@ -51,16 +57,20 @@ def before_request_func():
 
     excluded_paths = ['/api/v1/status/',
                       '/api/v1/unauthorized/',
-                      '/api/v1/forbidden/'
+                      '/api/v1/forbidden/',
+                      '/api/v1/users/login/',
+                      '/api/v1/users/'
                       ]
-    setattr(request, 'current_user', basic_auth.current_user(request))
     if auth is None:
-        return
-    if auth.require_auth(request.path, excluded_paths):
-        if auth.authorization_header(request) is None:
-            abort(401)
-        if auth.current_user(request) is None:
-            abort(403)
+        pass
+    else:
+        setattr(request, 'current_user', auth.current_user(request))
+        if auth.require_auth(request.path, excluded_paths):
+            pass
+            if auth.authorization_header(request) is None and auth.session_cookie(request) is None:
+                abort(401)
+            if auth.current_user(request) is None:
+                abort(403)
 
 
 if __name__ == "__main__":

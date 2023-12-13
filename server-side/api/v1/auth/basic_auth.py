@@ -70,14 +70,7 @@ class BasicAuth(Auth):
             if user is None:
                 return None
             if user.password == user_pwd:
-                user_data = {
-                    "user_id": user.user_id, "fullname": user.fullname,
-                    "email": user.email, "verified": user.verified, "gender": user.gender,
-                    "phone1": user.phone1, "about": user.about, "address": user.address,
-                    "city": user.city, "town": user.town, "state": user.state,
-                    "created_at": user.created_at, "updated_at": user.updated_at
-                }
-                return jsonify(user_data), 200
+                return jsonify(user.to_dict()), 200
 
     def current_user(self, request=None) -> TypeVar('User'):
         """
