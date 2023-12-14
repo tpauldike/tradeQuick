@@ -166,3 +166,14 @@ class Rating(Base):
 
     # Define a relationship with the User class
     user = relationship('User', back_populates='ratings')
+
+
+class UserSession(Base):
+    """
+    UserSession model class
+    """
+    __tablename__ = 'user_sessions'
+
+    user_id = Column(String(60), nullable=False)
+    session_id = Column(String(60), primary_key=True, nullable=False)
+    created_at = Column(TIMESTAMP, default=func.now(), nullable=False)

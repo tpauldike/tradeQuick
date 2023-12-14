@@ -26,6 +26,7 @@ class DBStorage:
     def __init__(self):
         """Initialize the DBStorage instance."""
         self.__engine, self.__session = create_engine_with_session()
+        Base.metadata.create_all(self.__engine)
 
     def __enter__(self):
         return self
@@ -111,3 +112,33 @@ class DBStorage:
         except Exception as e:
             print(f"Error during create_user: {e}")
             return None
+
+    def create_session(self, session_data):
+        """Create a session."""
+        from models.tables import UserSession
+        try:
+            session = UserSession(**session_data)
+            self.new(session)
+            self.save()
+            return session
+        except Exception as e:
+            print(f"Error during create_session: {e}")
+            return None
+
+    def find_session_by_id(self, session_id):
+        """Find a session by id."""
+        from models.tables import UserSession
+        try:
+            return self.__session.query(UserSession).filter_by(session_id=session_id).first()
+        except Exception as e:
+            print(f"Error during find_session_by_id: {e}")
+            return None
+
+    def delete_session(self, session):
+        """Delete a session."""
+        from models.tables import UserSession
+        try:
+            self.delete(session)
+            self.save()
+        except Exception as e:
+            print(f"Error during delete_session: {e}")
