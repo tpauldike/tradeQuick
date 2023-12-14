@@ -8,6 +8,7 @@
 }
 
 * {
+  z-index: 1;
   margin: 0;
   padding: 0;
   box-sizing: border-box;
@@ -16,9 +17,11 @@
 body {
   font-family: "Arial", sans-serif;
   background-color: var(--background-color);
+  width: 100%;
 }
 
 header {
+  z-index: 10;
   user-select: none;
   display: flex;
   flex-direction: row;
@@ -37,6 +40,7 @@ header {
   display: flex;
   align-items: center;
   justify-content: flex-start;
+  margin-left: 15px;
 }
 
 #excluding-nav div {
@@ -89,12 +93,6 @@ nav a {
   cursor: pointer;
 }
 
-.container {
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 20px;
-}
-
 #trade {
   color: var(--primary-color);
 }
@@ -134,17 +132,6 @@ button {
 button:hover {
   background-color: var(--secondary-color);
   color: var(--primary-color);
-}
-
-footer {
-  position: fixed;
-  left: 0;
-  bottom: 0;
-  width: 100%;
-  padding: 10px;
-  text-align: center;
-  background-color: var(--header-background);
-  border-top: 1px solid #ddd;
 }
 
 @media screen and (max-width: 1098px) {
@@ -214,9 +201,7 @@ footer {
 
 /* @media screen and (max-width: 550px)
 @media screen and (max-width: 430px)
-  .container {
-    padding: 10px;
-  }
+  
   footer {
     margin-top: 10px;
   }
