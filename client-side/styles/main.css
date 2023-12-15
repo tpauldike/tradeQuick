@@ -1,0 +1,151 @@
+@import url(./header.css);
+
+:root {
+    --price-color: #0c8f84;
+}
+
+main{
+ margin-top: 5.3em;
+ width: 100%;  
+}
+
+#banner-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background-color: #000;
+    width: 100%;
+}
+
+#banner-container p {
+    display: inline;
+    color: #fff;
+    font-weight: 600;
+    font-size: 50px;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    position: relative;
+    z-index: 2;
+    top: -35px;
+}
+
+#banner {
+    width: 78%;
+    position: relative;
+}
+
+.items-for-sale {
+    width: 100%;
+}
+
+.single-roll {
+    background-color: var(--background-color);
+    display: flex;
+    justify-content: center;
+    flex-direction: row;
+    padding: 20px;
+    margin-top: -25px;
+    width: 100%;
+}
+
+
+.item {
+    width: 260px;
+    height: 300px;
+    background-color: #fff;
+    padding: 10px;
+    margin: 20px;
+}
+
+.name-of-item {
+    text-align: center;
+    font-size: 20px;
+    font-weight: 600;
+    color: var(--header-background);
+}
+
+.name-of-item:hover {
+    text-decoration: underline;
+    color: var(--price-color);
+    cursor: pointer;
+}
+
+.name-of-item:active {
+    color: red;
+}
+
+.photo-of-item {
+    height: 120px;
+    width: 210px;
+    margin: 10px auto;
+    border-style: outset;
+    border-width: 0.3px;
+    border-radius: 5px;
+}
+
+.photo-of-item > img {
+    height: 120px;
+    width: 210px;
+    margin: auto;
+    border-style: outset;
+    border-width: 0.1px;
+    border-radius: 5px;
+}   
+
+.price-of-item {
+    color: var(--price-color);
+    font-weight: 550;
+    margin-left: 15px;
+}
+
+.item-description {
+    font-family: 'Times New Roman', Times, serif;
+    font-size: 13px;
+    line-height: 1.2;
+    font-style: italic;
+    color: #000;
+    font-weight: 500;
+    height: 75px;
+    justify-content: center;
+    margin: 5px;
+    padding: 0 5px;
+    margin-bottom: 0;
+    user-select: text;
+}
+
+.item > .social-interactions > span {
+    margin: 0 15px;
+}
+.item > .social-interactions > span > img {
+    width: 15px;
+    cursor: pointer;
+}
+
+.item > .social-interactions > span > img:active {
+    border-style: solid;
+    border-color: var(--primary-color);
+    border-width: 0.1px;
+    border-radius: 5px;
+    margin: auto;
+}
+
+.item > .social-interactions > .likes {
+  
+}
+
+.item > .social-interactions > .dislikes {
+}
+
+.item > .social-interactions > .comment {
+  
+}
+
+.item > .social-interactions > .add-to-cart {
+   
+
+}
+
+.item > .social-interactions > .ellipse {
+   
+
+}
