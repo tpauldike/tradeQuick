@@ -123,9 +123,40 @@ def logout_user():
     db = DBStorage()
     try:
         with db:
-            from api.v1.auth.session_auth import SessionAuth
-            session_auth = SessionAuth()
+            from api.v1.auth.session_db_auth import SessionDBAuth
+            session_auth = SessionDBAuth()
             session_auth.destroy_session(request)
             return jsonify({}), 200
+    except Exception as e:
+        abort(404)
+
+
+@app_views.route('/users/<string:user_id>', methods=['POST'], strict_slashes=False)
+def put_user(user_id):
+    """
+    - Update a user
+    """
+    from models.db import DBStorage
+    db = DBStorage()
+    try:
+        user_email = request.form.get('email')
+        user_password = request.form.get('password')
+        new_password = request.form.get('new_password')
+
+        if user_email is None:
+            return jsonify({"error": "email missing"}), 400
+        if user_password is None:
+            return jsonify({"error": "password missing"}), 400
+        if new_password is None:
+            return jsonify({"error": "new_password missing"}), 400
+        with db:
+            user = db.find_user_by_id(user_id)
+            if user is None:
+                abort(404)
+            if user_password != user.password:
+                return jsonify({"error": "wrong password"}), 401
+            user.password = new_password
+            db.save()
+            return jsonify(user.to_dict()), 201
     except Exception as e:
         abort(404)
