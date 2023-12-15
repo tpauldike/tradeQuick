@@ -95,4 +95,4 @@ The file [AUTHOR.md](./AUTHOR.md) contains the names of the authors and their em
 Feel free to contribute to the project, outside contributors from February 2024 and not before then, please. You may refer to [CONTRIBUTION.md](./CONTRIBUTION.md)
 to know how to make an acceptable contribution to this project
 
-###### &copy; 2023 tradeQuick. All rights reserved.
+###### &copy; 2023 tradeQuick. All rights reserved
