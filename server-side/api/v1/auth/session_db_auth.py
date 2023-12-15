@@ -59,8 +59,18 @@ class SessionDBAuth(SessionExpAuth):
                 expiration_time = created_at + \
                     timedelta(seconds=self.session_duration)
                 if expiration_time < datetime.now():
-                    return None
+                    db = DBStorage()
+                    try:
+                        with db:
+                            user_session = db.find_session_by_id(session_id)
+                            if user_session is None:
+                                return None
+                            db.delete_session(user_session)
+                    except Exception as e:
+                        print(e)
+                        return None
                 return session.user_id
+
         except Exception as e:
             print(e)
             return None
