@@ -1,0 +1,12 @@
+@import url(./header.css);
+
+footer {
+    /* position: fixed; */
+    bottom: 0;
+    width: 100%;
+    padding: 10px;
+    text-align: center;
+    color: var(--primary-color);
+    background-color: var(--header-background);
+    border-top: 1px solid #ddd;
+  }
