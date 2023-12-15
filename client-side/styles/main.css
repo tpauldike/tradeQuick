@@ -129,23 +129,134 @@ main{
     margin: auto;
 }
 
-.item > .social-interactions > .likes {
-  
+.more-items {
+    align-content: end;
+    background-color: rgba(12, 0, 54, 0.034);
+    text-align: right;
+    top: -30px;
 }
 
-.item > .social-interactions > .dislikes {
+.more-items > p {
+    color: #fff;
+    background-color: var(--price-color);
+    display: inline;
+    padding: 10px 15px;
+    margin: 3em;
+    border: none;
+    border-radius: 13px;
 }
 
-.item > .social-interactions > .comment {
-  
+.more-items > p:hover {
+    opacity: 0.9;
 }
 
-.item > .social-interactions > .add-to-cart {
-   
-
+.more-items > p:active {
+    color: var(--header-background);
+    padding: 8px 12px;
+}
+.reviews-section {
+    background-color: var(--primary-color);
+    height: fit-content;
+    padding: 2em;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
-.item > .social-interactions > .ellipse {
-   
+.reviews {
+    background-color: var(--header-background);
+    margin: 1em;
+    display: flex;
+    padding: 10px;
+    align-items: center;
+    color: #fff;
+    font-family: fantasy;
+    font-weight: 500;
+    font-size: 14px;
+    border: none;
+    border-radius: 10px;
+    width: 500px;
+    height: 150px;
+}
 
+.profile-pic > img {
+    width: 80px;
+    border-style: solid;
+    border-radius: 50%;
+    border-width: 1px;
+    border-color: var(--price-color);
+    margin-left: 5px;
+}
+
+.reviews-text-container {
+    display: flex;
+    flex-direction: column;
+}
+
+.username {
+    text-align: center;
+    margin: 5px;
+    font-size: 12px;
+    color: var(--primary-color);
+    cursor: pointer;
+}
+
+.username:hover {
+    text-decoration: underline;
+}
+
+.username:active {
+    color: var(--background-color)
+}
+
+.review-comments {
+    padding: 5px;
+    padding-left: 10px;
+    height: 89px;
+}
+
+.ratings {
+    padding: 0 10px;
+}
+
+.stared {
+    color: gold;
+}
+
+.contact-us {
+    background-color: #fff;
+    padding: 2em;
+    margin-top: 20px;
+}
+
+.contact-us > h3 {
+    font-size: 22px;
+    margin: 0;
+}
+.social-media-handles {
+    display: flex;
+    flex-direction: row;
+    margin-top: 3em;
+    justify-content: center;
+}
+
+.social-media-handles > div > img {
+    width: 50px;
+    margin: 0 3em;
+    flex-wrap: wrap;
+    opacity: 0.4;
+    cursor: pointer;
+}
+
+.social-media-handles > div > img:hover {
+    border-style: solid;
+    border-radius: 50%;
+    border-width: 1px;
+    padding: 5px;
+}
+
+.social-media-handles > div > img:active {
+    border: none;
+    background-color: var(--price-color);
+    padding: 1px;
 }
