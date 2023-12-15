@@ -241,7 +241,7 @@ main{
 }
 
 .social-media-handles > div > img {
-    width: 50px;
+    width: 30px;
     margin: 0 3em;
     flex-wrap: wrap;
     opacity: 0.4;
@@ -252,11 +252,11 @@ main{
     border-style: solid;
     border-radius: 50%;
     border-width: 1px;
-    padding: 5px;
+    padding: 2px;
 }
 
 .social-media-handles > div > img:active {
     border: none;
     background-color: var(--price-color);
-    padding: 1px;
+    padding: 0;
 }
