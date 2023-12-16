@@ -1,9 +1,5 @@
 @import url(./header.css);
 
-:root {
-    --price-color: #0c8f84;
-}
-
 main{
  margin-top: 5.3em;
  width: 100%;  
@@ -27,6 +23,8 @@ main{
     position: relative;
     z-index: 2;
     top: -35px;
+    padding: 0 1em;
+    text-shadow: 0 0 20px #000;
 }
 
 #banner {
@@ -55,6 +53,7 @@ main{
     background-color: #fff;
     padding: 10px;
     margin: 20px;
+    box-shadow: 0 0 1em rgba(0, 0, 0, 0.3);
 }
 
 .name-of-item {
@@ -79,7 +78,7 @@ main{
     width: 210px;
     margin: 10px auto;
     border-style: outset;
-    border-width: 0.3px;
+    border-width: 2px;
     border-radius: 5px;
 }
 
@@ -88,7 +87,7 @@ main{
     width: 210px;
     margin: auto;
     border-style: outset;
-    border-width: 0.1px;
+    border-width: 0px;
     border-radius: 5px;
 }   
 
