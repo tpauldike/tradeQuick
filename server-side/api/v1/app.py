@@ -62,7 +62,7 @@ def before_request_func():
                       '/api/v1/unauthorized/',
                       '/api/v1/forbidden/',
                       '/api/v1/users/login/',
-                      '/api/v1/users/'
+                      '/api/v1/users/',
                       ]
     if auth is None:
         pass

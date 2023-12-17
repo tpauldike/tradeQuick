@@ -3,6 +3,7 @@ from dotenv import load_dotenv
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker, scoped_session
 from models.tables import Base
+from sqlalchemy.pool import QueuePool
 from sqlalchemy import inspect
 
 load_dotenv()
@@ -11,12 +12,13 @@ database = getenv("dbName")
 user = getenv("dbUser")
 host = getenv("dbHost")
 password = getenv("dbPasswd")
+port = getenv("dbPort")
 
 
 def create_engine_with_session():
     """Create SQLAlchemy engine and scoped session."""
     engine = create_engine(
-        f'mysql+mysqldb://{user}:{password}@{host}/{database}', pool_pre_ping=True)
+        f'mysql+mysqldb://{user}:{password}@{host}:{port}/{database}', pool_pre_ping=True, poolclass=QueuePool, pool_size=5, max_overflow=10)
     session_factory = sessionmaker(bind=engine, expire_on_commit=False)
     Session = scoped_session(session_factory)
     return engine, Session
@@ -61,8 +63,13 @@ class DBStorage:
 
     def delete(self, obj=None):
         """Delete an object from the session."""
-        if obj:
-            self.__session.delete(obj)
+        try:
+            if obj:
+                self.__session.delete(obj)
+        except Exception as e:
+            print(f"Error during delete: {e}")
+            self.__session.rollback()
+            raise e
 
     def reload(self):
         """Create all tables and reset the session."""
@@ -142,3 +149,85 @@ class DBStorage:
             self.save()
         except Exception as e:
             print(f"Error during delete_session: {e}")
+
+    def delete_user(self, user):
+        """Delete a user."""
+        from models.tables import User
+        try:
+            self.delete(user)
+            self.save()
+        except Exception as e:
+            print(f"Error during delete_user: {e}")
+
+    def create_item(self, item_data):
+        """Create an item."""
+        from models.tables import Item
+        try:
+            item = Item(**item_data)
+            self.new(item)
+            self.save()
+            return item
+        except Exception as e:
+            print(f"Error during create_item: {e}")
+            return None
+
+    def get_items(self):
+        """Get all items."""
+        from models.tables import Item
+        try:
+            return self.__session.query(Item).all()
+        except Exception as e:
+            print(f"Error during get_items: {e}")
+            return None
+
+    def get_items_by_user_id(self, user_id):
+        """
+        -  Retreive all items by user_id
+        """
+        from models.tables import Item
+        try:
+            return self.__session.query(Item).filter_by(user_id=user_id).all()
+        except Exception as e:
+            print(f"Error during get_items_by_user_id: {e}")
+            return None
+
+    def get_item_by_item_id(self, item_id):
+        """
+        -  Retreive an item by item_id
+        """
+        from models.tables import Item
+        try:
+            return self.__session.query(Item).filter_by(item_id=item_id).first()
+        except Exception as e:
+            print(f"Error during get_item_by_item_id: {e}")
+            return None
+
+    def update_item_by_item_id(self, item_id, item_data):
+        """
+        -  Update an item by item_id
+        """
+        from models.tables import Item
+        try:
+            item = self.__session.query(
+                Item).filter_by(item_id=item_id).first()
+            for key, value in item_data.items():
+                setattr(item, key, value)
+            self.save()
+            return item
+        except Exception as e:
+            print(f"Error during update_item_by_item_id: {e}")
+            return None
+
+    def delete_item_by_item_id(self, item_id):
+        """
+        -  Delete an item by item_id
+        """
+        from models.tables import Item
+        try:
+            item = self.__session.query(
+                Item).filter_by(item_id=item_id).first()
+            self.delete(item)
+            self.save()
+        except Exception as e:
+            print(f"Error during delete_item_by_item_id: {e}")
+            return None
