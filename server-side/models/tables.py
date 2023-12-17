@@ -93,6 +93,20 @@ class Item(BaseModel, Base):
 
     __table_args__ = (Index('idx_items_item_id', 'item_id'),)
 
+    def to_dict(self):
+        """Convert object to dictionary"""
+        user_dict = {
+            'user_id': self.user_id,
+            'item_name': self.item_name,
+            'description': self.description,
+            'price': self.price,
+            'photo1': self.photo1,
+            'photo2': self.photo2,
+            'photo3': self.photo3,
+            'sold': self.sold,
+        }
+        return user_dict
+
 
 class Comment(BaseModel, Base):
     """Comment class"""
