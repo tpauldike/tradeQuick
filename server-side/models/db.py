@@ -231,3 +231,136 @@ class DBStorage:
         except Exception as e:
             print(f"Error during delete_item_by_item_id: {e}")
             return None
+
+    def create_rating(self, rating_data):
+        """
+        -  Create a rating
+        """
+        from models.tables import Rating
+        try:
+            rating = Rating(**rating_data)
+            self.new(rating)
+            self.save()
+            return rating
+        except Exception as e:
+            print(f"Error during create_rating: {e}")
+            return None
+
+    def get_all_ratings(self):
+        """
+        - Retreive all ratings
+        """
+        from models.tables import Rating
+        try:
+            return self.__session.query(Rating).all()
+        except Exception as e:
+            print(f"Error during get_all_ratings: {e}")
+            return None
+
+    def create_like(self, like_data):
+        """
+        -  Create a like
+        """
+        from models.tables import Like
+        try:
+            like = Like(**like_data)
+            self.new(like)
+            self.save()
+            return like
+        except Exception as e:
+            print(f"Error during create_like: {e}")
+            return None
+
+    def get_like_by_item_id(self, item_id):
+        """
+        - Retrieve like by item_id
+        """
+        from models.tables import Like
+        try:
+            return self.__session.query(Like).filter_by(item_id=item_id).first()
+        except Exception as e:
+            print(f"Error during get_like_by_user_id: {e}")
+            return None
+
+    def get_like_by_item_id_all(self, item_id):
+        """
+        - Retrieve like by item_id
+        """
+        from models.tables import Like
+        try:
+            return self.__session.query(Like).filter_by(item_id=item_id).all()
+        except Exception as e:
+            print(f"Error during get_like_by_user_id: {e}")
+            return None
+
+    def create_comment(self, comment_data):
+        """
+        -  Create a comment
+        """
+        from models.tables import Comment
+        try:
+            comment = Comment(**comment_data)
+            self.new(comment)
+            self.save()
+            return comment
+        except Exception as e:
+            print(f"Error during create_comment: {e}")
+            return None
+
+    def get_comments_by_comment_id(self, comment_id):
+        """
+        - Retrieve comment by comment_id
+        """
+        from models.tables import Comment
+        try:
+            return self.__session.query(Comment).filter_by(comment_id=comment_id).first()
+        except Exception as e:
+            print(f"Error during get_comment: {e}")
+            return None
+
+    def get_comments_by_item_id(self, item_id):
+        """
+        - Retrieve comment by item_id
+        """
+        from models.tables import Comment
+        try:
+            return self.__session.query(Comment).filter_by(item_id=item_id).all()
+        except Exception as e:
+            print(f"Error during get_comment: {e}")
+            return None
+
+    def create_message(self, message_data):
+        """
+        - Create new message
+        """
+        from models.tables import Chat
+        try:
+            message = Chat(**message_data)
+            self.new(message)
+            self.save()
+            return message
+        except Exception as e:
+            print(f"Error during create_message: {e}")
+            return None
+
+    def get_messages_by_message_id(self, message_id):
+        """
+        - Retreive a message based on their messsage_id
+        """
+        from models.tables import Chat
+        try:
+            return self.__session.query(Chat).filter_by(message_id=message_id).first()
+        except Exception as e:
+            print(f"Error during get_messages: {e}")
+            return None
+
+    def get_messages_by_user_id(self, user_id):
+        """
+        - Retreive all messages based on their user_id
+        """
+        from models.tables import Chat
+        try:
+            return self.__session.query(Chat).filter_by(user_id=user_id).all()
+        except Exception as e:
+            print(f"Error during get_messages: {e}")
+            return None

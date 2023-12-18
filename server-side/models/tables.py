@@ -50,7 +50,7 @@ class User(BaseModel, Base):
     __table_args__ = (Index('idx_users_user_id', 'user_id'),)
 
     def to_dict(self):
-        """Convert object to dictionary"""
+        """Convert user object to dictionary"""
         user_dict = {
             'user_id': self.user_id,
             'fullname': self.fullname,
@@ -94,7 +94,7 @@ class Item(BaseModel, Base):
     __table_args__ = (Index('idx_items_item_id', 'item_id'),)
 
     def to_dict(self):
-        """Convert object to dictionary"""
+        """Convert item object to dictionary"""
         user_dict = {
             'user_id': self.user_id,
             'item_name': self.item_name,
@@ -126,6 +126,17 @@ class Comment(BaseModel, Base):
     user = relationship('User', back_populates='comments')
     items = relationship('Item', back_populates='comments')
 
+    def to_dict(self):
+        """Convert rating object to dictionary"""
+        comment_dict = {
+            'comment_id': self.comment_id,
+            'item_id': self.item_id,
+            'commenter': self.commenter,
+            'comment': self.comment,
+            'created_at': self.created_at,
+        }
+        return comment_dict
+
 
 class Chat(BaseModel, Base):
     """Chat class"""
@@ -147,6 +158,18 @@ class Chat(BaseModel, Base):
     receiver = relationship('User', foreign_keys=[
                             receiver_id], back_populates='received_messages')
 
+    def to_dict(self):
+        """
+        - Convert chat object to dictionary
+        """
+        chat_data = {
+            'message_id': self.message_id,
+            'sender_id': self.sender_id,
+            'receiver_id': self.receiver_id,
+            'message': self.message,
+            'created_at': self.created_at,
+        }
+
 
 class Like(BaseModel, Base):
     """Like class"""
@@ -165,6 +188,16 @@ class Like(BaseModel, Base):
     user = relationship('User', back_populates='likes')
     items = relationship('Item', back_populates='likes')
 
+    def to_dict(self):
+        """Convert rating object to dictionary"""
+        like_dict = {
+            'user_id': self.user_id,
+            'item_id': self.item_id,
+            'liked': self.liked,
+            'created_at': self.created_at,
+        }
+        return like_dict
+
 
 class Rating(Base):
     """Rating class"""
@@ -180,6 +213,15 @@ class Rating(Base):
 
     # Define a relationship with the User class
     user = relationship('User', back_populates='ratings')
+
+    def to_dict(self):
+        """Convert rating object to dictionary"""
+        user_dict = {
+            'user_id': self.user_id,
+            'rating': self.rating,
+            'comment': self.comment,
+        }
+        return user_dict
 
 
 class UserSession(Base):
