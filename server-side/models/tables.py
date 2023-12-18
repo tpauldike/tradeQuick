@@ -158,6 +158,18 @@ class Chat(BaseModel, Base):
     receiver = relationship('User', foreign_keys=[
                             receiver_id], back_populates='received_messages')
 
+    def to_dict(self):
+        """
+        - Convert chat object to dictionary
+        """
+        chat_data = {
+            'message_id': self.message_id,
+            'sender_id': self.sender_id,
+            'receiver_id': self.receiver_id,
+            'message': self.message,
+            'created_at': self.created_at,
+        }
+
 
 class Like(BaseModel, Base):
     """Like class"""
