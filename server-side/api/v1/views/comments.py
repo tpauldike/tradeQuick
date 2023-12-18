@@ -1,44 +1,93 @@
-from flask import Blueprint, request, jsonify
-from models import db, Comment
+from flask import abort, request, jsonify
+from dotenv import load_dotenv
+from os import getenv
+from api.v1.views import app_views
 
-comments_bp = Blueprint('comments', __name__, url_prefix='/api/v1/comments')
-
-
-@comments_bp.route('/', methods=['POST'])
-def create_comment():
-    data = request.json
-
-    # Assuming you have a database model for comments
-    new_comment = Comment(
-        user_id=data.get('user_id'),
-        post_id=data.get('post_id'),
-        content=data.get('content')
-        # Add more fields as needed
-    )
-
-    db.session.add(new_comment)
-    db.session.commit()
-
-    return jsonify({'message': 'Comment created successfully'}), 201
+load_dotenv()
 
 
-@comments_bp.route('/<comment_id>', methods=['DELETE'])
+@app_views.route('/comments', methods=['POST'], strict_slashes=False)
+def comments():
+    """Create a new comment"""
+    from models.db import DBStorage
+    db = DBStorage()
+    comment_data = request.json
+    if not comment_data:
+        abort(400, "Not a JSON")
+    if 'commenter' not in comment_data.keys():
+        abort(400, "Missing commenter")
+    if 'item_id' not in comment_data.keys():
+        abort(400, "Missing item_id")
+    if 'comment' not in comment_data.keys():
+        abort(400, "Missing comment")
+
+    try:
+        with db:
+            new_comment = db.create_comment(comment_data)
+            db.save()
+            if not new_comment:
+                abort(400, "Error creating comment")
+            return jsonify(new_comment.to_dict()), 201
+    except Exception as e:
+        abort(400)
+
+
+@app_views.route('/comments/<string:comment_id>', methods=['PATCH'], strict_slashes=False)
+def update_comment(comment_id):
+    """Update a comment"""
+    from models.db import DBStorage
+    db = DBStorage()
+    comment_data = request.json
+    if not comment_data:
+        abort(400, "Not a JSON")
+    if 'comment' not in comment_data.keys():
+        abort(400, "Missing comment")
+
+    try:
+        with db:
+            comment = db.get_comments_by_comment_id(comment_id)
+            if not comment:
+                abort(404, "Comment not found")
+            comment.comment = comment_data['comment']
+            db.save()
+            return jsonify(comment.to_dict()), 200
+    except Exception as e:
+        abort(400)
+
+
+@app_views.route('/comments/<string:item_id>', methods=['GET'], strict_slashes=False)
+def get_comments(item_id):
+    """Get comments for an item"""
+    from models.db import DBStorage
+    db = DBStorage()
+    try:
+        with db:
+            comments = db.get_comments_by_item_id(item_id)
+            if not comments:
+                abort(404, "No comments found")
+            all_comments = [comment.to_dict() for comment in comments]
+            count_comments = len(all_comments)
+            response = {
+                'count': count_comments,
+                'comments': all_comments
+            }
+            return jsonify(response), 200
+    except Exception as e:
+        abort(400)
+
+
+@app_views.route('/comments/<string:comment_id>', methods=['DELETE'], strict_slashes=False)
 def delete_comment(comment_id):
-    comment = Comment.query.get(comment_id)
-
-    if comment:
-        db.session.delete(comment)
-        db.session.commit()
-        return jsonify({'message': 'Comment deleted successfully'}), 200
-    else:
-        return jsonify({'error': 'Comment not found'}), 404
-
-
-@comments_bp.route('/post/<post_id>', methods=['GET'])
-def get_comments_for_post(post_id):
-    comments = Comment.query.filter_by(post_id=post_id).all()
-
-    if comments:
-        return jsonify({'comments': [comment.serialize() for comment in comments]}), 200
-    else:
-        return jsonify({'message': 'No comments found for the post'}), 404
+    """Delete a comment"""
+    from models.db import DBStorage
+    db = DBStorage()
+    try:
+        with db:
+            comment = db.get_comments_by_comment_id(comment_id)
+            if not comment:
+                abort(404, "Comment not found")
+            db.delete(comment)
+            db.save()
+            return jsonify({}), 200
+    except Exception as e:
+        abort(400)
