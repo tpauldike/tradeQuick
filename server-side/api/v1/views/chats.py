@@ -1,47 +1,93 @@
-from flask import Blueprint, request, jsonify
-from models import db, ChatMessage
+from flask import abort, request, jsonify
+from dotenv import load_dotenv
+from os import getenv
+from api.v1.views import app_views
 
-chats_bp = Blueprint('chats', __name__, url_prefix='/api/v1/chats')
-
-
-@chats_bp.route('/', methods=['POST'])
-def send_message():
-    data = request.json
-
-    # Assuming you have a database model for chat messages
-    new_message = ChatMessage(
-        sender_id=data.get('sender_id'),
-        receiver_id=data.get('receiver_id'),
-        message=data.get('message')
-        # Add more fields as needed
-    )
-
-    db.session.add(new_message)
-    db.session.commit()
-
-    return jsonify({'message': 'Message sent successfully'}), 201
+load_dotenv()
 
 
-@chats_bp.route('/<message_id>', methods=['DELETE'])
+@app_views.route('/messages', method=['POST'], strict_slashes=False)
+def create_message():
+    """
+    - Create a new message
+    """
+    message_data = request.json
+    if not message_data:
+        abort(400, "Not a JSON")
+    if 'sender_id' not in message_data.keys():
+        abort(400, "sender_id missing")
+    if 'receiver_id' not in message_data.keys():
+        abort(400, "receiver_id missing")
+    if 'message' not in message_data.keys():
+        abort(400, "message missing")
+    from models.db import DBStorage
+    db = DBStorage()
+    try:
+        with db:
+            new_message = db.create_message(message_data)
+            db.save()
+            if not new_message:
+                abort(400, "Error creating message")
+            return jsonify(new_message.to_dict()), 201
+    except Exception as e:
+        abort(400)
+
+
+@app_views.route('/messages/<string:message_id>', methods=['PATCH'], strict_slashes=False)
+def update_message(message_id):
+    from models.db import DBStorage
+    db = DBStorage()
+    message_data = request.json
+    if not message_data:
+        abort(400, "Not a JSON")
+    if 'message' not in message_data.keys():
+        abort(400, "Missing message")
+    try:
+        with db:
+            new_message = db.get_messages_by_message_id(message_id)
+            if not new_message:
+                abort(404, "message not found")
+            new_message.message = message_data['message']
+            db.save()
+            return jsonify(new_message.to_dict()), 200
+    except Exception as e:
+        abort(400)
+
+
+@app_views.route('/messages/<string:message_id>', methods=['DELETE'], strict_slashes=False)
 def delete_message(message_id):
-    message = ChatMessage.query.get(message_id)
+    """
+    - Delete a message
+    """
+    from models.db import DBStorage
+    db = DBStorage()
+    try:
+        with db:
+            message = db.get_messages_by_message_id(message_id)
+            if not message:
+                abort(404, "message not found")
+            db.delete(message)
+            db.save()
+            return jsonify({}), 200
+    except Exception as e:
+        abort(400)
 
-    if message:
-        db.session.delete(message)
-        db.session.commit()
-        return jsonify({'message': 'Message deleted successfully'}), 200
-    else:
-        return jsonify({'error': 'Message not found'}), 404
 
-
-@chats_bp.route('/user/<user_id>', methods=['GET'])
-def get_user_messages(user_id):
-    # Retrieve all messages where the user is either the sender or receiver
-    messages = ChatMessage.query.filter(
-        (ChatMessage.sender_id == user_id) | (ChatMessage.receiver_id == user_id)
-    ).all()
-
-    if messages:
-        return jsonify({'messages': [message.serialize() for message in messages]}), 200
-    else:
-        return jsonify({'message': 'No messages found for the user'}), 404
+@app_views.route('/messages/<string:user_id>', methods=['DELETE'], strict_slashes=False)
+def delete_all_user_chat(user_id):
+    """
+    - Delete all messages from a user
+    """
+    from models.db import DBStorage
+    db = DBStorage()
+    try:
+        with db:
+            messages = db.get_messages_by_user_id(user_id)
+            if not messages:
+                abort(404, "messages not found")
+            for message in messages:
+                db.delete(message)
+            db.save()
+            return jsonify({}), 200
+    except Exception as e:
+        abort(400)
