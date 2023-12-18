@@ -292,3 +292,39 @@ class DBStorage:
         except Exception as e:
             print(f"Error during get_like_by_user_id: {e}")
             return None
+
+    def create_comment(self, comment_data):
+        """
+        -  Create a comment
+        """
+        from models.tables import Comment
+        try:
+            comment = Comment(**comment_data)
+            self.new(comment)
+            self.save()
+            return comment
+        except Exception as e:
+            print(f"Error during create_comment: {e}")
+            return None
+
+    def get_comments_by_comment_id(self, comment_id):
+        """
+        - Retrieve comment by comment_id
+        """
+        from models.tables import Comment
+        try:
+            return self.__session.query(Comment).filter_by(comment_id=comment_id).first()
+        except Exception as e:
+            print(f"Error during get_comment: {e}")
+            return None
+
+    def get_comments_by_item_id(self, item_id):
+        """
+        - Retrieve comment by item_id
+        """
+        from models.tables import Comment
+        try:
+            return self.__session.query(Comment).filter_by(item_id=item_id).all()
+        except Exception as e:
+            print(f"Error during get_comment: {e}")
+            return None

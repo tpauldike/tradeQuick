@@ -126,6 +126,17 @@ class Comment(BaseModel, Base):
     user = relationship('User', back_populates='comments')
     items = relationship('Item', back_populates='comments')
 
+    def to_dict(self):
+        """Convert rating object to dictionary"""
+        comment_dict = {
+            'comment_id': self.comment_id,
+            'item_id': self.item_id,
+            'commenter': self.commenter,
+            'comment': self.comment,
+            'created_at': self.created_at,
+        }
+        return comment_dict
+
 
 class Chat(BaseModel, Base):
     """Chat class"""
