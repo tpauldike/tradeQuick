@@ -73,7 +73,7 @@ def get_items_by_user_id(user_id):
         abort(400)
 
 
-@app_views.route('/items/<string:item_id', methods=['GET'], strict_slashes=False)
+@app_views.route('/items/<string:item_id>', methods=['GET'], strict_slashes=False)
 def get_item_by_item_id(item_id):
     """
     - Get item by item_id
