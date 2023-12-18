@@ -328,3 +328,39 @@ class DBStorage:
         except Exception as e:
             print(f"Error during get_comment: {e}")
             return None
+
+    def create_message(self, message_data):
+        """
+        - Create new message
+        """
+        from models.tables import Chat
+        try:
+            message = Chat(**message_data)
+            self.new(message)
+            self.save()
+            return message
+        except Exception as e:
+            print(f"Error during create_message: {e}")
+            return None
+
+    def get_messages_by_message_id(self, message_id):
+        """
+        - Retreive a message based on their messsage_id
+        """
+        from models.tables import Chat
+        try:
+            return self.__session.query(Chat).filter_by(message_id=message_id).first()
+        except Exception as e:
+            print(f"Error during get_messages: {e}")
+            return None
+
+    def get_messages_by_user_id(self, user_id):
+        """
+        - Retreive all messages based on their user_id
+        """
+        from models.tables import Chat
+        try:
+            return self.__session.query(Chat).filter_by(user_id=user_id).all()
+        except Exception as e:
+            print(f"Error during get_messages: {e}")
+            return None
