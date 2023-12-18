@@ -231,3 +231,64 @@ class DBStorage:
         except Exception as e:
             print(f"Error during delete_item_by_item_id: {e}")
             return None
+
+    def create_rating(self, rating_data):
+        """
+        -  Create a rating
+        """
+        from models.tables import Rating
+        try:
+            rating = Rating(**rating_data)
+            self.new(rating)
+            self.save()
+            return rating
+        except Exception as e:
+            print(f"Error during create_rating: {e}")
+            return None
+
+    def get_all_ratings(self):
+        """
+        - Retreive all ratings
+        """
+        from models.tables import Rating
+        try:
+            return self.__session.query(Rating).all()
+        except Exception as e:
+            print(f"Error during get_all_ratings: {e}")
+            return None
+
+    def create_like(self, like_data):
+        """
+        -  Create a like
+        """
+        from models.tables import Like
+        try:
+            like = Like(**like_data)
+            self.new(like)
+            self.save()
+            return like
+        except Exception as e:
+            print(f"Error during create_like: {e}")
+            return None
+
+    def get_like_by_item_id(self, item_id):
+        """
+        - Retrieve like by item_id
+        """
+        from models.tables import Like
+        try:
+            return self.__session.query(Like).filter_by(item_id=item_id).first()
+        except Exception as e:
+            print(f"Error during get_like_by_user_id: {e}")
+            return None
+
+    def get_like_by_item_id_all(self, item_id):
+        """
+        - Retrieve like by item_id
+        """
+        from models.tables import Like
+        try:
+            return self.__session.query(Like).filter_by(item_id=item_id).all()
+        except Exception as e:
+            print(f"Error during get_like_by_user_id: {e}")
+            return None
