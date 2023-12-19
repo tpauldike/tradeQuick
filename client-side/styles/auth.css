@@ -1,0 +1,42 @@
+@import url(./header.css);
+
+
+body {
+    padding: 2em;
+}
+
+h1 {
+    text-align: center;
+    margin: 10px auto;
+}
+
+a {
+color: var(--price-color);
+font-size: 1em;
+}
+
+.form-container {
+    background: #fff;
+    max-width: 600px;
+    padding: 0 30px;
+    margin: 30px auto;
+    box-shadow: 0 0 5px 3px rgba(0, 0, 0, 0.2);
+}
+
+#logo-on-form {
+    display: flex;
+    justify-content: center;
+}
+
+#logo-on-form img {
+    height: 50px;
+    width: 60px;
+    margin: 2em auto;
+}
+
+form {
+    /* display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    padding: 10px; */
+}
