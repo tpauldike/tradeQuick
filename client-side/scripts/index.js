@@ -20,6 +20,14 @@ const icons = [{
 }
 ];
 
+const menu = document.getElementById('nav-list');
+const menuToggle = document.getElementById('menu-toggle');
+const mobileSearchBar = document.getElementById('mobile-search-bar-input');
+const mobileSearchIcon = document.getElementById('mobile-search-icon');
+
+let menuDisplayed = false;
+let searchBarDisplayed = false;
+
 const displaySocialInteractions = (htmlClass, imgSrc) => {
   const htmlClassList = document.querySelectorAll(htmlClass);
 
@@ -36,12 +44,12 @@ document.addEventListener('DOMContentLoaded', () => {
   })
 });
 
+menuToggle.addEventListener('click', () => {
+  menu.style.display = !menuDisplayed ? 'block' : 'none';
+  menuDisplayed = menuDisplayed === false ? true : false
+});
 
-// document.addEventListener('DOMContentLoaded', function () {
-//   const mobileMenuToggle = document.getElementById('mobile-menu');
-//   const navList = document.querySelector('.nav-list');
-
-//   mobileMenuToggle.addEventListener('click', function () {
-//     navList.classList.toggle('show');
-//   });
-// });
+mobileSearchIcon.addEventListener('click', () => {
+  mobileSearchBar.style.display = !searchBarDisplayed ? 'block' : 'none';
+  searchBarDisplayed = searchBarDisplayed === false ? true : false
+});
