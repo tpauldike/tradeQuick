@@ -33,47 +33,65 @@
     <link rel="manifest" href="./site.webmanifest" />
     <link rel="stylesheet" href="./styles/header.css" />
     <link rel="stylesheet" href="./styles/main.css" />
-    <link rel="stylesheet" href="./styles/footer.css" />
-    <title>tradeQuick</title>
+    <link rel="stylesheet" href="./styles/popup.css" />
+    <title>tradeQuick | Home</title>
   </head>
   <body>
-    <!-- <div class="container"> -->
     <header>
       <div id="excluding-nav">
         <div id="logo">
-          <a href="#"> <img src="./assets/logo.png" alt="logo" id="logo" /></a>
+          <a href="./index.html">
+            <img src="./assets/logo.png" alt="logo" id="logo"
+          /></a>
         </div>
         <div>
           <h1 id="title"><span id="trade">trade</span>Quick</h1>
         </div>
-        <div id="search-bar">
+        <div class="search-bar" id="desktop-search-bar">
           <input
             type="text"
             name="search"
             placeholder="Search for an item"
-          /><img src="./assets/search.png" alt="search" id="search-icon" />
+          /><img src="./assets/search.png" alt="search" class="search-icon" />
         </div>
       </div>
-      <nav>
-        <a href="#">Home</a>
-        <a href="#">Portfolio</a>
-        <a href="#">About</a>
-        <a href="#"><button id="login-btn">Login</button></a>
-        <a href="#"><button id="register-btn">Register</button></a>
 
-        <div id="menu-container">
-          <div class="menu-toggle" id="mobile-menu">
+      <div class="search-bar" id="mobile-search-bar">
+        <input
+          id="mobile-search-bar-input"
+          type="text"
+          name="search"
+          placeholder="Search here"
+        /><img
+          src="./assets/search.png"
+          alt="search"
+          class="search-icon"
+          id="mobile-search-icon"
+        />
+      </div>
+      <nav>
+        <div id="mobile-menu-container">
+          <div class="menu-toggle" id="menu-toggle">
             <span></span>
             <span></span>
             <span></span>
           </div>
-          <ul class="nav-list">
-            <li><a href="#">Home</a></li>
-            <li><a href="#">Portfolio</a></li>
-            <li><a href="#">About</a></li>
-            <li><a href="#">Help</a></li>
-            <li><a href="#">Login</a></li>
+          <ul class="nav-list" id="nav-list">
+            <li><a href="./index.html">Home</a></li>
+            <li><a href="./portfolio.html">Portfolio</a></li>
+            <li><a href="./about.html">About</a></li>
+            <li><a href="./login.html">Login</a></li>
+            <li><a href="./auth.html">Register</a></li>
           </ul>
+          <a href="./auth.html"><button id="register-btn">Register</button></a>
+        </div>
+
+        <div class="nav-buttons">
+          <a href="./index.html">Home</a>
+          <a href="./portfolio.html">Portfolio</a>
+          <a href="./about.html">About</a>
+          <a href="./login.html"><button>Login</button></a>
+          <a href="./auth.html"><button>Register</button></a>
         </div>
       </nav>
     </header>
@@ -85,8 +103,7 @@
       </section>
 
       <section class="items-for-sale">
-        <!-- items on roll 1 -->
-        <div class="single-roll">
+        <div class="items-container">
           <div class="item">
             <div class="name-of-item">hp Laptop</div>
             <div class="photo-of-item">
@@ -101,7 +118,7 @@
             <div class="social-interactions">
               <span class="likes"></span><span class="dislikes"></span
               ><span class="add-to-cart"></span><span class="comment"></span
-              ><span class="ellipse"></span>
+              ><span class="ellipse" id="demo"></span>
             </div>
           </div>
 
@@ -152,10 +169,7 @@
               ><span class="ellipse"></span>
             </div>
           </div>
-        </div>
 
-        <!-- items on roll 2 -->
-        <div class="single-roll">
           <div class="item">
             <div class="name-of-item">Laptop Bag</div>
             <div class="photo-of-item">
@@ -222,10 +236,7 @@
               ><span class="ellipse"></span>
             </div>
           </div>
-        </div>
 
-        <!-- third roll -->
-        <div class="single-roll">
           <div class="item">
             <div class="name-of-item">Cocoa Tea</div>
             <div class="photo-of-item">
@@ -292,22 +303,71 @@
             </div>
           </div>
         </div>
+
+        <!-- popup window -->
+        <div class="popup-container" id="popup-container">
+          <div class="close" id="close"><p>&times;</p></div>
+          <div class="popup-item">
+            <div class="popup-user">
+              <div class="popup-user-photo">
+                <img src="./assets/for-demo/Ebube.jpg" alt="" />
+                <p class="fullname-of-user">Ebube Paul-Dike</p>
+                <p class="popup-username">ebubedike</p>
+              </div>
+              <div class="message-user">
+                <img src="./assets/message.png" alt="message user" />
+              </div>
+              <div class="message-user">Message</div>
+              <div class="user-about">
+                <strong>About:</strong>
+                <p>
+                  From Ogun State, Nigeria; lives in Abeokuta currently and
+                  works with Shell. A business man and life coach who graduated
+                  from Oxford school of Business Management
+                </p>
+              </div>
+            </div>
+            <div class="popup-name">hp Laptop</div>
+            <div class="popup-photos-container">
+              <div class="img-btn" id="popup-prev-btn">
+                <img src="./assets/prev.png" alt="previous" />
+              </div>
+              <div class="popup-photos">
+                <img src="./assets/for-demo/hp_laptop.jpeg" />
+              </div>
+              <div class="img-btn" id="popup-next-btn">
+                <img src="./assets/next.png" alt="next" />
+              </div>
+            </div>
+            <div class="popup-price">N40,000</div>
+            <div class="popup-description">
+              Fairly used PC, hp product, 8GB RAM, 500GB HDD, still looking new
+              and everything is working well, but the battery does not last for
+              too long anymore
+            </div>
+            <div class="social-interactions">
+              <span class="likes"></span><span class="dislikes"></span
+              ><span class="add-to-cart"></span><span class="comment"></span>
+            </div>
+          </div>
+        </div>
+
         <div class="more-items">
-        <p>See more items</p>
-      </div>
+          <p>See more items</p>
+        </div>
       </section>
       <section class="reviews-section">
         <div class="reviews">
           <div class="user-container">
-          <div class="profile-pic">
-            <img src="./assets/for-demo/Topman.png" alt="" />
+            <div class="profile-pic">
+              <img src="./assets/for-demo/Topman.png" alt="" />
+            </div>
+            <p class="username">tpauldike</p>
           </div>
-          <p class="username">tpauldike</p>
-        </div>
           <div class="review-text-container">
             <p class="review-comments">
               tradeQuick to the world! The product has come to stay. It should
-              be available in ecery form every where, to everyone
+              be available in every form every where, to everyone
             </p>
             <p class="ratings">
               <span class="stared">&#9733;</span>
@@ -322,9 +382,9 @@
         <div class="reviews">
           <div class="user-container">
             <div class="profile-pic">
-            <img src="./assets/for-demo/Amaka.jpg" alt="" />
-          </div>
-          <p class="username">amaka-nwa</p>
+              <img src="./assets/for-demo/Amaka.jpg" alt="" />
+            </div>
+            <p class="username">amaka-nwa</p>
           </div>
           <div class="review-text">
             <p class="review-comments">
@@ -344,13 +404,13 @@
         <div class="reviews">
           <div class="user-container">
             <div class="profile-pic">
-            <img src="./assets/for-demo/Ebube.jpg" alt="" />
-          </div>
-          <p class="username">ebubedike</p>
+              <img src="./assets/for-demo/Ebube.jpg" alt="" />
+            </div>
+            <p class="username">ebubedike</p>
           </div>
           <div class="review-text">
             <p class="review-comments">
-              This platform is definitely helpful, it has been a my market place
+              This platform is definitely helpful, it has been my market place
               for finding what I want at the cheapest possible price
             </p>
             <p class="ratings">
@@ -361,33 +421,31 @@
               <span class="star">&#9733;</span>
             </p>
           </div>
-          </div>
-          <div class="more-review">
         </div>
-          
+        <div class="more-review"></div>
       </section>
       <section class="contact-us">
         <div class="contact-us">
-        <h3>Contact or stay in touch with us</h3>
+          <h3>Contact or stay in touch with us</h3>
 
-        <div class="social-media-handles">
-            <div id="github"><img src="./assets/github.svg" alt=""></div>
-            <div id="discord"><img src="./assets/discord.svg" alt=""></div>
-            <div id="facebook"><img src="./assets/facebook.svg" alt=""></div>
-            <div id="twitter"><img src="./assets/twitter.svg" alt=""></div>
-            <div id="linkedin"><img src="./assets/linkedin.svg" alt=""></div>
-          </div>
           <div class="social-media-handles">
-            <div id="whatsapp"><img src="./assets/whatsapp.svg" alt=""></div>
-            <div id="email"><img src="./assets/email.png" alt=""></div>
-            <div id="call"><img src="./assets/call.png" alt=""></div>
-      </div>
+            <div id="github"><img src="./assets/github.svg" alt="" /></div>
+            <div id="discord"><img src="./assets/discord.svg" alt="" /></div>
+            <div id="facebook"><img src="./assets/facebook.svg" alt="" /></div>
+            <div id="twitter"><img src="./assets/twitter.svg" alt="" /></div>
+            <div id="linkedin"><img src="./assets/linkedin.svg" alt="" /></div>
+            <div id="whatsapp"><img src="./assets/whatsapp.svg" alt="" /></div>
+            <div id="email"><img src="./assets/email.png" alt="" /></div>
+            <div id="call"><img src="./assets/call.png" alt="" /></div>
+          </div>
+        </div>
       </section>
     </main>
 
     <footer>
-      <p>&copy; 2023 tradeQuick. All rights reserved.</p>
+      <p><small>&copy; 2023 tradeQuick. All rights reserved.</small></p>
     </footer>
     <script src="./scripts/index.js"></script>
+    <script src="./scripts/demo.js"></script>
   </body>
 </html>
