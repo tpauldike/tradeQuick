@@ -169,6 +169,7 @@ class Chat(BaseModel, Base):
             'message': self.message,
             'created_at': self.created_at,
         }
+        return chat_data
 
 
 class Like(BaseModel, Base):
