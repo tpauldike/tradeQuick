@@ -6,7 +6,7 @@ from api.v1.views import app_views
 load_dotenv()
 
 
-@app_views.route('/messages', method=['POST'], strict_slashes=False)
+@app_views.route('/messages', methods=['POST'], strict_slashes=False)
 def create_message():
     """
     - Create a new message
