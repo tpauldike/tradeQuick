@@ -32,13 +32,15 @@
     />
     <link rel="manifest" href="./site.webmanifest" />
     <link rel="stylesheet" href="./styles/auth.css" />
-    <title>tradeQuick | Auth</title>
+    <title>tradeQuick | Register</title>
   </head>
 
   <body>
     <h1>Registration Form</h1>
     <div class="form-container">
-      <div id="logo-on-form"><a href="./index.html"><img src="./assets/logo.png" alt="logo" /></a></div>
+      <div id="logo-on-form">
+        <a href="./index.html"><img src="./assets/logo.png" alt="logo" /></a>
+      </div>
       <form action="">
         <fieldset>
           <legend>Personal Details</legend>
@@ -143,8 +145,9 @@
               placeholder="Create a new password"
               required
             />
+            <img src="./assets/show-password.png" alt="Show Password" />
           </div>
-          <div>
+          <div id="password-container">
             <label for="password">Confirm Password:</label>
             <input
               type="password"
@@ -166,21 +169,25 @@
         </div>
         <button type="submit">Create Account</button>
         <div>
-          <p>Already have an account? <a href="Sign in"></a></p>
+          <p>Already have an account? <a href="./login.html">Login here</a></p>
         </div>
         <hr />
         <div class="third-party-auth">
           <p>Sign up with</p>
-          <div class="google-auth">
-            <img src="./assets/google.svg" alt="Google icon" />
-            <p>Google</p>
-          </div>
-          <div class="facebook-auth">
-            <img src="./assets/facebook-colored.svg" alt="Facebook icon" />
-            <p>Facebook</p>
-          </div>
+          <fieldset>
+            <legend>Google</legend>
+            <div class="google-auth">
+              <img src="./assets/google.svg" alt="Google icon" />
+            </div>
+          </fieldset>
+          <fieldset>
+            <legend>Facebook</legend>
+            <div class="facebook-auth">
+              <img src="./assets/facebook-colored.svg" alt="Facebook icon" />
+            </div>
+          </fieldset>
         </div>
-        <div>Go <a href="./index.html">back home</a></div>
+        <div class="back-home-btn">Go <a href="./index.html">back home</a></div>
       </form>
     </div>
   </body>

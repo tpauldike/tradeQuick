@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="apple-touch-icon"
+      sizes="192x192"
+      href="./android-chrome-192x192.png"
+    />
+    <link
+      rel="apple-touch-icon"
+      sizes="512x512"
+      href="./android-chrome-512x512.png"
+    />
+    <link
+      rel="apple-touch-icon"
+      sizes="180x180"
+      href="./apple-touch-icon.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="32x32"
+      href="./favicon-32x32.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="16x16"
+      href="./favicon-16x16.png"
+    />
+    <link rel="manifest" href="./site.webmanifest" />
+    <link rel="stylesheet" href="./styles/auth.css" />
+    <title>tradeQuick | Login</title>
+  </head>
+
+  <body>
+    <h1>Login Form</h1>
+    <div class="form-container">
+      <div id="logo-on-form">
+        <a href="./index.html"><img src="./assets/logo.png" alt="logo" /></a>
+      </div>
+      <div>
+        <label for="email">Email:</label>
+        <input
+          type="email"
+          id="email"
+          name="email"
+          placeholder="A valid email address"
+          required
+        />
+      </div>
+      <div id="password-container">
+        <label for="password">Choose Password:</label>
+        <input
+          type="password"
+          id="password"
+          name="password"
+          placeholder="Create a new password"
+          required
+        />
+        <img src="./assets/show-password.png" alt="Show Password">
+      </div>
+      <div>
+        <p>Don't remember your password? <a href="#">Reset password</a></p>
+      </div>
+      <div>
+        <p>Don't have an account yet? <a href="./register.html">Get registered</a></p>
+      </div>
+      <hr />
+      <div class="third-party-auth">
+        <p>Sign up with</p>
+        <fieldset>
+          <legend>Google</legend>
+          <div class="google-auth">
+            <img src="./assets/google.svg" alt="Google icon" />
+          </div>
+        </fieldset>
+        <fieldset>
+          <legend>Facebook</legend>
+          <div class="facebook-auth">
+            <img src="./assets/facebook-colored.svg" alt="Facebook icon" />
+          </div>
+        </fieldset>
+        <div class="back-home-btn">Go <a href="./index.html">back home</a></div>
+      </body>
+</html>

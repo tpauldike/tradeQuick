@@ -298,12 +298,17 @@ footer {
   main {
     margin-top: 6.5em;
   }
+
+  #banner-container p {
+    font-size: 2.5em;
+  }
 }
 
 @media screen and (max-width: 550px) {
   .review-comments {
     height: 100px;
   }
+
 }
 
 @media screen and (max-width: 320px) {

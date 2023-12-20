@@ -213,12 +213,17 @@ button:active {
     right: 0;
     left: auto;
     height: 100vh;
-    width: 7em;
+    width: 11em;
     opacity: 0.9;
     padding: 5.2em 1em;
     display: none;
     transition: display 0.7s ease-in-out;
     line-height: 1.5;
+    text-align: center;
+  }
+
+  a {
+    line-height: 2;
   }
 
   a:hover {
@@ -258,11 +263,7 @@ button:active {
   }
 
   .nav-list {
-    margin-top: 70px;
-  }
-
-  a {
-    line-height: 2;
+    margin-top: 73px;
   }
 }
 

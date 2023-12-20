@@ -6,13 +6,20 @@ body {
 }
 
 h1 {
+    color: #fff;
     text-align: center;
     margin: 10px auto;
+    text-shadow: 0 0 5px rgb(0, 0, 0);
 }
 
 a {
 color: var(--price-color);
 font-size: 1em;
+}
+
+a:active {
+    color: var(--header-background);
+    transition: color 0.3s ease;
 }
 
 .form-container {
@@ -34,9 +41,11 @@ font-size: 1em;
     margin: 2em auto;
 }
 
-form {
-    /* display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    padding: 10px; */
+.third-party-auth img {
+    width: 30px;
+}
+
+#password-container img {
+    width: 20px;
+    cursor: pointer;
 }
