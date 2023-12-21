@@ -73,7 +73,7 @@
               placeholder="Male"
               required
             >
-              <option>Select</option>
+              <option value="">Select</option>
               <option value="Male">Male</option>
               <option value="Female">Female</option>
               <option value="Other">Other</option>
@@ -136,18 +136,19 @@
         </fieldset>
         <fieldset>
           <legend>Create Password</legend>
-          <div>
+          <div class="password-container">
             <label for="password">Choose Password:</label>
-            <input
+            <span><input
               type="password"
               id="password"
+              pattern="[a-z0-5]{8,}"
               name="password"
               placeholder="Create a new password"
               required
             />
-            <img src="./assets/show-password.png" alt="Show Password" />
+            <img src="./assets/show-password.png" alt="Show Password" /></span>
           </div>
-          <div id="password-container">
+          <div>
             <label for="password">Confirm Password:</label>
             <input
               type="password"
@@ -157,23 +158,25 @@
             />
           </div>
         </fieldset>
-        <div>
+        <div class="inline">
           <input
             type="checkbox"
-            id="accept-terms"
-            name="accept-terms"
+            id="terms-and-conditions"
+            name="terms-and-conditions"
             required
           />
-          I accept the <a href="./terms.html">terms and conditions</a> of using
-          tradeQuick.
+          <label for="terms-and-conditions"
+            >I accept the <a href="./terms.html">terms and conditions</a> of
+            using tradeQuick.</label
+          >
         </div>
         <button type="submit">Create Account</button>
-        <div>
+        <div class="redirection-links">
           <p>Already have an account? <a href="./login.html">Login here</a></p>
         </div>
         <hr />
+        <p>Sign up with</p>
         <div class="third-party-auth">
-          <p>Sign up with</p>
           <fieldset>
             <legend>Google</legend>
             <div class="google-auth">

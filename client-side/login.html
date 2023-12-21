@@ -51,26 +51,27 @@
           required
         />
       </div>
-      <div id="password-container">
-        <label for="password">Choose Password:</label>
-        <input
+      <div class="password-container">
+        <label for="password">Password:</label>
+        <span><input
           type="password"
           id="password"
           name="password"
+          pattern="[a-z0-5]{8,}"
           placeholder="Create a new password"
           required
         />
         <img src="./assets/show-password.png" alt="Show Password">
+      </span>
       </div>
-      <div>
-        <p>Don't remember your password? <a href="#">Reset password</a></p>
-      </div>
-      <div>
+        <button type="submit">Login</button>
+        <div class="redirection-links">
+        <p>Don't remember password? <a href="#">Reset password</a></p>
         <p>Don't have an account yet? <a href="./register.html">Get registered</a></p>
       </div>
       <hr />
+      <p>Sign up with</p>
       <div class="third-party-auth">
-        <p>Sign up with</p>
         <fieldset>
           <legend>Google</legend>
           <div class="google-auth">
@@ -83,6 +84,7 @@
             <img src="./assets/facebook-colored.svg" alt="Facebook icon" />
           </div>
         </fieldset>
+        </div>
         <div class="back-home-btn">Go <a href="./index.html">back home</a></div>
       </body>
 </html>

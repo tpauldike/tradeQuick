@@ -1,51 +1,192 @@
 @import url(./header.css);
 
+:root {
+  --input-background: rgba(126, 133, 136, 0.144);
+}
+
+* {
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+}
 
 body {
-    padding: 2em;
+  padding: 2em;
 }
 
 h1 {
-    color: #fff;
-    text-align: center;
-    margin: 10px auto;
-    text-shadow: 0 0 5px rgb(0, 0, 0);
+  color: #fff;
+  text-align: center;
+  margin: 10px auto;
+  text-shadow: 0 0 5px rgb(0, 0, 0);
 }
 
 a {
-color: var(--price-color);
-font-size: 1em;
+  color: var(--price-color);
+  font-size: 1em;
+}
+
+a:hover {
+  color: var(--secondary-color);
 }
 
 a:active {
-    color: var(--header-background);
-    transition: color 0.3s ease;
+  color: var(--header-background);
+  transition: color 0.3s ease;
 }
 
 .form-container {
-    background: #fff;
-    max-width: 600px;
-    padding: 0 30px;
-    margin: 30px auto;
-    box-shadow: 0 0 5px 3px rgba(0, 0, 0, 0.2);
+  background: #fff;
+  max-width: 600px;
+  padding: 0 30px;
+  margin: 30px auto;
+  box-shadow: 0 0 5px 3px rgba(0, 0, 0, 0.2);
 }
 
 #logo-on-form {
-    display: flex;
-    justify-content: center;
+  display: flex;
+  justify-content: center;
 }
 
 #logo-on-form img {
-    height: 50px;
-    width: 60px;
-    margin: 2em auto;
+  height: 50px;
+  width: 60px;
+  margin: 2em auto;
+}
+
+fieldset {
+  margin: 1em auto;
+  border-color: rgba(178, 238, 248, 0.1);
+}
+
+fieldset div {
+  margin: 0 10px;
+}
+
+fieldset div:last-of-type {
+  margin-bottom: 10px;
+}
+
+legend {
+  padding-bottom: 1em;
+  color: var(--secondary-color);
+  font-family: Impact, Haettenschweiler, "Arial Narrow Bold", sans-serif;
+  font-style: oblique;
+  font-size: 0.9em;
+}
+
+label {
+  color: var(--header-background);
+}
+
+input,
+select {
+  margin: 0.3em auto;
+  margin-bottom: 1em;
+  width: 100%;
+  padding: 3px 10px;
+  font-size: 1em;
+  border: none;
+  background: var(--input-background);
+  height: 2em;
+}
+
+input[type="checkbox"] {
+  width: unset;
+  margin: 0;
+  margin-left: 0.3em;
+}
+
+.password-container img {
+  width: 20px;
+  cursor: pointer;
+  margin-bottom: 0.9em;
+}
+
+.password-container span {
+display: flex;
+align-items: center;
+justify-content: space-between;
+}
+
+input[name="password"] {
+    width: 93%;
+    margin-left: 0;
+    min-width: 90%;
+    /* max-width: 100%; */
+}
+
+.inline {
+  display: flex;
+  align-items: center;
+  margin-top: 2em;
+}
+
+.inline label {
+  margin: 0;
+  margin-left: 1em;
+}
+
+button {
+  margin: 2em 0.3em;
+  padding: 10px;
+  font-size: 0.9em;
+  background-color: var(--price-color);
+  color: #fff;
+  text-shadow: 0 0 5px #000;
+  width: 200px;
+}
+
+button:hover {
+  background-color: #fff;
+  box-shadow: 0 0 5px #000;
+  color: var(--secondary-color);
+  text-shadow: none;
+}
+
+.redirection-links {
+    line-height: 1.5;
+}
+
+hr {
+  margin: 2em auto;
+  border-color: var(--price-color);
+  border-width: 1px;
+  opacity: 0.1;
 }
 
 .third-party-auth img {
-    width: 30px;
+  width: 30px;
+  cursor: pointer;
 }
 
-#password-container img {
-    width: 20px;
-    cursor: pointer;
+.third-party-auth img:hover {
+  width: 29px;
+}
+
+.third-party-auth img:active {
+  width: 28px;
+}
+
+.third-party-auth {
+  display: flex;
+}
+
+.third-party-auth fieldset {
+  border-color: unset;
+  width: 40%;
+  align-items: center;
+  justify-content: center;
+}
+
+.third-party-auth fieldset legend {
+  color: #000;
+}
+
+.third-party-auth fieldset div {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.back-home-btn {
+  margin: 5px auto;
 }
