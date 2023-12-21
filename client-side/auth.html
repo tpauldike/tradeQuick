@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="apple-touch-icon"
+      sizes="192x192"
+      href="./android-chrome-192x192.png"
+    />
+    <link
+      rel="apple-touch-icon"
+      sizes="512x512"
+      href="./android-chrome-512x512.png"
+    />
+    <link
+      rel="apple-touch-icon"
+      sizes="180x180"
+      href="./apple-touch-icon.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="32x32"
+      href="./favicon-32x32.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="16x16"
+      href="./favicon-16x16.png"
+    />
+    <link rel="manifest" href="./site.webmanifest" />
+    <link rel="stylesheet" href="./styles/auth.css" />
+    <title>Reset Password</title>
+  </head>
+
+  <body>
+    <div class="form-container">
+      <div id="logo-on-form">
+        <a href="./index.html"><img src="./assets/logo.png" alt="logo" /></a>
+      </div>
+      <form action="">
+        <div class="password-container">
+          <span
+            ><input
+              type="password"
+              id="password"
+              pattern="[a-z0-5]{8,}"
+              name="password"
+              placeholder="New password"
+              required />
+            <img src="./assets/show-password.png" alt="Show Password"
+          /></span>
+        </div>
+        <div>
+          <input
+            type="password"
+            id="confirm-password"
+            placeholder="Confirm password"
+            required
+          />
+        </div>
+        <button type="submit">Create Password</button>
+        <div class="back-home-btn">Go <a href="./index.html">back home</a></div>
+      </form>
+    </div>
+  </body>
+</html>
