@@ -89,6 +89,18 @@
               required
             />
           </div>
+          <div>
+            <label for="age">Age:</label>
+            <input
+              type="number"
+              id="age"
+              name="age"
+              min="13"
+              max="100"
+              placeholder="Enter your age"
+              required
+            />
+          </div>
         </fieldset>
         <fieldset>
           <legend>Residential Address</legend>
@@ -129,7 +141,7 @@
               type="text"
               id="state"
               name="state"
-              placeholder="The State you reside in"
+              placeholder="The state you reside in"
               required
             />
           </div>
@@ -138,15 +150,16 @@
           <legend>Create Password</legend>
           <div class="password-container">
             <label for="password">Choose Password:</label>
-            <span><input
-              type="password"
-              id="password"
-              pattern="[a-z0-5]{8,}"
-              name="password"
-              placeholder="Create a new password"
-              required
-            />
-            <img src="./assets/show-password.png" alt="Show Password" /></span>
+            <span
+              ><input
+                type="password"
+                id="password"
+                pattern="[a-z0-5]{8,}"
+                name="password"
+                placeholder="Create new password"
+                required />
+              <img src="./assets/show-password.png" alt="Show Password"
+            /></span>
           </div>
           <div>
             <label for="password">Confirm Password:</label>

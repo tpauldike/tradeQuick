@@ -275,7 +275,7 @@ main {
 }
 
 footer {
-  z-index: 10;
+  z-index: 12;
   bottom: 0;
   width: 100%;
   padding: 10px;
