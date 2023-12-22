@@ -32,15 +32,42 @@
     />
     <link rel="manifest" href="./site.webmanifest" />
     <link rel="stylesheet" href="./styles/auth.css" />
-    <title>Reset Password</title>
+    <title>tradeQuick | Authentication</title>
   </head>
 
   <body>
-    <div class="form-container">
+    <div class="form-container" id="password-reset-form">
       <div id="logo-on-form">
         <a href="./index.html"><img src="./assets/logo.png" alt="logo" /></a>
       </div>
       <form action="">
+        <p class="prompt">Enter your email to reset your password</p>
+        <div>
+          <input type="email" placeholder="you@mail.com" required />
+        </div>
+        <button type="submit">Reset my password</button>
+        <div class="back-home-btn">Go <a href="./index.html">back home</a></div>
+      </form>
+    </div>
+    <div class="form-container" id="otp-submission-form">
+      <div id="logo-on-form">
+        <a href="./index.html"><img src="./assets/logo.png" alt="logo" /></a>
+      </div>
+      <form action="">
+        <p class="prompt">Enter the OTP sent to you</p>
+        <div>
+          <input type="number" required />
+        </div>
+        <button type="submit">Submit</button>
+        <div class="back-home-btn">Go <a href="./index.html">back home</a></div>
+      </form>
+    </div>
+    <div class="form-container" id="new-password-form">
+      <div id="logo-on-form">
+        <a href="./index.html"><img src="./assets/logo.png" alt="logo" /></a>
+      </div>
+      <form action="">
+        <p class="prompt">Create a new password</p>
         <div class="password-container">
           <span
             ><input
@@ -65,5 +92,7 @@
         <div class="back-home-btn">Go <a href="./index.html">back home</a></div>
       </form>
     </div>
+
+    <script src="./scripts/demo.js"></script>
   </body>
 </html>
