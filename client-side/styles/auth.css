@@ -35,7 +35,7 @@ a:active {
 
 .form-container {
   background: #fff;
-  max-width: 600px;
+  max-width: 500px;
   padding: 0 30px;
   padding-bottom: 1em;
   margin: 30px auto;
@@ -190,6 +190,26 @@ hr {
 .back-home-btn {
   font-size: small;
 }
+
+/* RESET PASSWORD */
+
+.prompt {
+  margin-bottom: 1em;
+  margin-left: 0.2em;
+  color: var(--price-color);
+}
+
+#otp-submission-form, #new-password-form  {
+  display: none;
+}
+
+#new-password-form,
+#otp-submission-form,
+#password-reset-form {
+  margin: unset;
+  margin: 13vh auto;
+}
+
 
 /* MAINTAINANCE ONGOING*/
 .maintainance {

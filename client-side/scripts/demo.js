@@ -1,3 +1,6 @@
+const newPasswordForm = document.querySelector('#new-password-form');
+const otpForm = document.querySelector('#otp-submission-form');
+const resetPasswordForm = document.querySelector('#password-reset-form');
 let popedUp = false;
 
 const closeBtn = document.getElementById('close');
@@ -18,3 +21,14 @@ const showOrHidePopup = () => {
 
 ellipseBtn.addEventListener('click', showOrHidePopup);
 closeBtn.addEventListener('click', showOrHidePopup);
+
+const displayOTPForm = () => {
+    newPasswordForm.style.display = 'none'
+    otpForm.style.display = 'block';
+}
+
+const displayNewPasswordForm = () => {
+    newPasswordForm.style.display = 'none'
+    otpForm.style.display = 'none'
+    newPasswordForm.style.display = 'block';
+}
