@@ -30,7 +30,7 @@ Here is a brief description of the endpoints that were listed for version 1.0 of
 ## Like, Dislike, and Unlike (undo)
 | Request type | Endpoint | Description |
 | ----- | ----- | ---- |
-| POST | /likes/{status} | `status` here is a integer (either 0 or 1); 0 for dislike, 1 for like. Sending the request with a particular status two consecutive times will undo the like or dislike. Sending a status of 1 after sending 0 will change like to dislike and vice versa |
+| POST | /likes/{status} | `status` here is an integer (either 0 or 1); 0 for dislike, 1 for like. Sending the request with a particular status two consecutive times will undo the like or dislike. Sending a status of 1 after sending 0 will change like to dislike and vice versa |
 | GET | likes/{item_id} | Returns a count of all the likes and dislikes on the item with the `item_id` |
 
 ## Endpoints for Comments
@@ -62,7 +62,7 @@ Here is a brief description of the endpoints that were listed for version 1.0 of
 - Brevo for emails, for notifications and OTPs
 - Cloudinary for storing photos
 
-The above are the initial endpoints listed out while aiming for MVP in 3 weeks; improvements or modifications are allowed when necessary.
+The above were the initial endpoints listed out while aiming for MVP in 3 weeks; improvements or modifications are allowed, where necessary.
 
 For help, kindly contact [Topman Paul-Dike](https://github.com/tpauldike)
 
