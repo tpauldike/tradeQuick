@@ -11,15 +11,22 @@ def create_rating():
     """Create a new rating"""
     from models.db import DBStorage
     db = DBStorage()
-    rating_data = request.json
-    if not rating_data:
-        abort(400, "Not a JSON")
-    if 'user_id' not in rating_data.keys():
+    rating_data = {}
+
+    new_user_id = request.form.get('user_id')
+    user_comment = request.form.get('comment')
+    user_rating = request.form.get('rating')
+    if new_user_id is None:
         abort(400, "Missing user_id")
-    if 'comment' not in rating_data.keys():
+    if user_comment is None:
         abort(400, "Missing comment")
-    if 'rating' not in rating_data.keys():
+    if user_rating is None:
         abort(400, "Missing rating")
+
+    rating_data['user_id'] = new_user_id
+    rating_data['comment'] = user_comment
+    rating_data['rating'] = user_rating
+    
     try:
         with db:
             rating = db.create_rating(rating_data)
@@ -27,6 +34,7 @@ def create_rating():
             db.save()
             return jsonify(rating.to_dict()), 201
     except Exception as e:
+        print(e)
         abort(400)
 
 
