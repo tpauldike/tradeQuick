@@ -11,15 +11,18 @@ def likes(status):
     """Create a new like"""
     from models.db import DBStorage
     db = DBStorage()
-    like_data = request.json
-    like_data['liked'] = status
-    if not like_data:
-        abort(400, "Not a JSON")
-    if 'user_id' not in like_data.keys():
+    like_data = {}
+
+    user_id = request.form.get('user_id')
+    item_id = request.form.get('item_id')
+    if not user_id:
         abort(400, "Missing user_id")
-    if 'item_id' not in like_data.keys():
+    if not item_id:
         abort(400, "Missing item_id")
 
+    like_data['user_id'] = user_id
+    like_data['item_id'] = item_id
+    
     try:
         with db:
             like_user = db.get_like_by_item_id(like_data['item_id'])
