@@ -3,6 +3,7 @@ import datetime
 from sqlalchemy import Column, String, Boolean, Enum, Text, TIMESTAMP, Index, Integer, ForeignKey, CheckConstraint, DateTime
 from sqlalchemy.sql import func
 from sqlalchemy.orm import relationship, DeclarativeBase
+import os
 
 
 class Base(DeclarativeBase):
@@ -35,10 +36,11 @@ class User(BaseModel, Base):
     town = Column(String(30), nullable=False)
     city = Column(String(30), nullable=False)
     state = Column(String(20), nullable=False)
-    items = relationship('Item', back_populates='user')
-    ratings = relationship('Rating', back_populates='user')
-    likes = relationship('Like', back_populates='user')
-    comments = relationship('Comment', back_populates='user')
+    photo = Column(String(225), nullable=False, default=os.path.join(os.path.dirname(__file__), '..', '..', 'client-side', 'assets', 'default.png'))
+    items = relationship('Item', back_populates='user', cascade='all, delete-orphan')
+    ratings = relationship('Rating', back_populates='user', cascade='all, delete-orphan')
+    likes = relationship('Like', back_populates='user', cascade='all, delete-orphan')
+    comments = relationship('Comment', back_populates='user', cascade='all, delete-orphan')
     # Define the sent_messages relationship
     sent_messages = relationship('Chat', foreign_keys='Chat.sender_id',
                                  back_populates='sender', cascade='all, delete-orphan')
@@ -95,7 +97,7 @@ class Item(BaseModel, Base):
 
     def to_dict(self):
         """Convert item object to dictionary"""
-        user_dict = {
+        item_dict = {
             'user_id': self.user_id,
             'item_name': self.item_name,
             'description': self.description,
@@ -105,7 +107,7 @@ class Item(BaseModel, Base):
             'photo3': self.photo3,
             'sold': self.sold,
         }
-        return user_dict
+        return item_dict
 
 
 class Comment(BaseModel, Base):

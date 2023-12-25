@@ -140,6 +140,15 @@ class DBStorage:
         except Exception as e:
             print(f"Error during find_session_by_id: {e}")
             return None
+        
+    def find_session_by_id_by_user_id(self, user_id):
+        """Find a session by user_id."""
+        from models.tables import UserSession
+        try:
+            return self.__session.query(UserSession).filter_by(user_id=user_id).first()
+        except Exception as e:
+            print(f"Error during find_session_by_id: {e}")
+            return None
 
     def delete_session(self, session):
         """Delete a session."""
@@ -191,7 +200,18 @@ class DBStorage:
             print(f"Error during get_items_by_user_id: {e}")
             return None
 
-    def get_item_by_item_id(self, item_id):
+    def item_by_item_id(self, item_id):
+        """
+        -  Retreive an item by item_id
+        """
+        from models.tables import Item
+        try:
+            return self.__session.query(Item).filter_by(item_id=item_id).first()
+        except Exception as e:
+            print(f"Error during get_item_by_item_id: {e}")
+            return None
+        
+    def find_items_by_item_id(self, item_id):
         """
         -  Retreive an item by item_id
         """
@@ -255,6 +275,17 @@ class DBStorage:
             return self.__session.query(Rating).all()
         except Exception as e:
             print(f"Error during get_all_ratings: {e}")
+            return None
+    
+    def get_ratings_by_user_id(self, user_id):
+        """
+        - Retrieve ratings based on user_id
+        """
+        from models.tables import Rating
+        try:
+            return self.__session.query(Rating).filter_by(user_id=user_id).first()
+        except Exception as e:
+            print(f"Error during retriving ratings: {e}")
             return None
 
     def create_like(self, like_data):
@@ -354,13 +385,13 @@ class DBStorage:
             print(f"Error during get_messages: {e}")
             return None
 
-    def get_messages_by_user_id(self, user_id):
+    def get_messages_by_user_id(self, sender_id):
         """
         - Retreive all messages based on their user_id
         """
         from models.tables import Chat
         try:
-            return self.__session.query(Chat).filter_by(user_id=user_id).all()
+            return self.__session.query(Chat).filter_by(sender_id=sender_id).all()
         except Exception as e:
             print(f"Error during get_messages: {e}")
             return None

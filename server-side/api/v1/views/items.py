@@ -1,57 +1,65 @@
-from flask import abort, request, jsonify
-from dotenv import load_dotenv
-from os import getenv
 from api.v1.views import app_views
+from flask import abort, request, jsonify
+from os import getenv
 
-load_dotenv()
+
 
 
 @app_views.route('/items', methods=['POST'], strict_slashes=False)
-def create_item():
+def new_item():
     """Create a new item"""
     from models.db import DBStorage
     db = DBStorage()
-    item_data = request.json
-    if not item_data:
-        abort(400, "Not a JSON")
-    if 'user_id' not in item_data.keys():
+    item_data = {}
+    
+    user_id = request.form.get('user_id')
+    item_name = request.form.get('item_name')
+    description = request.form.get('description')
+    price = request.form.get('price')
+    photo1 = request.form.get('photo1')
+    photo2 = request.form.get('photo2')
+    photo3 = request.form.get('photo3')
+    if not user_id:
         abort(400, "Missing user_id")
-    if 'item_name' not in item_data.keys():
+    if not item_name:
         abort(400, "Missing item name")
-    if 'description' not in item_data.keys():
+    if not description:
         abort(400, "Missing description")
-    if 'sold' not in item_data.keys():
-        abort(400, "Missing sold")
-    if 'price' not in item_data.keys():
+    if not price:
         abort(400, "Missing price")
-    if 'photo1' not in item_data.keys():
+    if not photo1:
         abort(400, "Missing photo1")
+
+    item_data['user_id'] = user_id
+    item_data['item_name'] = item_name
+    item_data['description'] = description
+    item_data['price'] = price
+    item_data['photo1'] = photo1
+    item_data['photo2'] = photo2
+    item_data['photo3'] = photo3
+
     try:
         with db:
             item = db.create_item(item_data)
             print(f"Item successfully created for {item_data['user_id']}")
             db.save()
-            db.close()
             return jsonify(item.to_dict()), 201
     except Exception as e:
-        abort(400)
+        print(e)
 
 
 @app_views.route('/items', methods=['GET'], strict_slashes=False)
-def get_items():
+def retreive_items():
     """Get all items"""
     from models.db import DBStorage
     db = DBStorage()
     try:
         with db:
             items = db.get_items()
-            users_data = [{"user_id": item.user_id, "item_id": item.item_id,
-                           "item_name": item.item_name, "price": item.price, "description": item.description,
-                           "phone1": item.phone1, "sold": item.sold,
-                           "created_at": item.created_at, "updated_at": item.updated_at} for item in items]
-            return jsonify(users_data), 200
+            item_data = [item.to_dict() for item in items]
+            return jsonify(item_data), 200
     except Exception as e:
-        abort(400)
+        print(e)
 
 
 @app_views.route('/items/<string:user_id>', methods=['GET'], strict_slashes=False)
@@ -64,16 +72,13 @@ def get_items_by_user_id(user_id):
     try:
         with db:
             items = db.get_items_by_user_id(user_id)
-            items_data = [{"user_id": item.user_id, "item_id": item.item_id,
-                           "item_name": item.item_name, "price": item.price, "description": item.description,
-                           "phone1": item.phone1, "sold": item.sold,
-                           "created_at": item.created_at, "updated_at": item.updated_at} for item in items]
+            items_data = [item.to_dict() for item in items]
             return jsonify(items_data), 200
     except Exception as e:
         abort(400)
 
 
-@app_views.route('/items/<string:item_id>', methods=['GET'], strict_slashes=False)
+@app_views.route('/item/<string:item_id>', methods=['GET'], strict_slashes=False)
 def get_item_by_item_id(item_id):
     """
     - Get item by item_id
@@ -82,9 +87,13 @@ def get_item_by_item_id(item_id):
     db = DBStorage()
     try:
         with db:
-            item = db.get_item_by_item_id(item_id)
-            return jsonify(item.to_dict()), 200
+            items = db.find_items_by_item_id(item_id)
+            if items is None:
+                abort(404)
+            item_data = items.to_dict()
+            return jsonify(item_data), 200
     except Exception as e:
+        print(e)
         abort(400)
 
 
@@ -95,29 +104,49 @@ def update_item_by_item_id(item_id):
     """
     from models.db import DBStorage
     db = DBStorage()
-    item_data = request.json
-    if not item_data:
-        abort(400, "Not a JSON")
-    if 'user_id' not in item_data.keys():
-        abort(400, "Missing user_id")
-    if 'item_name' not in item_data.keys():
+    item_data = {}
+
+    item_name = request.form.get('item_name')
+    description = request.form.get('description')
+    price = request.form.get('price')
+    photo1 = request.form.get('photo1')
+    photo2 = request.form.get('photo2')
+    photo3 = request.form.get('photo3')
+    
+    if item_name is None:
         abort(400, "Missing item name")
-    if 'description' not in item_data.keys():
+    if description is None:
         abort(400, "Missing description")
-    if 'sold' not in item_data.keys():
-        abort(400, "Missing sold")
-    if 'price' not in item_data.keys():
+    if price is None:
         abort(400, "Missing price")
-    if 'photo1' not in item_data.keys():
+    if photo1 is None:
         abort(400, "Missing photo1")
+
+    item_data['item_name'] = item_name
+    item_data['description'] = description
+    item_data['price'] = price
+    item_data['photo1'] = photo1
+    item_data['photo2'] = photo2
+    item_data['photo3'] = photo3
+
+
     try:
         with db:
-            item = db.update_item_by_item_id(item_id, item_data)
+            item = db.find_items_by_item_id(item_id)
+            if item is None:
+                abort(404)
+            item.item_name = item_data['item_name']
+            item.description = item_data['description']
+            item_data.price = item_data['price']
+            item_data.photo1 = item_data['photo1']
+            item_data.photo2 = item_data['photo2']
+            item_data.photo3 = item_data['photo3']
             print(f"Item successfully updated for {item_data['user_id']}")
             db.save()
-            return jsonify(item.to_dict()), 200
+            return jsonify({}), 200
     except Exception as e:
-        abort(400)
+        print(e)
+        return jsonify({}), 400
 
 
 @app_views.route('/items/<string:item_id>', methods=['DELETE'], strict_slashes=False)
@@ -129,7 +158,10 @@ def delete_item_by_item_id(item_id):
     db = DBStorage()
     try:
         with db:
-            db.delete_item_by_item_id(item_id)
+            item = db.find_items_by_item_id(item_id)
+            if item is None:
+                abort(404)
+            db.delete(item)
             db.save()
             return jsonify({}), 200
     except Exception as e:
