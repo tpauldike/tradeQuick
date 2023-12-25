@@ -71,11 +71,12 @@ This is a document that is describing or explaining every API endpoint(TradeQuic
 * This endpoint reset a user password  based on their user_id.
 * The field below are required to reset their password
 
-        Key               Value
-
-    email           john.doe@gmail.com 
-    password             1234           
-    new_password        newpass1234     
+|      key     |     value     |
+|:------------:|:-------------:|
+|  email       |johnd@gmail.com|
+| password     |   1234        |
+| new_password |   pass1234    |
+   
 
 # DELETE http://0.0.0.0:5000/api/v1/users/<user_id>
 
