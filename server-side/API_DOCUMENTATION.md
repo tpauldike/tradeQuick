@@ -16,20 +16,20 @@ This is a document that is describing or explaining every API endpoint(TradeQuic
 * This endpoint does not require authentication.
 * Creates a new user with the data below
 
-|        Key        |        Value         |
-|___________________|______________________|
-|     fullname      |      John Doe        |
-|     email         | john.doe@gmail.com   |
-|    password       |      1234            |
-|    gender         |      male            |
-|    about          |    wefsdwewed        |
-|    phone1         |   343-234-2245       |
-|    phone2         |   564-2342-422       |
-|    address        |  23D3 cray ave       |
-|     town          |   old town           |
-|     city          |    new city          |
-|     state         |     CA               |
-|__________________________________________|
+
+|      key         |     value     |
+|:----------------:|:-------------:|
+|     fullname     |   John Doe    |
+|     email        |johnd@gmail.com|
+|     password     |   1234        |
+|     gender       |  male         |
+|     about        |   wefsdwewed  |
+|     phone1       |   232-442-646 |
+|     phone2       |   731-843-742 |
+|     address      |  23D3 cray ave|
+|     town         |  old town     |
+|     city         |  new city     |
+|     state        |      CA       |
 
 * This values are mock data that are used for this example purpose only. 
 
