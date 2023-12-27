@@ -257,7 +257,7 @@ def save_picture(form_picture):
     
     if f_ext.lower() in allowed_extensions:
         picture_fn = pics_id + f_ext
-        picture_path = os.path.join(os.path.dirname(__file__), '..', 'client-side', 'assets', 'profile_pics', picture_fn)
+        picture_path = os.path.join(os.path.dirname(__file__), '..', '..', '..', '..', 'client-side', 'assets', 'profile_pics', picture_fn)
         
         # Ensure the directory exists before saving
         os.makedirs(os.path.dirname(picture_path), exist_ok=True)
