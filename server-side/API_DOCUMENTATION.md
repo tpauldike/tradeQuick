@@ -121,9 +121,9 @@ curl -XPOST "http://0.0.0.0:5000/api/v1/users/logout"
 
 Example usage could be like this;
 ```
-curl -XPOST "http://0.0.0.0:5000/api/v1/users/<user_id>" --cookie "_my_session_id=e86b182f-7889-4f50-941f-726f38caf24b" --form 'email="enola.fish@gmail.com"' \
+curl -XPOST "http://0.0.0.0:5000/api/v1/users/<user_id>" --cookie "_my_session_id=e86b182f-7889-4f50-941f-726f38caf24b" --form 'email="johnd@gmail.com"' \
 --form 'password="1234"' \
---form 'new_password="1234"'
+--form 'new_password="new_pass1234"'
 ```
    
 
