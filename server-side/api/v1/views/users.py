@@ -7,6 +7,7 @@ import os
 from uuid import uuid4
 from bcrypt import hashpw, gensalt, checkpw
 import cloudinary
+from cloudinary.uploader import upload
 from dotenv import load_dotenv
 
 load_dotenv()
@@ -16,8 +17,8 @@ API_KEY = os.getenv("API_KEY")
 API_SECRET = os.getenv("API_SECRET")
 
 cloudinary.config(
-    cloud_name = CLOUDNAME
-    api_key = API_KEY
+    cloud_name = CLOUDNAME,
+    api_key = API_KEY,
     api_secret = API_SECRET
 )
 
@@ -270,13 +271,15 @@ def save_picture(form_picture):
     
     if f_ext.lower() in allowed_extensions:
         picture_fn = pics_id + f_ext
-        picture_path = os.path.join(os.path.dirname(__file__), '..', '..', '..', '..', 'client-side', 'assets', 'profile_pics', picture_fn)
         
-        # Ensure the directory exists before saving
-        os.makedirs(os.path.dirname(picture_path), exist_ok=True)
-        
-        form_picture.save(picture_path)
-        return picture_fn
+        # Upload image to cloudinary
+        res = upload(form_picture, public_id=picture_fn)
+
+        # Extract the public ID from the Cloudinary response
+        cloudinary_public_id = res['public_id']
+
+        # We return the public ID incase we want to store it in the db
+        return cloudinary_public_id 
     else:
         return None
 
