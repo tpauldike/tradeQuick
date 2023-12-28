@@ -264,24 +264,27 @@ def save_picture(form_picture):
     """
     - Save the picture
     """
-    pics_id = str(uuid4())
-    _, f_ext = os.path.splitext(form_picture.filename)
+    try:
+        pics_id = str(uuid4())
+        _, f_ext = os.path.splitext(form_picture.filename)
     
-    allowed_extensions = {'.png', '.jpg', '.jpeg'}
+        allowed_extensions = {'.png', '.jpg', '.jpeg'}
     
-    if f_ext.lower() in allowed_extensions:
-        picture_fn = pics_id + f_ext
+        if f_ext.lower() in allowed_extensions:
+            picture_fn = pics_id + f_ext
         
-        # Upload image to cloudinary
-        res = upload(form_picture, public_id=picture_fn)
+            # Upload image to cloudinary
+            res = upload(form_picture, public_id=picture_fn)
 
-        # Extract the public ID from the Cloudinary response
-        cloudinary_public_id = res['public_id']
+            # Extract the public ID from the Cloudinary response
+            cloudinary_public_id = res['public_id']
 
-        # We return the public ID incase we want to store it in the db
-        return cloudinary_public_id 
-    else:
-        return None
+            # We return the public ID incase we want to store it in the db
+            return cloudinary_public_id 
+        else:
+            return None
+    except Exception as e:
+        print(e)
 
 @app_views.route('/users/<string:user_id>', methods=['PUT'], strict_slashes=False)
 def update_user_by_user_id(user_id):
