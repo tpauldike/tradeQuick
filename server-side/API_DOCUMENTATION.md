@@ -168,5 +168,37 @@ curl -XPUT "http://0.0.0.0:5000/api/v1/users/19ebfab1-db5d-499c-95a5-fb74cbfd5d4
 
 ##### Description
 
-* This endpoint requires authentication. 
+* This endpoint does not requires authentication. 
 * This endpoint retrieves all item posted by all registered users.
+
+Example usage could be like this;
+```
+curl "http://0.0.0.0:5000/api/v1/items"
+```
+
+#### POST http://0.0.0.0:5000/api/v1/items
+
+##### Description
+
+* This endpoint requires authentication. 
+* This endpoint post an item for sale by a registered user.
+
+|      key         |     value     |
+|:----------------:|:-------------:|
+|     item_name    |     Watch     |
+|    description   |Quality and durable watch|
+|     price        |   1000000     |
+|     photo1       | 3v-a42-6e4.jpg|
+|     photo2       | 32-df-23ds.jpg|
+|     photo3       | 3df-2ecwsd.jpg|
+
+Example usage could be like this;
+```
+curl "http://0.0.0.0:5000/api/v1/items"
+-H "Content-type: multipart/form-data" \
+-F "item_name=Watch" \
+-F "description=Quality and durable watch" \
+-F "price=100000" \
+-F "photo1=@../path/to/gadget1.jpg" \
+-F "photo2=@../path/to/gadget2.jpg" 
+```
