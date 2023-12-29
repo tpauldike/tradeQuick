@@ -1,6 +1,7 @@
 from api.v1.views import app_views
 from flask import abort, request, jsonify
 from os import getenv
+from api.v1.views.users import save_picture
 
 
 
@@ -16,9 +17,9 @@ def new_item():
     item_name = request.form.get('item_name')
     description = request.form.get('description')
     price = request.form.get('price')
-    photo1 = request.form.get('photo1')
-    photo2 = request.form.get('photo2')
-    photo3 = request.form.get('photo3')
+    photo1 = request.files.get('photo1')
+    photo2 = request.files.get('photo2')
+    photo3 = request.files.get('photo3')
     if not user_id:
         abort(400, "Missing user_id")
     if not item_name:
@@ -30,22 +31,31 @@ def new_item():
     if not photo1:
         abort(400, "Missing photo1")
 
+    pics_fn1 = save_picture(photo1)
+    pics_fn2 = save_picture(photo2)
+    pics_fn3 = save_picture(photo3)
+
     item_data['user_id'] = user_id
     item_data['item_name'] = item_name
     item_data['description'] = description
     item_data['price'] = price
-    item_data['photo1'] = photo1
-    item_data['photo2'] = photo2
-    item_data['photo3'] = photo3
+    item_data['photo1'] = pics_fn1
+    item_data['photo2'] = pics_fn2
+    item_data['photo3'] = pics_fn3
 
     try:
         with db:
+            auth_user = request.current_user
+            if auth_user is not None:
+                if auth_user.user_id != item_data['user_id']:
+                    return jsonify({"error": "Unauthorized"}), 401
             item = db.create_item(item_data)
             print(f"Item successfully created for {item_data['user_id']}")
             db.save()
             return jsonify(item.to_dict()), 201
     except Exception as e:
         print(e)
+        abort(400)
 
 
 @app_views.route('/items', methods=['GET'], strict_slashes=False)
@@ -109,9 +119,9 @@ def update_item_by_item_id(item_id):
     item_name = request.form.get('item_name')
     description = request.form.get('description')
     price = request.form.get('price')
-    photo1 = request.form.get('photo1')
-    photo2 = request.form.get('photo2')
-    photo3 = request.form.get('photo3')
+    photo1 = request.files.get('photo1')
+    photo2 = request.files.get('photo2')
+    photo3 = request.files.get('photo3')
     
     if item_name is None:
         abort(400, "Missing item name")

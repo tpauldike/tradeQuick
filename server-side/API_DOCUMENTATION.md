@@ -1,4 +1,4 @@
-**This is a document that is describing or explaining every API endpoint(TradeQuick) and it's usage.**
+**The web app is a market place for selling used items that someone else might be interested in, the seller uploads certain information such as the photos of it, description and price and the buyer can either comment on the post or send private message. This is a document that is describing or explaining every API endpoint(TradeQuick) and it's usage.**
 
 ### Users
 
@@ -160,3 +160,13 @@ curl -XPUT "http://0.0.0.0:5000/api/v1/users/19ebfab1-db5d-499c-95a5-fb74cbfd5d4
 -F "state=CA" \
 -F "photo=@../server-side/api/v1/views/landscape.jpg"
 ```
+
+
+### Items
+
+#### GET http://0.0.0.0:5000/api/v1/items
+
+##### Description
+
+* This endpoint requires authentication. 
+* This endpoint retrieves all item posted by all registered users.
