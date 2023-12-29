@@ -324,7 +324,7 @@ def update_user_by_user_id(user_id):
                 abort(404)
             if auth_user is not None:
                 if auth_user.user_id != user.user_id:
-                    return jsonify({"error": "Unauthorized"}), 400
+                    return jsonify({"error": "Unauthorized"}), 401
             user.about = user_data['about']
             user.address = user_data['address']
             user.city = user_data['city']
