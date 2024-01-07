@@ -1,9 +1,7 @@
 from flask import abort, request, jsonify
-from dotenv import load_dotenv
 from os import getenv
 from api.v1.views import app_views
 
-load_dotenv()
 
 
 @app_views.route('/messages', methods=['POST'], strict_slashes=False)
@@ -30,16 +28,19 @@ def create_message():
     try:
         with db:
             auth_user = request.current_user
+            receiver = db.find_user_by_id(message['receiver_id'])
             if auth_user is not None:
                 if auth_user.user_id != message_data['sender_id']:
                     abort(401, "Unauthorized")
+            if receiver is None:
+                abort(404, "No user found for that ID")
             new_message = db.create_message(message_data)
             if not new_message:
                 abort(404, "Error creating message")
             db.save()
             return jsonify(new_message.to_dict()), 201
     except Exception as e:
-        abort(401)
+        abort(400)
 
 
 @app_views.route('/messages/<string:message_id>', methods=['PATCH'], strict_slashes=False)

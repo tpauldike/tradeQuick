@@ -313,6 +313,21 @@ class DBStorage:
             print(f"Error during get_like_by_user_id: {e}")
             return None
 
+
+    def get_user_like(self, item_id, user_id):
+        """
+        get a specified user like
+        """
+        from models.tables import Like
+        try:
+            results = self.__session.query(Like).filter_by(item_id=item_id).all()
+            for result in results:
+                if result.user_id == user_id:
+                    return result
+        except Exception as e:
+            print(f"Error during error fetching like data: {e}")
+            return None
+        
     def get_like_by_item_id_all(self, item_id):
         """
         - Retrieve like by item_id

@@ -69,13 +69,12 @@ def before_request_func():
         pass
     else:
         setattr(request, 'current_user', auth.current_user(request))
-        if request.path in excluded_paths and request.method == 'GET':
-            if auth.require_auth(request.path, excluded_paths):
-                pass
-                if auth.authorization_header(request) is None and auth.session_cookie(request) is None:
-                    abort(401)
-                if auth.current_user(request) is None:
-                    abort(403)
+        if auth.require_auth(request.path, excluded_paths):
+            pass
+            if auth.authorization_header(request) is None and auth.session_cookie(request) is None:
+                abort(401)
+            if auth.current_user(request) is None:
+                abort(403)
 
 
 if __name__ == "__main__":
