@@ -32,7 +32,7 @@ def comments():
             auth_user = request.current_user
             if auth_user is not None:
                 if auth_user.user_id != comment_data['commenter']:
-                    abort(403, "Unauthorized")
+                    abort(401, "Unauthorized")
             new_comment = db.create_comment(comment_data)
             if not new_comment:
                 abort(400, "Error creating comment")

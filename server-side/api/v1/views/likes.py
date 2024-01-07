@@ -1,9 +1,7 @@
 from flask import abort, request, jsonify
-from dotenv import load_dotenv
 from os import getenv
+from collections import Counter
 from api.v1.views import app_views
-
-load_dotenv()
 
 
 @app_views.route('/likes/<int:status>', methods=['POST'], strict_slashes=False)
@@ -13,19 +11,25 @@ def likes(status):
     db = DBStorage()
     like_data = {}
 
-    user_id = request.form.get('user_id')
-    item_id = request.form.get('item_id')
-    if not user_id:
+    get_user_id = request.form.get('user_id')
+    get_item_id = request.form.get('item_id')
+    if not get_user_id:
         abort(400, "Missing user_id")
-    if not item_id:
+    if not get_item_id:
         abort(400, "Missing item_id")
 
-    like_data['user_id'] = user_id
-    like_data['item_id'] = item_id
+    like_data['user_id'] = get_user_id
+    like_data['item_id'] = get_item_id
+    like_data['liked'] = status
     
     try:
         with db:
-            like_user = db.get_like_by_item_id(like_data['item_id'])
+            like_user = db.get_user_like(like_data['item_id'], like_data['user_id'])
+            auth_user = request.current_user
+            if not auth_user:
+                abort(401)
+            if auth_user.user_id != like_data['user_id']:
+                abort(401)
             if not like_user:
                 new_like = db.create_like(like_data)
                 db.save()
@@ -40,7 +44,8 @@ def likes(status):
                 db.save()
                 return jsonify(like_user.to_dict()), 200
     except Exception as e:
-        abort(400)
+        print(e)
+        abort(401)
 
 
 @app_views.route('likes/<string:item_id>', methods=['GET'], strict_slashes=False)
@@ -50,9 +55,19 @@ def get_likes(item_id):
     db = DBStorage()
     try:
         with db:
+            count = 0
             likes = db.get_like_by_item_id_all(item_id)
             if not likes:
                 return jsonify([])
-            return jsonify([like.to_dict() for like in likes]), 200
+            all_likes = [like.to_dict() for like in likes]
+            c = Counter()
+            for count in all_likes:
+                c[count['liked']] += 1
+            response = {
+                'liked': c[True],
+                'dislike': c[False]
+            }
+            return jsonify(response), 200
     except Exception as e:
+        print(e)
         abort(400)
