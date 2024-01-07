@@ -61,7 +61,7 @@ class SessionDBAuth(SessionExpAuth):
                         return None
 
                     expiration_time = created_at + \
-                        timedelta(seconds=self.session_duration)
+                        timedelta(hours=self.session_duration)
 
                     if expiration_time < datetime.now():
                         try:
