@@ -312,7 +312,7 @@ curl -XPOST "http://0.0.0.0:5000/api/v1/likes/0" -d "user_id=<user_id>&item_id=<
 Example usage could be like this;
 ```
 curl "http://0.0.0.0:5000/api/v1/likes/<item_id>" --cookie="<cookie_value>"
-
+```
 
 ### Comments
 
