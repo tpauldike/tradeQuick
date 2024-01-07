@@ -1,3 +1,5 @@
+## TradeQuick
+
 **This web app is a market place for selling used items that someone else might be interested in, the seller uploads certain information such as the photos of it, description and price and the buyer can either comment on the post or send private message. This is a document that is describing or explaining every API endpoint(TradeQuick) and it's usage.**
 
 ### Users
