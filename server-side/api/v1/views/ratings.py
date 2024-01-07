@@ -29,6 +29,10 @@ def create_rating():
     
     try:
         with db:
+            auth_user = request.current_user
+            if auth_user is not None:
+                if auth_user.user_id != rating_data['user_id']:
+                    return jsonify({"error": "Unauthorized"}), 401
             rating = db.create_rating(rating_data)
             print(f"Rating successfully created for {rating_data['user_id']}")
             db.save()

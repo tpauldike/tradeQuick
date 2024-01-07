@@ -123,21 +123,16 @@ def update_item_by_item_id(item_id):
     photo2 = request.files.get('photo2')
     photo3 = request.files.get('photo3')
     
-    if item_name is None:
-        abort(400, "Missing item name")
-    if description is None:
-        abort(400, "Missing description")
-    if price is None:
-        abort(400, "Missing price")
-    if photo1 is None:
-        abort(400, "Missing photo1")
+    pic_fn1 = save_picture(photo1)
+    pic_fn2 = save_picture(photo2)
+    pic_fn3 = save_picture(photo3)
 
     item_data['item_name'] = item_name
     item_data['description'] = description
     item_data['price'] = price
-    item_data['photo1'] = photo1
-    item_data['photo2'] = photo2
-    item_data['photo3'] = photo3
+    item_data['photo1'] = pic_fn1
+    item_data['photo2'] = pic_fn2
+    item_data['photo3'] = pic_fn3
 
 
     try:

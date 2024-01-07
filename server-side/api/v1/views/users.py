@@ -79,8 +79,9 @@ def get_user_by_id(user_id):
         # Log the exception for debugging purposes
         print(f"Error: {e}")
         # Return an error response
-        return jsonify({"error": "Internal Server Error"}), 500
+        return jsonify({"error": "Not Found"}), 404
 
+    
 
 @app_views.route('/users', methods=['POST'], strict_slashes=False)
 def post_user():

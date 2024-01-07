@@ -1,4 +1,4 @@
-**The web app is a market place for selling used items that someone else might be interested in, the seller uploads certain information such as the photos of it, description and price and the buyer can either comment on the post or send private message. This is a document that is describing or explaining every API endpoint(TradeQuick) and it's usage.**
+**This web app is a market place for selling used items that someone else might be interested in, the seller uploads certain information such as the photos of it, description and price and the buyer can either comment on the post or send private message. This is a document that is describing or explaining every API endpoint(TradeQuick) and it's usage.**
 
 ### Users
 
@@ -39,7 +39,7 @@ which you can update later to the photo you would like to use.
 
 Example usage could be like this;
 ```
-curl --location 'http://0.0.0.0:5000/api/v1/users' \
+curl -XPOST 'http://0.0.0.0:5000/api/v1/users' \
 --form 'fullname="Glory Maurice"' \
 --form 'email="glo.maurice@gmail.com"' \
 --form 'gender="Female"' \
@@ -194,7 +194,7 @@ curl "http://0.0.0.0:5000/api/v1/items"
 
 Example usage could be like this;
 ```
-curl "http://0.0.0.0:5000/api/v1/items"
+curl -XPOST "http://0.0.0.0:5000/api/v1/items"
 -H "Content-type: multipart/form-data" \
 -F "item_name=Watch" \
 -F "description=Quality and durable watch" \
@@ -202,3 +202,171 @@ curl "http://0.0.0.0:5000/api/v1/items"
 -F "photo1=@../path/to/gadget1.jpg" \
 -F "photo2=@../path/to/gadget2.jpg" 
 ```
+
+#### GET http://0.0.0.0:5000/api/v1/items/<user_id>
+
+##### Description
+
+* This endpoint does not require authentication. 
+* This endpoint retrieves all items posted by a user based on their user_id.
+
+Example usage could be like this;
+```
+curl "http://0.0.0.0:5000/api/v1/items/<user_id>"
+```
+
+#### GET http://0.0.0.0:5000/api/v1/item/<item_id>
+
+##### Description
+
+* This endpoint does not require authentication. 
+* This endpoint retrieves an item posted by a user based on it's item_id.
+
+Example usage could be like this;
+```
+curl "http://0.0.0.0:5000/api/v1/item/<item_id>"
+```
+
+#### PUT http://0.0.0.0:5000/api/v1/items/<item_id>
+
+##### Description
+
+* This endpoint requires authentication. 
+* This endpoint updates an item based on it's item_id.
+
+Example usage could be like this;
+```
+curl -XPUT "http://0.0.0.0:5000/api/v1/items/<item_id>"
+-H "Content-type: multipart/form-data" \
+-F "item_name=TV" \
+-F "description=LG 42 inch HDMI Tv" \
+-F "price=150000" \
+-F "photo1=@../path/to/TV1.jpg" \
+-F "photo2=@../path/to/TV2.jpg" 
+```
+
+#### DELETE http://0.0.0.0:5000/api/v1/items/<item_id>
+
+##### Description
+
+* This endpoint requires authentication. 
+* This endpoint deletes an item posted by a user based on it's item_id.
+
+Example usage could be like this;
+```
+curl -XDELETE "http://0.0.0.0:5000/api/v1/item/<item_id>"
+```
+
+### Ratings
+
+#### POST http://0.0.0.0:5000/api/v1/ratings
+
+##### Description
+
+* This endpoint requires authentication. 
+* This endpoint post a new rating.
+
+Example usage could be like this;
+```
+curl -XPOST "http://0.0.0.0:5000/api/v1/ratings" \
+-H "Content-type: multipart/form-data" \
+-F "user_id=19ebfab1-db5d-499c-95a5-fb74cbfd5d44" \
+-F "comment=I love this watch" \
+-F "rating=4"
+```
+
+#### GET http://0.0.0.0:5000/api/v1/ratings
+
+##### Description
+
+* This endpoint does not require authentication. 
+* This endpoint retrieves all ratings posted by all registered users.
+
+Example usage could be like this;
+```
+curl "http://0.0.0.0:5000/api/v1/ratings"
+```
+
+### Likes
+
+#### POST http://0.0.0.0:5000/api/v1/likes/0
+
+##### Description
+
+* This endpoint requires authentication
+* Passing the parameter 0 or 1 set dislike or like an item respectively
+* Sending a post request twice with the same parameter undo the dislike or like and sets it to like or dislike respectively.
+
+Example usage could be like this;
+```
+curl -XPOST "http://0.0.0.0:5000/api/v1/likes/0" -d "user_id=<user_id>&item_id=<item_id>" --cookie="<cookie_value>"
+```
+
+#### GET http://0.0.0.0:5000/api/v1/likes/<item_id>
+
+##### Description
+
+* This endpoint requires authentication. 
+* This endpoint retrieves all likes and dislikes based on an item_id.
+
+Example usage could be like this;
+```
+curl "http://0.0.0.0:5000/api/v1/likes/<item_id>" --cookie="<cookie_value>"
+
+
+### Comments
+
+#### POST http://0.0.0.0:5000/api/v1/comments
+
+##### Description
+
+* This endpoint requires authentication. 
+* This endpoint post a new comment.
+
+Example usage could be like this;
+```
+curl -XPOST "http://0.0.0.0:5000/api/v1/comments" \
+-H "Content-type: multipart/form-data" \
+-F "commenter=19ebfab1-db5d-499c-95a5-fb74cbfd5d44" \
+-F "comment=I love this TV" \
+-F "item_id=a2585ea3-dd0b-451a-83a6-a1ee52c02580"
+```
+
+#### PATCH http://0.0.0.0:5000/api/v1/comments/<comment_id>
+
+##### Description
+
+* This endpoint requires authentication. 
+* This endpoint updates a comment based on their comment_id.
+
+Example usage could be like this;
+```
+curl -XPATCH "http://0.0.0.0:5000/api/v1/comments/<comment_id>"  -d "comment=Do you have the latest one?" --cookie=<cookie_value>
+```
+
+#### http://0.0.0.0:5000/api/v1/comments/<item_id>
+
+##### Description
+
+* This endpoint requires authentication. 
+* This endpoint retreives a comment based on the item_id.
+
+Example usage could be like this;
+```
+curl "http://0.0.0.0:5000/api/v1/comments/<item_id> --cookie=<cookie_value>
+```
+
+#### DELETE http://0.0.0.0:5000/api/v1/comments/comment_id
+
+##### Description
+
+* This endpoint requires authentication. 
+* This endpoint deletes a comment based on the comment_id.
+
+Example usage could be like this;
+```
+curl -XDELETE "http://0.0.0.0:5000/api/v1/comments/<comment_id> --cookie=<cookie_value>
+```
+
+### Chats
+
