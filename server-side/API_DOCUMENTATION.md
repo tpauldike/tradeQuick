@@ -370,3 +370,60 @@ curl -XDELETE "http://0.0.0.0:5000/api/v1/comments/<comment_id> --cookie=<cookie
 
 ### Chats
 
+#### POST http://0.0.0.0:5000/api/v1/messages
+
+##### Description
+
+* This endpoint requires authentication. 
+* This endpoint post a new message.
+
+Example usage could be like this;
+```
+curl -XPOST "http://0.0.0.0:5000/api/v1/messages \
+-H "Content-type: multipart/form-data" \
+-F "sender_id=<sender_id>" \
+-F "receiver_id=<receiver_id>" \
+-F "message=I love this TV" \ 
+--cookie=<cookie_value>
+```
+
+#### PATCH http://0.0.0.0:5000/api/v1/messages/message_id
+
+##### Description
+
+* This endpoint requires authentication. 
+* This endpoint updates an already sent message based on the message_id.
+
+Example usage could be like this;
+```
+curl -XPATCH "http://0.0.0.0:5000/api/v1/messages \
+-H "Content-type: multipart/form-data" \
+-F "message=Do you have more of this TV?" \ 
+--cookie=<cookie_value>
+```
+
+#### DELETE http://0.0.0.0:5000/api/v1/messages/message_id
+
+##### Description
+
+* This endpoint requires authentication. 
+* This endpoint deletes a message based on the message_id.
+
+Example usage could be like this;
+```
+curl -XDELETE "http://0.0.0.0:5000/api/v1/messages/message_id --cookie=<cookie_value>
+```
+
+#### DELETE http://0.0.0.0:5000/api/v1/messages/user_id
+
+##### Description
+
+* This endpoint requires authentication. 
+* This endpoint deletes all message posted by a user.
+
+Example usage could be like this;
+```
+curl -XDELETE "http://0.0.0.0:5000/api/v1/messages/user_id --cookie=<cookie_value>
+```
+
+###### &copy; 2023 tradeQuick. All rights reserved.
