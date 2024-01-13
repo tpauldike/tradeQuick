@@ -87,7 +87,159 @@ To install and run the app locally or in a development environment, follow the i
 > To have the app server and the database-serrver running locally as well , follow the instructions for server installation below:
 
 ### Back End
-*(instructions unavailable at the moment...)*
+
+*This is an installation guide on how to setup the backend in order for you to be able to use tradequick API for backend operations. Throughout this manual we assume that mysql server is installed and running on your local machine. Also check the requirements.txt file to install the requirements required for the backend.*
+
+```bash
+# Clone the git repository if you haven't
+:$ git clone https://github.com/tpauldike/tradeQuick.git
+```
+
+### Creating tables and relations
+
+Firstly, we will use the script tradequick.sql to create all database, tables and relations in mysql. replace username with the correct mysql user
+
+```bash
+# Create database, tables and relations
+:$ cat tradequick.sql | mysql -u <user_name> -p
+```
+
+### Environment Variables
+
+#### Connecting to the Database
+
+The API utilizes the following environment variables to connect to the database, we can assume that you have mysql server running on your machine:
+
+* DB_HOST: The hostname or IP address of the database server.
+
+Example: localhost
+* DB_PORT: The port number on which the database server is listening.
+
+Example: 3306
+* DB_NAME: The name of the database to connect to.
+
+Example: mydatabase
+* DB_USER: The username for authenticating with the database server.
+
+Example: myuser
+* DB_PASSWORD: The password for authenticating with the database server.
+
+Example: secretpassword
+
+#### Connecting to the Flask
+
+The API utilizes the following environment variables to connect to the flask, we can assume have flask installed:
+
+* API_HOST: The hostname or IP address of the flask server.
+
+Example: 0.0.0.0
+* API_PORT: The port number on which the flask server is listening.
+
+Example: 5000
+* API_SECRET_KEY: flask secret key to handle sessions and other operations.
+
+Example: 4354d34rf34f34112e1
+
+#### Authentication variables
+
+* AUTH_TYPE: The type of authentication the API uses.
+
+* SESSION_NAME: The cookie name to be stored.
+
+* SESSION_DURATION: The time the cookie should be cached before expiry. Note that the time is in minutes.
+
+
+#### Cloudinary variables
+
+All images are being stored in the cloud via cloudinary. Below are cloudinary credential for our API
+
+* CLOUD_NAME: The name of the cloud our images are being stored.
+
+* API_KEY: Cloudinary API key for API interaction and operations.
+
+* API_SECRET: Cloudinary API secret key for API interaction and operations.
+
+
+#### Using a Configuration File
+
+Create a configuration file (e.g., .env) in the root directory of your project and populate it with the following content:
+
+```
+dbName=<db_name>
+dbUser=<db_user>
+dbHost=<db_host>
+dbPasswd=<db_passwd>
+dbPort=3306
+
+API_HOST=0.0.0.0
+API_PORT=5000
+API_SECRET_KEY=07e18dc59990596ecb154e02de050dc8f117d8863ec759918d26627862007738
+
+AUTH_TYPE=session_db_auth
+SESSION_NAME=_my_session_id
+SESSION_DURATION=43200
+
+CLOUD_NAME=dtnj3pohk
+API_KEY=397179555983987
+API_SECRET=YL1k15fZkHdUh47Kf8puyvm0FRs
+```
+
+#### Using Command Line
+
+Set the environment variables using command line:
+
+```bash
+:$ export dbName=<db_name>
+:$ export dbUser=<db_user>
+:$ export dbHost=<db_host>
+:$ export dbPasswd=<db_passwd>
+:$ export dbPort=3306
+
+:$ export API_HOST=0.0.0.0
+:$ export API_PORT=5000
+:$ export API_SECRET_KEY=07e18dc59990596ecb154e02de050dc8f117d8863ec759918d26627862007738
+
+:$ export AUTH_TYPE=session_db_auth
+:$ export SESSION_NAME=_my_session_id
+:$ export SESSION_DURATION=43200
+
+:$ export CLOUD_NAME=dtnj3pohk
+:$ export API_KEY=397179555983987
+:$ export API_SECRET=YL1k15fZkHdUh47Kf8puyvm0FRs
+```
+
+*After setting these environment variables*
+
+```bash
+# Move into the directory
+:$ cd tradeQuick/server-side
+
+# Start Flask
+:$ python3 -m api.v1.app 
+
+# Please ensure that the environment variables are set, mysql server is running and all requirements are installed before starting flask 
+```
+
+If you followed everything correctly you should see this
+```
+* Serving Flask app 'app'
+ * Debug mode: on
+WARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://172.20.88.152:5000
+Press CTRL+C to quit
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 110-366-493
+```
+
+
+
+
+
+
+
 
 ## Authors
 The file [AUTHOR.md](./AUTHOR.md) contains the names of the authors and their email addresses.
