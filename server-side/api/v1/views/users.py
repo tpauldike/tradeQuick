@@ -232,8 +232,6 @@ def login_user():
             from api.v1.auth.session_db_auth import SessionDBAuth
             session_auth = SessionDBAuth()
             session_id = session_auth.create_session(user.user_id)
-            flash("Login successfull", 'success')
-            session['flash_expires'] = datetime.utcnow() + timedelta(seconds=5)
             response = redirect(url_for('auth.get_home'))
             cookie_name = os.getenv('SESSION_NAME')
             response.set_cookie(cookie_name, session_id)
