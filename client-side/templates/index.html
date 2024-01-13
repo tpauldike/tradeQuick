@@ -1,0 +1,521 @@
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>tradeQuick</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="icon" href="{{ url_for('static', filename='images/logo1.png') }}">
+</head>
+
+<body>
+    <!--
+    // v0 by Vercel.
+    // https://v0.dev/t/351DTdQM6h8
+    -->
+    <header class="flex h-10 w-full shrink-0 items-center px-4 md:px-6 mt-4">
+        <div class="flex items-center gap-4"><a href="#">
+                <div class="flex items-center gap-2"><img src="{{ url_for('static', filename='images/logo1.png') }}"
+                        alt="Logo" class="h-6 w-6" width="60" height="60"
+                        style="aspect-ratio: 60/60; object-fit: cover;"><svg xmlns="http://www.w3.org/2000/svg"
+                        width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                        stroke-linecap="round" stroke-linejoin="round" class="h-6 w-6">
+                        <path d="m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3Z"></path>
+                    </svg><span class="ml-2 font-bold text-lg">tradeQuick</span></div>
+            </a></div>
+        <div class="flex-grow mx-4 w-2/3 flex items-center"><input
+                class="flex h-10 border border-input px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 w-full bg-gray-200 rounded-md pl-10"
+                placeholder="Search..."><button
+                class="inline-flex items-center justify-center rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 border border-input bg-background hover:bg-accent hover:text-accent-foreground h-10 w-10 ml-2"><svg
+                    xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                    stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                    class="h-6 w-6">
+                    <circle cx="11" cy="11" r="8"></circle>
+                    <path d="m21 21-4.3-4.3"></path>
+                </svg><span class="sr-only">Search</span></button></div>
+        <nav class="ml-auto flex gap-4 sm:gap-6"><a class="text-sm font-medium hover:underline underline-offset-4"
+                href="#">
+                Home
+            </a><a class="text-sm font-medium hover:underline underline-offset-4" href="#">
+                About
+            </a><a class="text-sm font-medium hover:underline underline-offset-4"
+                href="{{ url_for('auth.login_page') }}">
+                Login
+            </a><a class="text-sm font-medium hover:underline underline-offset-4" href="{{ url_for('auth.signup') }}">
+                Register
+            </a></nav>
+    </header>
+    <section class="w-full bg-black h-64 mt-4">
+        <img src="{{ url_for('static', filename='images/banner.jpg') }}" alt="Banner Image"
+            class="w-full h-48 object-cover" width="200" height="200"
+            style="aspect-ratio: 200 / 200; object-fit: cover;">
+        <p style="color: white; font-size: 30px; text-align: center; align-content: center;">Buy and Sell Used
+            Items
+        </p>
+    </section>
+    <section class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 p-4">
+        <div class="card rounded-lg shadow-lg overflow-hidden"><img src="../photo-1615655406736-b37c4fabf923.avif"
+                alt="item image" class="w-full h-48 object-cover" width="200" height="200"
+                style="aspect-ratio: 200 / 200; object-fit: cover;">
+            <div class="p-4">
+                <h2 class="font-bold text-lg mb-2">Game Essentials</h2>
+                <p class="text-gray-600">Created perfectly for you. Enjoy the best quality from our top product.</p>
+                <div class="flex items-center justify-between mt-4"><span class="font-bold text-lg">$99.99</span>
+                    <div class="flex items-center gap-2"><button
+                            class="inline-flex items-center justify-center rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 border border-input bg-background hover:bg-accent hover:text-accent-foreground h-10 w-10"><svg
+                                xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                                fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                stroke-linejoin="round" class="h-6 w-6">
+                                <path d="M7 10v12"></path>
+                                <path
+                                    d="M15 5.88 14 10h5.83a2 2 0 0 1 1.92 2.56l-2.33 8A2 2 0 0 1 17.5 22H4a2 2 0 0 1-2-2v-8a2 2 0 0 1 2-2h2.76a2 2 0 0 0 1.79-1.11L12 2h0a3.13 3.13 0 0 1 3 3.88Z">
+                                </path>
+                            </svg></button><button
+                            class="inline-flex items-center justify-center rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 border border-input bg-background hover:bg-accent hover:text-accent-foreground h-10 w-10"><svg
+                                xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                                fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                stroke-linejoin="round" class="h-6 w-6">
+                                <path d="M17 14V2"></path>
+                                <path
+                                    d="M9 18.12 10 14H4.17a2 2 0 0 1-1.92-2.56l2.33-8A2 2 0 0 1 6.5 2H20a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2h-2.76a2 2 0 0 0-1.79 1.11L12 22h0a3.13 3.13 0 0 1-3-3.88Z">
+                                </path>
+                            </svg></button><button
+                            class="inline-flex items-center justify-center rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 border border-input bg-background hover:bg-accent hover:text-accent-foreground h-10 w-10"><svg
+                                xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                                fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                stroke-linejoin="round" class="h-6 w-6">
+                                <circle cx="8" cy="21" r="1"></circle>
+                                <circle cx="19" cy="21" r="1"></circle>
+                                <path
+                                    d="M2.05 2.05h2l2.66 12.42a2 2 0 0 0 2 1.58h9.78a2 2 0 0 0 1.95-1.57l1.65-7.43H5.12">
+                                </path>
+                            </svg></button><button
+                            class="inline-flex items-center justify-center rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 border border-input bg-background hover:bg-accent hover:text-accent-foreground h-10 w-10"><svg
+                                xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                                fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                stroke-linejoin="round" class="h-6 w-6">
+                                <path d="M3 3h6l6 18h6"></path>
+                                <path d="M14 3h7"></path>
+                            </svg></button></div>
+                </div>
+            </div>
+        </div>
+        <div class="card rounded-lg shadow-lg overflow-hidden"><img src="../gadget2.jpg" alt="item image"
+                class="w-full h-48 object-cover" width="200" height="200"
+                style="aspect-ratio: 200 / 200; object-fit: cover;">
+            <div class="p-4">
+                <h2 class="font-bold text-lg mb-2">iPhone 15</h2>
+                <p class="text-gray-600">This is the latest iPhone series, with far more nicer features you can be sure
+                    of luxury in your hands.</p>
+                <div class="flex items-center justify-between mt-4"><span class="font-bold text-lg">$89.99</span>
+                    <div class="flex items-center gap-2"><button
+                            class="inline-flex items-center justify-center rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 border border-input bg-background hover:bg-accent hover:text-accent-foreground h-10 w-10"><svg
+                                xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                                fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                stroke-linejoin="round" class="h-6 w-6">
+                                <path d="M7 10v12"></path>
+                                <path
+                                    d="M15 5.88 14 10h5.83a2 2 0 0 1 1.92 2.56l-2.33 8A2 2 0 0 1 17.5 22H4a2 2 0 0 1-2-2v-8a2 2 0 0 1 2-2h2.76a2 2 0 0 0 1.79-1.11L12 2h0a3.13 3.13 0 0 1 3 3.88Z">
+                                </path>
+                            </svg></button><button
+                            class="inline-flex items-center justify-center rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 border border-input bg-background hover:bg-accent hover:text-accent-foreground h-10 w-10"><svg
+                                xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                                fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                stroke-linejoin="round" class="h-6 w-6">
+                                <path d="M17 14V2"></path>
+                                <path
+                                    d="M9 18.12 10 14H4.17a2 2 0 0 1-1.92-2.56l2.33-8A2 2 0 0 1 6.5 2H20a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2h-2.76a2 2 0 0 0-1.79 1.11L12 22h0a3.13 3.13 0 0 1-3-3.88Z">
+                                </path>
+                            </svg></button><button
+                            class="inline-flex items-center justify-center rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 border border-input bg-background hover:bg-accent hover:text-accent-foreground h-10 w-10"><svg
+                                xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                                fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                stroke-linejoin="round" class="h-6 w-6">
+                                <circle cx="8" cy="21" r="1"></circle>
+                                <circle cx="19" cy="21" r="1"></circle>
+                                <path
+                                    d="M2.05 2.05h2l2.66 12.42a2 2 0 0 0 2 1.58h9.78a2 2 0 0 0 1.95-1.57l1.65-7.43H5.12">
+                                </path>
+                            </svg></button><button
+                            class="inline-flex items-center justify-center rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 border border-input bg-background hover:bg-accent hover:text-accent-foreground h-10 w-10"><svg
+                                xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                                fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                stroke-linejoin="round" class="h-6 w-6">
+                                <path d="M3 3h6l6 18h6"></path>
+                                <path d="M14 3h7"></path>
+                            </svg></button></div>
+                </div>
+            </div>
+        </div>
+        <div class="card rounded-lg shadow-lg overflow-hidden"><img src="../gadget3.jpg" alt="item image"
+                class="w-full h-48 object-cover" width="200" height="200"
+                style="aspect-ratio: 200 / 200; object-fit: cover;">
+            <div class="p-4">
+                <h2 class="font-bold text-lg mb-2">Digital Watch</h2>
+                <p class="text-gray-600">Watches never lie get yourself one today!.</p>
+                <div class="flex items-center justify-between mt-4"><span class="font-bold text-lg">$79.99</span>
+                    <div class="flex items-center gap-2"><button
+                            class="inline-flex items-center justify-center rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 border border-input bg-background hover:bg-accent hover:text-accent-foreground h-10 w-10"><svg
+                                xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                                fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                stroke-linejoin="round" class="h-6 w-6">
+                                <path d="M7 10v12"></path>
+                                <path
+                                    d="M15 5.88 14 10h5.83a2 2 0 0 1 1.92 2.56l-2.33 8A2 2 0 0 1 17.5 22H4a2 2 0 0 1-2-2v-8a2 2 0 0 1 2-2h2.76a2 2 0 0 0 1.79-1.11L12 2h0a3.13 3.13 0 0 1 3 3.88Z">
+                                </path>
+                            </svg></button><button
+                            class="inline-flex items-center justify-center rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 border border-input bg-background hover:bg-accent hover:text-accent-foreground h-10 w-10"><svg
+                                xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                                fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                stroke-linejoin="round" class="h-6 w-6">
+                                <path d="M17 14V2"></path>
+                                <path
+                                    d="M9 18.12 10 14H4.17a2 2 0 0 1-1.92-2.56l2.33-8A2 2 0 0 1 6.5 2H20a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2h-2.76a2 2 0 0 0-1.79 1.11L12 22h0a3.13 3.13 0 0 1-3-3.88Z">
+                                </path>
+                            </svg></button><button
+                            class="inline-flex items-center justify-center rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 border border-input bg-background hover:bg-accent hover:text-accent-foreground h-10 w-10"><svg
+                                xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                                fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                stroke-linejoin="round" class="h-6 w-6">
+                                <circle cx="8" cy="21" r="1"></circle>
+                                <circle cx="19" cy="21" r="1"></circle>
+                                <path
+                                    d="M2.05 2.05h2l2.66 12.42a2 2 0 0 0 2 1.58h9.78a2 2 0 0 0 1.95-1.57l1.65-7.43H5.12">
+                                </path>
+                            </svg></button><button
+                            class="inline-flex items-center justify-center rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 border border-input bg-background hover:bg-accent hover:text-accent-foreground h-10 w-10"><svg
+                                xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                                fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                stroke-linejoin="round" class="h-6 w-6">
+                                <path d="M3 3h6l6 18h6"></path>
+                                <path d="M14 3h7"></path>
+                            </svg></button></div>
+                </div>
+            </div>
+        </div>
+        <div class="card rounded-lg shadow-lg overflow-hidden"><img src="../images.jpg" alt="item image"
+                class="w-full h-48 object-cover" width="200" height="200"
+                style="aspect-ratio: 200 / 200; object-fit: cover;">
+            <div class="p-4">
+                <h2 class="font-bold text-lg mb-2">Samsung Z fold</h2>
+                <p class="text-gray-600">It's never too late to grab yourself one of samsumg's finest series, promo runs
+                    while stocks lasts!.</p>
+                <div class="flex items-center justify-between mt-4"><span class="font-bold text-lg">$69.99</span>
+                    <div class="flex items-center gap-2"><button
+                            class="inline-flex items-center justify-center rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 border border-input bg-background hover:bg-accent hover:text-accent-foreground h-10 w-10"><svg
+                                xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                                fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                stroke-linejoin="round" class="h-6 w-6">
+                                <path d="M7 10v12"></path>
+                                <path
+                                    d="M15 5.88 14 10h5.83a2 2 0 0 1 1.92 2.56l-2.33 8A2 2 0 0 1 17.5 22H4a2 2 0 0 1-2-2v-8a2 2 0 0 1 2-2h2.76a2 2 0 0 0 1.79-1.11L12 2h0a3.13 3.13 0 0 1 3 3.88Z">
+                                </path>
+                            </svg></button><button
+                            class="inline-flex items-center justify-center rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 border border-input bg-background hover:bg-accent hover:text-accent-foreground h-10 w-10"><svg
+                                xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                                fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                stroke-linejoin="round" class="h-6 w-6">
+                                <path d="M17 14V2"></path>
+                                <path
+                                    d="M9 18.12 10 14H4.17a2 2 0 0 1-1.92-2.56l2.33-8A2 2 0 0 1 6.5 2H20a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2h-2.76a2 2 0 0 0-1.79 1.11L12 22h0a3.13 3.13 0 0 1-3-3.88Z">
+                                </path>
+                            </svg></button><button
+                            class="inline-flex items-center justify-center rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 border border-input bg-background hover:bg-accent hover:text-accent-foreground h-10 w-10"><svg
+                                xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                                fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                stroke-linejoin="round" class="h-6 w-6">
+                                <circle cx="8" cy="21" r="1"></circle>
+                                <circle cx="19" cy="21" r="1"></circle>
+                                <path
+                                    d="M2.05 2.05h2l2.66 12.42a2 2 0 0 0 2 1.58h9.78a2 2 0 0 0 1.95-1.57l1.65-7.43H5.12">
+                                </path>
+                            </svg></button><button
+                            class="inline-flex items-center justify-center rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 border border-input bg-background hover:bg-accent hover:text-accent-foreground h-10 w-10"><svg
+                                xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                                fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                stroke-linejoin="round" class="h-6 w-6">
+                                <path d="M3 3h6l6 18h6"></path>
+                                <path d="M14 3h7"></path>
+                            </svg></button></div>
+                </div>
+            </div>
+        </div>
+        <div class="card rounded-lg shadow-lg overflow-hidden"><img src="../images (5).jpg" alt="item image"
+                class="w-full h-48 object-cover" width="200" height="200"
+                style="aspect-ratio: 200 / 200; object-fit: cover;">
+            <div class="p-4">
+                <h2 class="font-bold text-lg mb-2">Headset</h2>
+                <p class="text-gray-600">Listen to great music with our new headsets in town, rush and order yours..</p>
+                <div class="flex items-center justify-between mt-4"><span class="font-bold text-lg">$69.99</span>
+                    <div class="flex items-center gap-2"><button
+                            class="inline-flex items-center justify-center rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 border border-input bg-background hover:bg-accent hover:text-accent-foreground h-10 w-10"><svg
+                                xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                                fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                stroke-linejoin="round" class="h-6 w-6">
+                                <path d="M7 10v12"></path>
+                                <path
+                                    d="M15 5.88 14 10h5.83a2 2 0 0 1 1.92 2.56l-2.33 8A2 2 0 0 1 17.5 22H4a2 2 0 0 1-2-2v-8a2 2 0 0 1 2-2h2.76a2 2 0 0 0 1.79-1.11L12 2h0a3.13 3.13 0 0 1 3 3.88Z">
+                                </path>
+                            </svg></button><button
+                            class="inline-flex items-center justify-center rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 border border-input bg-background hover:bg-accent hover:text-accent-foreground h-10 w-10"><svg
+                                xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                                fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                stroke-linejoin="round" class="h-6 w-6">
+                                <path d="M17 14V2"></path>
+                                <path
+                                    d="M9 18.12 10 14H4.17a2 2 0 0 1-1.92-2.56l2.33-8A2 2 0 0 1 6.5 2H20a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2h-2.76a2 2 0 0 0-1.79 1.11L12 22h0a3.13 3.13 0 0 1-3-3.88Z">
+                                </path>
+                            </svg></button><button
+                            class="inline-flex items-center justify-center rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 border border-input bg-background hover:bg-accent hover:text-accent-foreground h-10 w-10"><svg
+                                xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                                fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                stroke-linejoin="round" class="h-6 w-6">
+                                <circle cx="8" cy="21" r="1"></circle>
+                                <circle cx="19" cy="21" r="1"></circle>
+                                <path
+                                    d="M2.05 2.05h2l2.66 12.42a2 2 0 0 0 2 1.58h9.78a2 2 0 0 0 1.95-1.57l1.65-7.43H5.12">
+                                </path>
+                            </svg></button><button
+                            class="inline-flex items-center justify-center rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 border border-input bg-background hover:bg-accent hover:text-accent-foreground h-10 w-10"><svg
+                                xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                                fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                stroke-linejoin="round" class="h-6 w-6">
+                                <path d="M3 3h6l6 18h6"></path>
+                                <path d="M14 3h7"></path>
+                            </svg></button></div>
+                </div>
+            </div>
+        </div>
+        <div class="card rounded-lg shadow-lg overflow-hidden"><img src="../photo-1491933382434-500287f9b54b.avif"
+                alt="item image" class="w-full h-48 object-cover" width="200" height="200"
+                style="aspect-ratio: 200 / 200; object-fit: cover;">
+            <div class="p-4">
+                <h2 class="font-bold text-lg mb-2">Apple Essentials</h2>
+                <p class="text-gray-600">A one time offer to get yourself an apple product to aid you in you day to day
+                    life.</p>
+                <div class="flex items-center justify-between mt-4"><span class="font-bold text-lg">$69.99</span>
+                    <div class="flex items-center gap-2"><button
+                            class="inline-flex items-center justify-center rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 border border-input bg-background hover:bg-accent hover:text-accent-foreground h-10 w-10"><svg
+                                xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                                fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                stroke-linejoin="round" class="h-6 w-6">
+                                <path d="M7 10v12"></path>
+                                <path
+                                    d="M15 5.88 14 10h5.83a2 2 0 0 1 1.92 2.56l-2.33 8A2 2 0 0 1 17.5 22H4a2 2 0 0 1-2-2v-8a2 2 0 0 1 2-2h2.76a2 2 0 0 0 1.79-1.11L12 2h0a3.13 3.13 0 0 1 3 3.88Z">
+                                </path>
+                            </svg></button><button
+                            class="inline-flex items-center justify-center rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 border border-input bg-background hover:bg-accent hover:text-accent-foreground h-10 w-10"><svg
+                                xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                                fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                stroke-linejoin="round" class="h-6 w-6">
+                                <path d="M17 14V2"></path>
+                                <path
+                                    d="M9 18.12 10 14H4.17a2 2 0 0 1-1.92-2.56l2.33-8A2 2 0 0 1 6.5 2H20a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2h-2.76a2 2 0 0 0-1.79 1.11L12 22h0a3.13 3.13 0 0 1-3-3.88Z">
+                                </path>
+                            </svg></button><button
+                            class="inline-flex items-center justify-center rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 border border-input bg-background hover:bg-accent hover:text-accent-foreground h-10 w-10"><svg
+                                xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                                fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                stroke-linejoin="round" class="h-6 w-6">
+                                <circle cx="8" cy="21" r="1"></circle>
+                                <circle cx="19" cy="21" r="1"></circle>
+                                <path
+                                    d="M2.05 2.05h2l2.66 12.42a2 2 0 0 0 2 1.58h9.78a2 2 0 0 0 1.95-1.57l1.65-7.43H5.12">
+                                </path>
+                            </svg></button><button
+                            class="inline-flex items-center justify-center rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 border border-input bg-background hover:bg-accent hover:text-accent-foreground h-10 w-10"><svg
+                                xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                                fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                stroke-linejoin="round" class="h-6 w-6">
+                                <path d="M3 3h6l6 18h6"></path>
+                                <path d="M14 3h7"></path>
+                            </svg></button></div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="flex justify-center p-4"><a class="text-lg font-medium hover:underline underline-offset-4" href="#">
+            See More
+        </a></section>
+    <section class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 p-4">
+        <div class="card rounded-lg shadow-lg overflow-hidden">
+            <div class="flex items-center p-4"><img src="../dp 1.jpg" alt="User Image" class="h-12 w-12 rounded-full"
+                    width="50" height="50" style="aspect-ratio: 50 / 50; object-fit: cover;">
+                <div class="ml-4">
+                    <h2 class="font-bold text-lg mb-2">David Gregs</h2>
+                    <div class="flex gap-1"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                            viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                            stroke-linecap="round" stroke-linejoin="round" class="h-4 w-4 text-yellow-500">
+                            <polygon
+                                points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2">
+                            </polygon>
+                        </svg><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                            fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                            stroke-linejoin="round" class="h-4 w-4 text-yellow-500">
+                            <polygon
+                                points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2">
+                            </polygon>
+                        </svg><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                            fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                            stroke-linejoin="round" class="h-4 w-4 text-yellow-500">
+                            <polygon
+                                points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2">
+                            </polygon>
+                        </svg><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                            fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                            stroke-linejoin="round" class="h-4 w-4 text-yellow-500">
+                            <polygon
+                                points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2">
+                            </polygon>
+                        </svg><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                            fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                            stroke-linejoin="round" class="h-4 w-4 text-yellow-500">
+                            <polygon
+                                points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2">
+                            </polygon>
+                        </svg></div>
+                    <p class="text-gray-600 mt-2">tradeQuick is the best y'all check em out.</p>
+                </div>
+            </div>
+        </div>
+        <div class="card rounded-lg shadow-lg overflow-hidden">
+            <div class="flex items-center p-4"><img src="../dp 2.jpg" alt="User Image" class="h-12 w-12 rounded-full"
+                    width="50" height="50" style="aspect-ratio: 50 / 50; object-fit: cover;">
+                <div class="ml-4">
+                    <h2 class="font-bold text-lg mb-2">Top-man Paul</h2>
+                    <div class="flex gap-1"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                            viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                            stroke-linecap="round" stroke-linejoin="round" class="h-4 w-4 text-yellow-500">
+                            <polygon
+                                points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2">
+                            </polygon>
+                        </svg><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                            fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                            stroke-linejoin="round" class="h-4 w-4 text-yellow-500">
+                            <polygon
+                                points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2">
+                            </polygon>
+                        </svg><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                            fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                            stroke-linejoin="round" class="h-4 w-4 text-yellow-500">
+                            <polygon
+                                points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2">
+                            </polygon>
+                        </svg><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                            fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                            stroke-linejoin="round" class="h-4 w-4 text-yellow-500">
+                            <polygon
+                                points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2">
+                            </polygon>
+                        </svg><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                            fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                            stroke-linejoin="round" class="h-4 w-4 text-gray-300">
+                            <polygon
+                                points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2">
+                            </polygon>
+                        </svg></div>
+                    <p class="text-gray-600 mt-2">All in one place app, great work you guys are putting out there.</p>
+                </div>
+            </div>
+        </div>
+        <div class="card rounded-lg shadow-lg overflow-hidden">
+            <div class="flex items-center p-4"><img src="../dp 3.jpg" alt="User Image" class="h-12 w-12 rounded-full"
+                    width="50" height="50" style="aspect-ratio: 50 / 50; object-fit: cover;">
+                <div class="ml-4">
+                    <h2 class="font-bold text-lg mb-2">Chibueze Ochibu</h2>
+                    <div class="flex gap-1"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                            viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                            stroke-linecap="round" stroke-linejoin="round" class="h-4 w-4 text-yellow-500">
+                            <polygon
+                                points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2">
+                            </polygon>
+                        </svg><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                            fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                            stroke-linejoin="round" class="h-4 w-4 text-yellow-500">
+                            <polygon
+                                points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2">
+                            </polygon>
+                        </svg><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                            fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                            stroke-linejoin="round" class="h-4 w-4 text-yellow-500">
+                            <polygon
+                                points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2">
+                            </polygon>
+                        </svg><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                            fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                            stroke-linejoin="round" class="h-4 w-4 text-gray-300">
+                            <polygon
+                                points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2">
+                            </polygon>
+                        </svg><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                            fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                            stroke-linejoin="round" class="h-4 w-4 text-gray-300">
+                            <polygon
+                                points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2">
+                            </polygon>
+                        </svg></div>
+                    <p class="text-gray-600 mt-2">I never thought I would find a place where I could do so much at a
+                        time. nice work tradeQuick!.</p>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+    <footer class="bg-gray-800 text-white py-4 text-center">
+        <div class="max-w-7xl mx-auto grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-20">
+            <div class="space-y-2">
+                <h4 class="text-base font-semibold">Product</h4>
+                <a class="text-sm hover:underline" href="#">
+                    Features
+                </a>
+                <a class="text-sm hover:underline" href="#">
+                    Pricing
+                </a>
+                <a class="text-sm hover:underline" href="#">
+                    Documentation
+                </a>
+            </div>
+            <div class="space-y-2">
+                <h4 class="text-base font-semibold">Company</h4>
+                <a class="text-sm hover:underline" href="#">
+                    About Us
+                </a>
+                <a class="text-sm hover:underline" href="#">
+                    Careers
+                </a>
+                <a class="text-sm hover:underline" href="#">
+                    Contact Us
+                </a>
+            </div>
+            <div class="space-y-2">
+                <h4 class="text-base font-semibold">Legal</h4>
+                <a class="text-sm hover:underline" href="#">
+                    Terms of Service
+                </a>
+                <a class="text-sm hover:underline" href="#">
+                    Privacy Policy
+                </a>
+                <a class="text-sm hover:underline" href="#">
+                    Cookie Policy
+                </a>
+            </div>
+            <div class="space-y-2">
+                <h4 class="text-base font-semibold">Social</h4>
+                <a class="text-sm hover:underline" href="#">
+                    Twitter
+                </a>
+                <a class="text-sm hover:underline" href="#">
+                    Facebook
+                </a>
+                <a class="text-sm hover:underline" href="#">
+                    Instagram
+                </a>
+            </div>
+        </div>
+        <div class="max-w-7xl mx-auto mt-6 text-center text-sm">
+            <p>© tradeQuick 2024. All rights reserved.</p>
+        </div>
+    </footer>
+</body>
+
+</html>

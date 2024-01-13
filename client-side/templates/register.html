@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="icon" href="{{ url_for('static', filename='images/logo1.png') }}">
+    <script src="{{ url_for('static', filename='scripts/register.js') }}"></script>
+    <style>
+        .bg-primary {
+            background-color: black;
+            width: 200px;
+            /* Adjust the width as needed */
+            padding: 20px;
+            /* Add padding as needed */
+            height: 50px;
+        }
+
+        .text-primary-foreground {
+            color: white;
+        }
+    </style>
+</head>
+
+<body>
+    <!--
+    // v0 by Vercel.
+    // https://v0.dev/t/SZ9NHJsnB9H
+    -->
+    {% with messages = get_flashed_messages() %}
+    {% if messages %}
+    <div class="space-y-2">
+        {% for message in messages %}
+        <div class="p-4 border {{ 'bg-green-200 text-green-800' if 'success' in message[0] else '' }} 
+                                      {{ 'bg-blue-200 text-blue-800' if 'info' in message[0] else '' }} 
+                                      {{ 'bg-yellow-200 text-yellow-800' if 'warning' in message[0] else '' }} 
+                                      {{ 'bg-red-200 text-red-800' if 'danger' in message[0] else '' }}">
+            {{ message[1] }}
+        </div>
+        {% endfor %}
+    </div>
+    {% endif %}
+    {% endwith %}
+    <section class="w-full max-w-lg mx-auto py-12 px-4 sm:px-6 lg:px-8">
+        <div class="space-y-8">
+            <div class="flex items-center justify-center text-center"><img
+                    src="{{ url_for('static', filename='images/logo.png') }}" alt="Logo" class="mr-4" width="50"
+                    height="50" style="aspect-ratio: 50 / 50; object-fit: cover;">
+                <div>
+                    <h2 class="text-2xl font-extrabold text-gray-900 dark:text-gray-200">
+                        Register to tradeQuick
+                    </h2>
+                    <p class="mt-1 text-sm text-gray-600 dark:text-gray-400">
+                        Start your journey with us.
+                    </p>
+                </div>
+            </div>
+            <form id="registration-form" class="space-y-6" onsubmit="return validateForm()">
+                <div class="space-y-2">
+                    <label for="fullname" class="block text-sm font-medium">
+                        Full Name
+                    </label>
+                    <input type="text" id="fullname" name="fullname"
+                        class="w-full h-10 px-3 py-2 text-sm border rounded-md bg-background focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2"
+                        placeholder="John Doe" required>
+                </div>
+
+                <div class="space-y-2">
+                    <label for="email" class="block text-sm font-medium">
+                        Email
+                    </label>
+                    <input type="email" id="email" name="email" pattern="[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}"
+                        title="Please enter a valid email address"
+                        class="w-full h-10 px-3 py-2 text-sm border rounded-md bg-background focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2"
+                        placeholder="john@example.com" required>
+                </div>
+
+                <div class="space-y-2">
+                    <label for="about" class="block text-sm font-medium">
+                        About
+                    </label>
+                    <input type="text" id="about" name="about"
+                        class="w-full h-10 px-3 py-2 text-sm border rounded-md bg-background focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2"
+                        placeholder="I love pets" required>
+                </div>
+
+                <div class="space-y-2">
+                    <label for="phone1" class="block text-sm font-medium">
+                        Phone Number
+                    </label>
+                    <input type="tel" id="phone1" name="phone1" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}"
+                        title="Please enter a valid phone number in the format xxx-xxx-xxxx"
+                        class="w-full h-10 px-3 py-2 text-sm border rounded-md bg-background focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2"
+                        placeholder="123-456-7890" required>
+                </div>
+
+                <div class="space-y-2">
+                    <label for="address" class="block text-sm font-medium">
+                        Address
+                    </label>
+                    <input type="text" id="address" name="address"
+                        class="w-full h-10 px-3 py-2 text-sm border rounded-md bg-background focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2"
+                        placeholder="123 Main St" required>
+                </div>
+
+                <div class="space-y-2">
+                    <label for="town" class="block text-sm font-medium">
+                        Town
+                    </label>
+                    <input type="text" id="town" name="town"
+                        class="w-full h-10 px-3 py-2 text-sm border rounded-md bg-background focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2"
+                        placeholder="Town" required>
+                </div>
+
+                <div class="space-y-2">
+                    <label for="city" class="block text-sm font-medium">
+                        City
+                    </label>
+                    <input type="text" id="city" name="city"
+                        class="w-full h-10 px-3 py-2 text-sm border rounded-md bg-background focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2"
+                        placeholder="City" required>
+                </div>
+
+                <div class="space-y-2">
+                    <label for="state" class="block text-sm font-medium">
+                        State
+                    </label>
+                    <input type="text" id="state" name="state"
+                        class="w-full h-10 px-3 py-2 text-sm border rounded-md bg-background focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2"
+                        placeholder="State" required>
+                </div>
+
+                <div class="space-y-2">
+                    <label for="gender" class="block text-sm font-medium">
+                        Gender
+                    </label>
+                    <select id="gender" name="gender"
+                        class="w-full h-10 px-3 py-2 text-sm border rounded-md bg-background focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-70"
+                        required>
+                        <option value="Male">Male</option>
+                        <option value="Female">Female</option>
+                        <option value="Other">Other</option>
+                    </select>
+                </div>
+
+                <div class="space-y-2">
+                    <label for="password" class="block text-sm font-medium">
+                        Password
+                    </label>
+                    <input id="password" name="password" type="password"
+                        class="w-full h-10 px-3 py-2 text-sm border rounded-md bg-background focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
+                        placeholder="Enter your password" required>
+                </div>
+
+                <div class="space-y-2">
+                    <label for="confirm" class="block text-sm font-medium">
+                        Confirm Password
+                    </label>
+                    <input id="confirm" name="confirm" type="password"
+                        class="w-full h-10 px-3 py-2 text-sm border rounded-md bg-background focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
+                        placeholder="Confirm your password" required>
+                </div>
+
+                <div class="flex items-center justify-between">
+                    <div class="flex items-center">
+                        <input type="checkbox" id="show-password"
+                            class="peer h-4 w-4 shrink-0 rounded-sm border border-primary ring-offset-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2">
+                        <label for="show-password"
+                            class="font-medium peer-disabled:cursor-not-allowed peer-disabled:opacity-70 ml-2 text-sm text-gray-900 dark:text-gray-200">
+                            Show password
+                        </label>
+                    </div>
+
+                </div>
+                <div class="flex items-center justify-between mt-4">
+                    <div class="flex items-center">
+                        <input type="checkbox" id="terms" required>
+                        <label for="terms" class="font-medium text-sm text-gray-900 dark:text-gray-200 ml-2">
+                            I have agreed to the terms and conditions
+                        </label>
+                    </div>
+                </div>
+                <div>
+                    <p class="text-sm text-gray-600 dark:text-gray-400">
+                        By registering, you agree to our <a href="#" class="text-primary hover:underline">Terms of
+                            Service</a> and <a href="#" class="text-primary hover:underline">Privacy Policy</a>.
+                    </p>
+                </div>
+                <div class="flex items-center justify-center p-6 bg-card-foreground">
+                    <button type="button"
+                        class="flex items-center justify-center h-10 w-full rounded-md border border-primary bg-primary text-primary-foreground hover:bg-primary-hover focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
+                        id="register-btn">Register</button>
+
+                </div>
+                <div class="flex justify-center mt-6"><button id="google-signup-btn"
+                        class="inline-flex items-center justify-center text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 hover:bg-primary/90 h-10 w-full sm:w-auto bg-red-500 text-white py-2 px-4 rounded mr-2">
+                        Sign up with Google
+                    </button>
+                    <button id="facebook-signup-btn"
+                        class="inline-flex items-center justify-center text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 hover:bg-primary/90 h-10 w-full sm:w-auto bg-blue-500 text-white py-2 px-4 rounded">
+                        Sign up with Facebook
+                    </button>
+                </div>
+            </form>
+            <div class="flex items-center justify-center p-6 bg-card-foreground">
+                <p class="text-sm text-muted-foreground">Already have an account? <a
+                        href="{{ url_for('auth.login_page') }}" class=" text-primary hover:underline">Login</a></p>
+            </div>
+        </div>
+    </section>
+</body>
+<footer class="bg-gray-800 text-white py-6 px-4">
+    <div class="max-w-7xl mx-auto grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-20">
+        <div class="space-y-2">
+            <h4 class="text-base font-semibold">Product</h4>
+            <a class="text-sm hover:underline" href="#">
+                Features
+            </a>
+            <a class="text-sm hover:underline" href="#">
+                Pricing
+            </a>
+            <a class="text-sm hover:underline" href="#">
+                Documentation
+            </a>
+        </div>
+        <div class="space-y-2">
+            <h4 class="text-base font-semibold">Company</h4>
+            <a class="text-sm hover:underline" href="#">
+                About Us
+            </a>
+            <a class="text-sm hover:underline" href="#">
+                Careers
+            </a>
+            <a class="text-sm hover:underline" href="#">
+                Contact Us
+            </a>
+        </div>
+        <div class="space-y-2">
+            <h4 class="text-base font-semibold">Legal</h4>
+            <a class="text-sm hover:underline" href="#">
+                Terms of Service
+            </a>
+            <a class="text-sm hover:underline" href="#">
+                Privacy Policy
+            </a>
+            <a class="text-sm hover:underline" href="#">
+                Cookie Policy
+            </a>
+        </div>
+        <div class="space-y-2">
+            <h4 class="text-base font-semibold">Social</h4>
+            <a class="text-sm hover:underline" href="#">
+                Twitter
+            </a>
+            <a class="text-sm hover:underline" href="#">
+                Facebook
+            </a>
+            <a class="text-sm hover:underline" href="#">
+                Instagram
+            </a>
+        </div>
+    </div>
+    <div class="max-w-7xl mx-auto mt-6 text-center text-sm">
+        <p>© tradeQuick 2024. All rights reserved.</p>
+    </div>
+</footer>
+
+</html>

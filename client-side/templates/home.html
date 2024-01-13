@@ -1,0 +1,429 @@
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="icon" href="{{ url_for('static', filename='images/logo1.png') }}">
+</head>
+
+<body>
+    <!--
+    // v0 by Vercel.
+    // https://v0.dev/t/s6uRaZUyrSs
+    -->
+    <div class="flex flex-col bg-gray-100 dark:bg-gray-800">
+        <header class="flex items-center justify-between px-6 py-4 bg-white shadow dark:bg-gray-900">
+            <div class="flex items-center space-x-4"><img src="{{ url_for('static', filename='images/logo2.png') }}"
+                    alt="Logo" class="h-8 w-8"><a class="text-lg font-semibold text-gray-900 dark:text-gray-100"
+                    href="#">
+                    tradeQuick
+                </a></div>
+            <div class="flex items-center space-x-4"><input
+                    class="flex h-10 w-full bg-background text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 border-2 border-gray-300 rounded-md p-2"
+                    placeholder="Search..."><button
+                    class="inline-flex items-center justify-center text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 hover:bg-accent hover:text-accent-foreground h-10 w-10 rounded-full"><svg
+                        xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                        class="w-6 h-6 text-gray-500 dark:text-gray-400">
+                        <circle cx="11" cy="11" r="8"></circle>
+                        <path d="m21 21-4.3-4.3"></path>
+                    </svg><span class="sr-only">Search</span></button></div>
+            <div class="flex items-center space-x-4"><button
+                    class="inline-flex items-center justify-center text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 hover:bg-accent hover:text-accent-foreground h-10 w-10 relative rounded-full"><svg
+                        xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                        class="w-6 h-6 text-gray-500 dark:text-gray-400">
+                        <path d="M6 8a6 6 0 0 1 12 0c0 7 3 9 3 9H3s3-2 3-9"></path>
+                        <path d="M10.3 21a1.94 1.94 0 0 0 3.4 0"></path>
+                    </svg><span class="sr-only">Notifications</span><span
+                        class="absolute top-0 right-0 inline-block w-3 h-3 bg-red-500 rounded-full"></span></button><a
+                    href="#"><span class="relative flex shrink-0 overflow-hidden rounded-full h-8 w-8"><img
+                            class="aspect-square h-full w-full" alt="User avatar"
+                            src="{{ url_for('static', filename='images/default.png') }}"></span></a>
+            </div>
+        </header>
+        <div class="w-full bg-black h-60">
+            <img src="banner.jpg" alt="Banner Image" class="w-full h-48 object-cover" width="200" height="200"
+                style="aspect-ratio: 200 / 200; object-fit: cover;">
+            <p style="color: white; font-size: 30px; text-align: center; align-content: center;">Buy and Sell Used
+                Items
+            </p>
+        </div>
+        <div class="flex flex-1 overflow-hidden">
+            <nav
+                class="flex flex-col items-start py-4 space-y-1 bg-white w-64 border-r dark:bg-gray-900 overflow-y-auto">
+                <a class="flex items-center px-6 py-2 text-lg font-semibold text-black dark:text-gray-400 hover:bg-gray-200 dark:hover:bg-gray-700 rounded-lg"
+                    href="#"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round" class="w-5 h-5">
+                        <path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
+                        <polyline points="9 22 9 12 15 12 15 22"></polyline>
+                    </svg><span class="ml-4">Home</span></a><a
+                    class="flex items-center px-6 py-2 text-lg font-semibold text-black dark:text-gray-400 hover:bg-gray-200 dark:hover:bg-gray-700 rounded-lg"
+                    href="#"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round" class="w-5 h-5">
+                        <path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"></path>
+                        <path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"></path>
+                    </svg><span class="ml-4">Blog</span></a><a
+                    class="flex items-center px-6 py-2 text-lg font-semibold text-black dark:text-gray-400 hover:bg-gray-200 dark:hover:bg-gray-700 rounded-lg"
+                    href="#"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round" class="w-5 h-5">
+                        <path d="M14.5 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7.5L14.5 2z"></path>
+                        <polyline points="14 2 14 8 20 8"></polyline>
+                        <line x1="16" x2="8" y1="13" y2="13"></line>
+                        <line x1="16" x2="8" y1="17" y2="17"></line>
+                        <line x1="10" x2="8" y1="9" y2="9"></line>
+                    </svg><span class="ml-4">Documentation</span></a><a
+                    class="flex items-center px-6 py-2 text-lg font-semibold text-black dark:text-gray-400 hover:bg-gray-200 dark:hover:bg-gray-700 rounded-lg"
+                    href="#"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round" class="w-5 h-5">
+                        <rect width="20" height="16" x="2" y="4" rx="2"></rect>
+                        <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"></path>
+                    </svg><span class="ml-4">Messages</span></a><a
+                    class="flex items-center px-6 py-2 text-lg font-semibold text-black dark:text-gray-400 hover:bg-gray-200 dark:hover:bg-gray-700 rounded-lg"
+                    href="#"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round" class="w-5 h-5">
+                        <path d="M12 20a8 8 0 1 0 0-16 8 8 0 0 0 0 16Z"></path>
+                        <path d="M12 14a2 2 0 1 0 0-4 2 2 0 0 0 0 4Z"></path>
+                        <path d="M12 2v2"></path>
+                        <path d="M12 22v-2"></path>
+                        <path d="m17 20.66-1-1.73"></path>
+                        <path d="M11 10.27 7 3.34"></path>
+                        <path d="m20.66 17-1.73-1"></path>
+                        <path d="m3.34 7 1.73 1"></path>
+                        <path d="M14 12h8"></path>
+                        <path d="M2 12h2"></path>
+                        <path d="m20.66 7-1.73 1"></path>
+                        <path d="m3.34 17 1.73-1"></path>
+                        <path d="m17 3.34-1 1.73"></path>
+                        <path d="m11 13.73-4 6.93"></path>
+                    </svg><span class="ml-4">Settings</span></a><a
+                    class="mx-auto mt-4 px-6 py-2 bg-gray-400 hover:bg-gray-500 rounded-full text-lg dark:bg-gray-700 dark:hover:bg-gray-600"
+                    href="#">Post</a>
+            </nav>
+            <main class="flex-1 p-6">
+                <h1 class="text-2xl font-semibold text-gray-800 dark:text-gray-100">Newest Deals!</h1>
+                <div class="grid gap-6 mt-8 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3">
+                    <div class="rounded-lg border bg-card text-card-foreground shadow-sm" data-v0-t="card">
+                        <div class="p-6"><img src="photo-1615655406736-b37c4fabf923.avif" alt="item image"
+                                class="w-full h-36 object-cover" width="200" height="200"
+                                style="aspect-ratio: 200 / 200; object-fit: cover;">
+                            <h2 class="mt-4 text-lg font-semibold text-gray-800 dark:text-gray-100">Game Essentials</h2>
+                            <p class="mt-2 text-sm text-gray-600 dark:text-gray-400">Created perfectly for you. Enjoy
+                                the best quality from our top product.</p>
+                            <p class="mt-2 text-lg font-semibold text-gray-800 dark:text-gray-100">$79.99</p>
+                            <div class="flex items-center mt-4 space-x-2"><button
+                                    class="inline-flex items-center justify-center text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 hover:bg-accent hover:text-accent-foreground h-10 w-10 rounded-full"><svg
+                                        xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                        stroke-linejoin="round" class="w-6 h-6 text-gray-500 dark:text-gray-400">
+                                        <path d="M7 10v12"></path>
+                                        <path
+                                            d="M15 5.88 14 10h5.83a2 2 0 0 1 1.92 2.56l-2.33 8A2 2 0 0 1 17.5 22H4a2 2 0 0 1-2-2v-8a2 2 0 0 1 2-2h2.76a2 2 0 0 0 1.79-1.11L12 2h0a3.13 3.13 0 0 1 3 3.88Z">
+                                        </path>
+                                    </svg><span class="sr-only">Upvote</span></button><button
+                                    class="inline-flex items-center justify-center text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 hover:bg-accent hover:text-accent-foreground h-10 w-10 rounded-full"><svg
+                                        xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                        stroke-linejoin="round" class="w-6 h-6 text-gray-500 dark:text-gray-400">
+                                        <path d="M17 14V2"></path>
+                                        <path
+                                            d="M9 18.12 10 14H4.17a2 2 0 0 1-1.92-2.56l2.33-8A2 2 0 0 1 6.5 2H20a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2h-2.76a2 2 0 0 0-1.79 1.11L12 22h0a3.13 3.13 0 0 1-3-3.88Z">
+                                        </path>
+                                    </svg><span class="sr-only">Downvote</span></button><button
+                                    class="inline-flex items-center justify-center text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 hover:bg-accent hover:text-accent-foreground h-10 w-10 rounded-full"><svg
+                                        xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                        stroke-linejoin="round" class="w-6 h-6 text-gray-500 dark:text-gray-400">
+                                        <path d="m3 21 1.9-5.7a8.5 8.5 0 1 1 3.8 3.8z"></path>
+                                    </svg><span class="sr-only">Message</span></button><button
+                                    class="inline-flex items-center justify-center text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 hover:bg-accent hover:text-accent-foreground h-10 w-10 rounded-full"><svg
+                                        xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                        stroke-linejoin="round" class="w-6 h-6 text-gray-500 dark:text-gray-400">
+                                        <polyline points="9 17 4 12 9 7"></polyline>
+                                        <path d="M20 18v-2a4 4 0 0 0-4-4H4"></path>
+                                    </svg><span class="sr-only">Comments</span></button></div>
+                        </div>
+                    </div>
+                    <div class="rounded-lg border bg-card text-card-foreground shadow-sm" data-v0-t="card">
+                        <div class="p-6"><img src="gadget2.jpg" alt="item image" class="w-full h-36 object-cover"
+                                width="200" height="200" style="aspect-ratio: 200 / 200; object-fit: cover;">
+                            <h2 class="mt-4 text-lg font-semibold text-gray-800 dark:text-gray-100">iPhone 15</h2>
+                            <p class="mt-2 text-sm text-gray-600 dark:text-gray-400">This is the latest iPhone series,
+                                with far more nicer features you can be sure
+                                of luxury in your hands.</p>
+                            <p class="mt-2 text-lg font-semibold text-gray-800 dark:text-gray-100">$99.99</p>
+                            <div class="flex items-center mt-4 space-x-2"><button
+                                    class="inline-flex items-center justify-center text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 hover:bg-accent hover:text-accent-foreground h-10 w-10 rounded-full"><svg
+                                        xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                        stroke-linejoin="round" class="w-6 h-6 text-gray-500 dark:text-gray-400">
+                                        <path d="M7 10v12"></path>
+                                        <path
+                                            d="M15 5.88 14 10h5.83a2 2 0 0 1 1.92 2.56l-2.33 8A2 2 0 0 1 17.5 22H4a2 2 0 0 1-2-2v-8a2 2 0 0 1 2-2h2.76a2 2 0 0 0 1.79-1.11L12 2h0a3.13 3.13 0 0 1 3 3.88Z">
+                                        </path>
+                                    </svg><span class="sr-only">Upvote</span></button><button
+                                    class="inline-flex items-center justify-center text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 hover:bg-accent hover:text-accent-foreground h-10 w-10 rounded-full"><svg
+                                        xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                        stroke-linejoin="round" class="w-6 h-6 text-gray-500 dark:text-gray-400">
+                                        <path d="M17 14V2"></path>
+                                        <path
+                                            d="M9 18.12 10 14H4.17a2 2 0 0 1-1.92-2.56l2.33-8A2 2 0 0 1 6.5 2H20a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2h-2.76a2 2 0 0 0-1.79 1.11L12 22h0a3.13 3.13 0 0 1-3-3.88Z">
+                                        </path>
+                                    </svg><span class="sr-only">Downvote</span></button><button
+                                    class="inline-flex items-center justify-center text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 hover:bg-accent hover:text-accent-foreground h-10 w-10 rounded-full"><svg
+                                        xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                        stroke-linejoin="round" class="w-6 h-6 text-gray-500 dark:text-gray-400">
+                                        <path d="m3 21 1.9-5.7a8.5 8.5 0 1 1 3.8 3.8z"></path>
+                                    </svg><span class="sr-only">Message</span></button><button
+                                    class="inline-flex items-center justify-center text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 hover:bg-accent hover:text-accent-foreground h-10 w-10 rounded-full"><svg
+                                        xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                        stroke-linejoin="round" class="w-6 h-6 text-gray-500 dark:text-gray-400">
+                                        <polyline points="9 17 4 12 9 7"></polyline>
+                                        <path d="M20 18v-2a4 4 0 0 0-4-4H4"></path>
+                                    </svg><span class="sr-only">Comments</span></button></div>
+                        </div>
+                    </div>
+                    <div class="rounded-lg border bg-card text-card-foreground shadow-sm" data-v0-t="card">
+                        <div class="p-6"><img src="gadget3.jpg" alt="item image" class="w-full h-36 object-cover"
+                                width="200" height="200" style="aspect-ratio: 200 / 200; object-fit: cover;">
+                            <h2 class="mt-4 text-lg font-semibold text-gray-800 dark:text-gray-100">Digital Watch</h2>
+                            <p class="mt-2 text-sm text-gray-600 dark:text-gray-400">Watches never lie get yourself one
+                                today!.</p>
+                            <p class="mt-2 text-lg font-semibold text-gray-800 dark:text-gray-100">$99.99</p>
+                            <div class="flex items-center mt-4 space-x-2"><button
+                                    class="inline-flex items-center justify-center text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 hover:bg-accent hover:text-accent-foreground h-10 w-10 rounded-full"><svg
+                                        xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                        stroke-linejoin="round" class="w-6 h-6 text-gray-500 dark:text-gray-400">
+                                        <path d="M7 10v12"></path>
+                                        <path
+                                            d="M15 5.88 14 10h5.83a2 2 0 0 1 1.92 2.56l-2.33 8A2 2 0 0 1 17.5 22H4a2 2 0 0 1-2-2v-8a2 2 0 0 1 2-2h2.76a2 2 0 0 0 1.79-1.11L12 2h0a3.13 3.13 0 0 1 3 3.88Z">
+                                        </path>
+                                    </svg><span class="sr-only">Upvote</span></button><button
+                                    class="inline-flex items-center justify-center text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 hover:bg-accent hover:text-accent-foreground h-10 w-10 rounded-full"><svg
+                                        xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                        stroke-linejoin="round" class="w-6 h-6 text-gray-500 dark:text-gray-400">
+                                        <path d="M17 14V2"></path>
+                                        <path
+                                            d="M9 18.12 10 14H4.17a2 2 0 0 1-1.92-2.56l2.33-8A2 2 0 0 1 6.5 2H20a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2h-2.76a2 2 0 0 0-1.79 1.11L12 22h0a3.13 3.13 0 0 1-3-3.88Z">
+                                        </path>
+                                    </svg><span class="sr-only">Downvote</span></button><button
+                                    class="inline-flex items-center justify-center text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 hover:bg-accent hover:text-accent-foreground h-10 w-10 rounded-full"><svg
+                                        xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                        stroke-linejoin="round" class="w-6 h-6 text-gray-500 dark:text-gray-400">
+                                        <path d="m3 21 1.9-5.7a8.5 8.5 0 1 1 3.8 3.8z"></path>
+                                    </svg><span class="sr-only">Message</span></button><button
+                                    class="inline-flex items-center justify-center text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 hover:bg-accent hover:text-accent-foreground h-10 w-10 rounded-full"><svg
+                                        xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                        stroke-linejoin="round" class="w-6 h-6 text-gray-500 dark:text-gray-400">
+                                        <polyline points="9 17 4 12 9 7"></polyline>
+                                        <path d="M20 18v-2a4 4 0 0 0-4-4H4"></path>
+                                    </svg><span class="sr-only">Comments</span></button></div>
+                        </div>
+                    </div>
+                    <div class="rounded-lg border bg-card text-card-foreground shadow-sm" data-v0-t="card">
+                        <div class="p-6"><img src="images.jpg" alt="item image" class="w-full h-36 object-cover"
+                                width="200" height="200" style="aspect-ratio: 200 / 200; object-fit: cover;">
+                            <h2 class="mt-4 text-lg font-semibold text-gray-800 dark:text-gray-100">Samsung Z fold</h2>
+                            <p class="mt-2 text-sm text-gray-600 dark:text-gray-400">It's never too late to grab
+                                yourself one of samsumg's finest series, promo runs
+                                while stocks lasts!.</p>
+                            <p class="mt-2 text-lg font-semibold text-gray-800 dark:text-gray-100">$79.99</p>
+                            <div class="flex items-center mt-4 space-x-2"><button
+                                    class="inline-flex items-center justify-center text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 hover:bg-accent hover:text-accent-foreground h-10 w-10 rounded-full"><svg
+                                        xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                        stroke-linejoin="round" class="w-6 h-6 text-gray-500 dark:text-gray-400">
+                                        <path d="M7 10v12"></path>
+                                        <path
+                                            d="M15 5.88 14 10h5.83a2 2 0 0 1 1.92 2.56l-2.33 8A2 2 0 0 1 17.5 22H4a2 2 0 0 1-2-2v-8a2 2 0 0 1 2-2h2.76a2 2 0 0 0 1.79-1.11L12 2h0a3.13 3.13 0 0 1 3 3.88Z">
+                                        </path>
+                                    </svg><span class="sr-only">Upvote</span></button><button
+                                    class="inline-flex items-center justify-center text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 hover:bg-accent hover:text-accent-foreground h-10 w-10 rounded-full"><svg
+                                        xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                        stroke-linejoin="round" class="w-6 h-6 text-gray-500 dark:text-gray-400">
+                                        <path d="M17 14V2"></path>
+                                        <path
+                                            d="M9 18.12 10 14H4.17a2 2 0 0 1-1.92-2.56l2.33-8A2 2 0 0 1 6.5 2H20a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2h-2.76a2 2 0 0 0-1.79 1.11L12 22h0a3.13 3.13 0 0 1-3-3.88Z">
+                                        </path>
+                                    </svg><span class="sr-only">Downvote</span></button><button
+                                    class="inline-flex items-center justify-center text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 hover:bg-accent hover:text-accent-foreground h-10 w-10 rounded-full"><svg
+                                        xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                        stroke-linejoin="round" class="w-6 h-6 text-gray-500 dark:text-gray-400">
+                                        <path d="m3 21 1.9-5.7a8.5 8.5 0 1 1 3.8 3.8z"></path>
+                                    </svg><span class="sr-only">Message</span></button><button
+                                    class="inline-flex items-center justify-center text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 hover:bg-accent hover:text-accent-foreground h-10 w-10 rounded-full"><svg
+                                        xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                        stroke-linejoin="round" class="w-6 h-6 text-gray-500 dark:text-gray-400">
+                                        <polyline points="9 17 4 12 9 7"></polyline>
+                                        <path d="M20 18v-2a4 4 0 0 0-4-4H4"></path>
+                                    </svg><span class="sr-only">Comments</span></button></div>
+                        </div>
+                    </div>
+                    <div class="rounded-lg border bg-card text-card-foreground shadow-sm" data-v0-t="card">
+                        <div class="p-6"><img src="images (5).jpg" alt="item image" class="w-full h-36 object-cover"
+                                width="200" height="200" style="aspect-ratio: 200 / 200; object-fit: cover;">
+                            <h2 class="mt-4 text-lg font-semibold text-gray-800 dark:text-gray-100">Headset</h2>
+                            <p class="mt-2 text-sm text-gray-600 dark:text-gray-400">Listen to great music with our new
+                                headsets in town, rush and order yours..</p>
+                            <p class="mt-2 text-lg font-semibold text-gray-800 dark:text-gray-100">$59.99</p>
+                            <div class="flex items-center mt-4 space-x-2"><button
+                                    class="inline-flex items-center justify-center text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 hover:bg-accent hover:text-accent-foreground h-10 w-10 rounded-full"><svg
+                                        xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                        stroke-linejoin="round" class="w-6 h-6 text-gray-500 dark:text-gray-400">
+                                        <path d="M7 10v12"></path>
+                                        <path
+                                            d="M15 5.88 14 10h5.83a2 2 0 0 1 1.92 2.56l-2.33 8A2 2 0 0 1 17.5 22H4a2 2 0 0 1-2-2v-8a2 2 0 0 1 2-2h2.76a2 2 0 0 0 1.79-1.11L12 2h0a3.13 3.13 0 0 1 3 3.88Z">
+                                        </path>
+                                    </svg><span class="sr-only">Upvote</span></button><button
+                                    class="inline-flex items-center justify-center text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 hover:bg-accent hover:text-accent-foreground h-10 w-10 rounded-full"><svg
+                                        xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                        stroke-linejoin="round" class="w-6 h-6 text-gray-500 dark:text-gray-400">
+                                        <path d="M17 14V2"></path>
+                                        <path
+                                            d="M9 18.12 10 14H4.17a2 2 0 0 1-1.92-2.56l2.33-8A2 2 0 0 1 6.5 2H20a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2h-2.76a2 2 0 0 0-1.79 1.11L12 22h0a3.13 3.13 0 0 1-3-3.88Z">
+                                        </path>
+                                    </svg><span class="sr-only">Downvote</span></button><button
+                                    class="inline-flex items-center justify-center text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 hover:bg-accent hover:text-accent-foreground h-10 w-10 rounded-full"><svg
+                                        xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                        stroke-linejoin="round" class="w-6 h-6 text-gray-500 dark:text-gray-400">
+                                        <path d="m3 21 1.9-5.7a8.5 8.5 0 1 1 3.8 3.8z"></path>
+                                    </svg><span class="sr-only">Message</span></button><button
+                                    class="inline-flex items-center justify-center text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 hover:bg-accent hover:text-accent-foreground h-10 w-10 rounded-full"><svg
+                                        xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                        stroke-linejoin="round" class="w-6 h-6 text-gray-500 dark:text-gray-400">
+                                        <polyline points="9 17 4 12 9 7"></polyline>
+                                        <path d="M20 18v-2a4 4 0 0 0-4-4H4"></path>
+                                    </svg><span class="sr-only">Comments</span></button></div>
+                        </div>
+                    </div>
+                    <div class="rounded-lg border bg-card text-card-foreground shadow-sm" data-v0-t="card">
+                        <div class="p-6"><img src="photo-1491933382434-500287f9b54b.avif" alt="item image"
+                                class="w-full h-36 object-cover" width="200" height="200"
+                                style="aspect-ratio: 200 / 200; object-fit: cover;">
+                            <h2 class="mt-4 text-lg font-semibold text-gray-800 dark:text-gray-100">Apple Essentials
+                            </h2>
+                            <p class="mt-2 text-sm text-gray-600 dark:text-gray-400">A one time offer to get yourself an
+                                apple product to aid you in you day to day
+                                life.</p>
+                            <p class="mt-2 text-lg font-semibold text-gray-800 dark:text-gray-100">$99.99</p>
+                            <div class="flex items-center mt-4 space-x-2"><button
+                                    class="inline-flex items-center justify-center text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 hover:bg-accent hover:text-accent-foreground h-10 w-10 rounded-full"><svg
+                                        xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                        stroke-linejoin="round" class="w-6 h-6 text-gray-500 dark:text-gray-400">
+                                        <path d="M7 10v12"></path>
+                                        <path
+                                            d="M15 5.88 14 10h5.83a2 2 0 0 1 1.92 2.56l-2.33 8A2 2 0 0 1 17.5 22H4a2 2 0 0 1-2-2v-8a2 2 0 0 1 2-2h2.76a2 2 0 0 0 1.79-1.11L12 2h0a3.13 3.13 0 0 1 3 3.88Z">
+                                        </path>
+                                    </svg><span class="sr-only">Upvote</span></button><button
+                                    class="inline-flex items-center justify-center text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 hover:bg-accent hover:text-accent-foreground h-10 w-10 rounded-full"><svg
+                                        xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                        stroke-linejoin="round" class="w-6 h-6 text-gray-500 dark:text-gray-400">
+                                        <path d="M17 14V2"></path>
+                                        <path
+                                            d="M9 18.12 10 14H4.17a2 2 0 0 1-1.92-2.56l2.33-8A2 2 0 0 1 6.5 2H20a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2h-2.76a2 2 0 0 0-1.79 1.11L12 22h0a3.13 3.13 0 0 1-3-3.88Z">
+                                        </path>
+                                    </svg><span class="sr-only">Downvote</span></button><button
+                                    class="inline-flex items-center justify-center text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 hover:bg-accent hover:text-accent-foreground h-10 w-10 rounded-full"><svg
+                                        xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                        stroke-linejoin="round" class="w-6 h-6 text-gray-500 dark:text-gray-400">
+                                        <path d="m3 21 1.9-5.7a8.5 8.5 0 1 1 3.8 3.8z"></path>
+                                    </svg><span class="sr-only">Message</span></button><button
+                                    class="inline-flex items-center justify-center text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 hover:bg-accent hover:text-accent-foreground h-10 w-10 rounded-full"><svg
+                                        xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                        stroke-linejoin="round" class="w-6 h-6 text-gray-500 dark:text-gray-400">
+                                        <polyline points="9 17 4 12 9 7"></polyline>
+                                        <path d="M20 18v-2a4 4 0 0 0-4-4H4"></path>
+                                    </svg><span class="sr-only">Comments</span></button></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="flex justify-center items-center w-full"><a
+                        class="mt-4 px-6 py-2 bg-gray-400 hover:bg-gray-500 rounded-full text-sm dark:bg-gray-700 dark:hover:bg-gray-600"
+                        href="#">See More</a></div>
+            </main>
+        </div>
+        <footer class="bg-gray-800 text-white py-4 text-center">
+            <div class="max-w-7xl mx-auto grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-20">
+                <div class="space-y-2">
+                    <h4 class="text-base font-semibold">Product</h4>
+                    <a class="text-sm hover:underline" href="#">
+                        Features
+                    </a>
+                    <a class="text-sm hover:underline" href="#">
+                        Pricing
+                    </a>
+                    <a class="text-sm hover:underline" href="#">
+                        Documentation
+                    </a>
+                </div>
+                <div class="space-y-2">
+                    <h4 class="text-base font-semibold">Company</h4>
+                    <a class="text-sm hover:underline" href="#">
+                        About Us
+                    </a>
+                    <a class="text-sm hover:underline" href="#">
+                        Careers
+                    </a>
+                    <a class="text-sm hover:underline" href="#">
+                        Contact Us
+                    </a>
+                </div>
+                <div class="space-y-2">
+                    <h4 class="text-base font-semibold">Legal</h4>
+                    <a class="text-sm hover:underline" href="#">
+                        Terms of Service
+                    </a>
+                    <a class="text-sm hover:underline" href="#">
+                        Privacy Policy
+                    </a>
+                    <a class="text-sm hover:underline" href="#">
+                        Cookie Policy
+                    </a>
+                </div>
+                <div class="space-y-2">
+                    <h4 class="text-base font-semibold">Social</h4>
+                    <a class="text-sm hover:underline" href="#">
+                        Twitter
+                    </a>
+                    <a class="text-sm hover:underline" href="#">
+                        Facebook
+                    </a>
+                    <a class="text-sm hover:underline" href="#">
+                        Instagram
+                    </a>
+                </div>
+            </div>
+            <div class="max-w-7xl mx-auto mt-6 text-center text-sm">
+                <p>© tradeQuick 2024. All rights reserved.</p>
+            </div>
+        </footer>
+    </div>
+</body>
+
+</html>

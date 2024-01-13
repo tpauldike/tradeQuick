@@ -2,13 +2,15 @@
 Modules for users endpoints
 """
 from api.v1.views import app_views
-from flask import abort, jsonify, request, abort
+from api.v1.views import auth
+from flask import abort, jsonify, request, abort, render_template, redirect, url_for, flash, session
 import os
 from uuid import uuid4
 from bcrypt import hashpw, gensalt, checkpw
 import cloudinary
 from cloudinary.uploader import upload
 from dotenv import load_dotenv
+from datetime import datetime, timedelta
 
 load_dotenv()
 
@@ -17,10 +19,11 @@ API_KEY = os.getenv("API_KEY")
 API_SECRET = os.getenv("API_SECRET")
 
 cloudinary.config(
-    cloud_name = CLOUDNAME,
-    api_key = API_KEY,
-    api_secret = API_SECRET
+    cloud_name=CLOUDNAME,
+    api_key=API_KEY,
+    api_secret=API_SECRET
 )
+
 
 @app_views.route('/users', methods=['GET'], strict_slashes=False)
 def get_users():
@@ -81,7 +84,6 @@ def get_user_by_id(user_id):
         # Return an error response
         return jsonify({"error": "Not Found"}), 404
 
-    
 
 @app_views.route('/users', methods=['POST'], strict_slashes=False)
 def post_user():
@@ -104,7 +106,7 @@ def post_user():
     user_town = request.form.get('town')
     user_city = request.form.get('city')
     user_state = request.form.get('state')
-    
+
     if user_fullname is None:
         return jsonify({"error": "fullname missing"}), 400
     if user_email is None:
@@ -182,6 +184,66 @@ def login_user():
         abort(404)
 
 
+@auth.route('/signup', methods=['GET'], strict_slashes=False)
+def signup():
+    """
+    - Login a user
+    """
+    return render_template('register.html')
+
+
+@auth.route('/login', methods=['GET'], strict_slashes=False)
+def login_page():
+    """
+    - Login a user
+    """
+    return render_template('login.html')
+
+
+@auth.route('/home', methods=['GET'], strict_slashes=False)
+def get_home():
+    """
+    - fetch home page
+    """
+    return render_template('index.html')
+
+
+@auth.route('/user/login', methods=['POST'], strict_slashes=False)
+def login_user():
+    """
+    - Login a user
+    """
+    from models.db import DBStorage
+    db = DBStorage()
+    try:
+        user_email = request.form.get('email')
+        user_password = request.form.get('password')
+        if user_email is None:
+            flash("Email is missing", 'danger')
+            return redirect(url_for('auth.login_page'))
+        if user_password is None:
+            flash("Password is missing", 'danger')
+            return redirect(url_for('auth.login_page'))
+        with db:
+            user = db.find_user_by_email(user_email)
+            if user is None or not checkpw(user_password.encode('utf-8'), user.password.encode('utf-8')):
+                flash("Invalid login details!", 'danger')
+                return redirect(url_for('auth.login_page'))
+            from api.v1.auth.session_db_auth import SessionDBAuth
+            session_auth = SessionDBAuth()
+            session_id = session_auth.create_session(user.user_id)
+            flash("Login successfull", 'success')
+            session['flash_expires'] = datetime.utcnow() + timedelta(seconds=5)
+            response = redirect(url_for('auth.get_home'))
+            cookie_name = os.getenv('SESSION_NAME')
+            response.set_cookie(cookie_name, session_id)
+            db.save()
+            return response
+    except Exception as e:
+        flash("An error occurred", 'error')
+        return redirect(url_for('auth.login_page'))
+
+
 @app_views.route('/users/logout', methods=['POST'], strict_slashes=False)
 def logout_user():
     """
@@ -244,7 +306,7 @@ def delete_user(user_id):
             auth_user = request.current_user
             user = db.find_user_by_id(user_id)
             sess = db.find_session_by_id_by_user_id(user_id)
-            
+
             if user is None:
                 return jsonify({"error": "User not found"}), 404
             if sess is None:
@@ -268,12 +330,12 @@ def save_picture(form_picture):
     try:
         pics_id = str(uuid4())
         _, f_ext = os.path.splitext(form_picture.filename)
-    
+
         allowed_extensions = {'.png', '.jpg', '.jpeg'}
-    
+
         if f_ext.lower() in allowed_extensions:
             picture_fn = pics_id + f_ext
-        
+
             # Upload image to cloudinary
             res = upload(form_picture, public_id=picture_fn)
 
@@ -281,11 +343,12 @@ def save_picture(form_picture):
             cloudinary_public_id = res['public_id']
 
             # We return the public ID incase we want to store it in the db
-            return cloudinary_public_id 
+            return cloudinary_public_id
         else:
             return None
     except Exception as e:
         print(e)
+
 
 @app_views.route('/users/<string:user_id>', methods=['PUT'], strict_slashes=False)
 def update_user_by_user_id(user_id):
@@ -305,9 +368,9 @@ def update_user_by_user_id(user_id):
     user_city = request.form.get('city')
     user_state = request.form.get('state')
     user_photo = request.files.get('photo')
-    
+
     pics_fn = save_picture(user_photo)
-    
+
     user_data['fullname'] = user_fullname
     user_data['phone1'] = user_phone1
     user_data['phone2'] = user_phone2
