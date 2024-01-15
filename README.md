@@ -90,6 +90,19 @@ To install and run the app locally or in a development environment, follow the i
 
 *This is an installation guide on how to setup the backend in order for you to be able to use tradequick API for backend operations. Throughout this manual we assume that mysql server is installed and running on your local machine. Also check the requirements.txt file to install the requirements required for the backend.*
 
+* Please also note that you should use a virtual environment in order to make your work and packages that will be installed isolated for this project alone.
+
+### Set Virtual Environment
+```bash
+# Basic virtual environment set up
+:$ python3 -m venv ~/venv
+
+# Activate virtual environment
+:$ source ~/venv/bin/activate
+
+```
+
+### Git clone repository
 ```bash
 # Clone the git repository if you haven't
 :$ git clone https://github.com/tpauldike/tradeQuick.git
@@ -97,11 +110,22 @@ To install and run the app locally or in a development environment, follow the i
 
 ### Creating tables and relations
 
-Firstly, we will use the script tradequick.sql to create all database, tables and relations in mysql. replace username with the correct mysql user
+Firstly, we will use the script [tradequick.sql](server-side/tradequick.sql) to create all database, tables and relations in mysql, replace username with the correct mysql user.
 
 ```bash
 # Create database, tables and relations
+:$ cd tradeQuick/server-side
 :$ cat tradequick.sql | mysql -u <user_name> -p
+```
+
+### Install the neccessary packages
+
+We shall make use of the file [requirement.txt](server-side/requirements.txt) to install all the packages we will need to access our backend/API. 
+
+```bash
+# The following packages are needed to be installed to run the Flask app 
+:$ cd tradeQuick/server-side
+:$ pip3 install -r requirements.txt
 ```
 
 ### Environment Variables
@@ -233,6 +257,8 @@ Press CTRL+C to quit
  * Debugger is active!
  * Debugger PIN: 110-366-493
 ```
+
+*Remember to go through the API Documentation [here](server-side/API_DOCUMENTATION.md) to be able to understand an make query to the endpoints*
 
 
 
