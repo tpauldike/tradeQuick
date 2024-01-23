@@ -1,0 +1,733 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>tradeQuick</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="icon" href="../static/images/logo.png">
+    <script src="../static/scripts/dashboard.js"></script>
+    <style>
+        /* Initially hide the aside */
+        aside>div {
+            display: none;
+        }
+
+        #profiles {
+            display: none;
+        }
+
+        #posts {
+            display: none;
+        }
+
+        #blogs {
+            display: none;
+        }
+
+        #set {
+            display: none;
+        }
+
+        #docs {
+            display: none;
+        }
+
+        #posts {
+            display: none;
+        }
+
+        #drop-not {
+            display: block;
+        }
+
+        #drop-not {
+            display: none;
+            /* or visibility: hidden; */
+            /* additional styling */
+        }
+
+        .visible {
+            display: block !important;
+            /* or visibility: visible !important; */
+            /* additional styling */
+        }
+
+        #drop-user {
+            display: none;
+        }
+    </style>
+</head>
+<!--
+// v0 by Vercel.
+// https://v0.dev/t/bohbOnMB0lg
+-->
+
+<body>
+    <div class="flex flex-col bg-gray-100 dark:bg-gray-800">
+        <header class="flex items-center justify-between px-6 py-4 bg-white shadow dark:bg-gray-900">
+            <div class="flex items-center space-x-4"><img src="../static/images/logo.png" alt="Logo" class="h-8 w-8"><a
+                    class="text-lg font-semibold text-gray-900 dark:text-gray-100" href="#">
+                    tradeQuick
+                </a></div>
+            <div class="flex items-center space-x-4"><input
+                    class="flex h-10 w-full bg-background text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 border-2 border-gray-300 rounded-md p-2"
+                    placeholder="Search..."><button
+                    class="inline-flex items-center justify-center whitespace-nowrap text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 hover:bg-accent hover:text-accent-foreground h-10 w-10 rounded-full"><svg
+                        xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                        class="w-6 h-6 text-gray-500 dark:text-gray-400">
+                        <circle cx="11" cy="11" r="8"></circle>
+                        <path d="m21 21-4.3-4.3"></path>
+                    </svg><span class="sr-only">Search</span></button></div>
+            <div class="flex items-center space-x-4"><a href="../templates/index.html"><button
+                        class="inline-flex items-center justify-center whitespace-nowrap text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 h-10 text-white bg-gray-500 hover:bg-gray-800 rounded-md px-4 py-2">Buy</button></a>
+                <div class="relative group">
+                    <button id="notificationButton"
+                        class="inline-flex items-center justify-center whitespace-nowrap text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 hover:bg-accent hover:text-accent-foreground h-10 w-10 relative rounded-full">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                            class="w-6 h-6 text-gray-500 dark:text-gray-400">
+                            <path d="M6 8a6 6 0 0 1 12 0c0 7 3 9 3 9H3s3-2 3-9"></path>
+                            <path d="M10.3 21a1.94 1.94 0 0 0 3.4 0"></path>
+                        </svg>
+                        <span class="sr-only">Notification</span>
+                    </button>
+                    <div id="drop-not"
+                        class="absolute right-0 w-64 mt-2 origin-top-right bg-white dark:bg-gray-800 divide-y divide-gray-100 rounded-md shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none z-10"
+                        role="menu" aria-orientation="vertical" aria-labelledby="options-menu">
+                        <div class="py-1">
+                            <a class="group flex items-center px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900"
+                                role="menuitem" href="#" rel="ugc">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                                    fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                    stroke-linejoin="round"
+                                    class="mr-3 h-5 w-5 text-gray-400 group-hover:text-gray-500">
+                                    <path d="M6 8a6 6 0 0 1 12 0c0 7 3 9 3 9H3s3-2 3-9"></path>
+                                    <path d="M10.3 21a1.94 1.94 0 0 0 3.4 0"></path>
+                                </svg>
+                                <span>Notification 1</span>
+                            </a>
+                            <a class="group flex items-center px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900"
+                                role="menuitem" href="#" rel="ugc">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                                    fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                    stroke-linejoin="round"
+                                    class="mr-3 h-5 w-5 text-gray-400 group-hover:text-gray-500">
+                                    <path d="M6 8a6 6 0 0 1 12 0c0 7 3 9 3 9H3s3-2 3-9"></path>
+                                    <path d="M10.3 21a1.94 1.94 0 0 0 3.4 0"></path>
+                                </svg>
+                                <span>Notification 2</span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="relative group"><button id="userButton" class=" inline-flex items-center justify-center whitespace-nowrap text-sm font-medium
+                        ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2
+                        focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none
+                        disabled:opacity-50 hover:bg-accent hover:text-accent-foreground h-10 w-10 relative
+                        rounded-full"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                            viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                            stroke-linecap="round" stroke-linejoin="round"
+                            class="w-6 h-6 text-gray-500 dark:text-gray-400">
+                            <path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"></path>
+                            <circle cx="12" cy="7" r="4"></circle>
+                        </svg><span class="sr-only">User</span></button>
+                    <div id="drop-user"
+                        class="absolute right-0 w-48 mt-2 origin-top-right bg-white dark:bg-gray-800 divide-y divide-gray-100 rounded-md shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none z-10"
+                        role="menu" aria-orientation="vertical" aria-labelledby="options-menu">
+                        <div class="py-1"><a
+                                class="group flex items-center px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900"
+                                role="menuitem" href="#" rel="ugc"><svg xmlns="http://www.w3.org/2000/svg" width="24"
+                                    height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                    stroke-linecap="round" stroke-linejoin="round"
+                                    class="mr-3 h-5 w-5 text-gray-400 group-hover:text-gray-500">
+                                    <path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"></path>
+                                    <circle cx="12" cy="7" r="4"></circle>
+                                </svg><span>Profile</span></a><a
+                                class="group flex items-center px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900"
+                                role="menuitem" href="#" rel="ugc"><svg xmlns="http://www.w3.org/2000/svg" width="24"
+                                    height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                    stroke-linecap="round" stroke-linejoin="round"
+                                    class="mr-3 h-5 w-5 text-gray-400 group-hover:text-gray-500">
+                                    <path
+                                        d="M12.22 2h-.44a2 2 0 0 0-2 2v.18a2 2 0 0 1-1 1.73l-.43.25a2 2 0 0 1-2 0l-.15-.08a2 2 0 0 0-2.73.73l-.22.38a2 2 0 0 0 .73 2.73l.15.1a2 2 0 0 1 1 1.72v.51a2 2 0 0 1-1 1.74l-.15.09a2 2 0 0 0-.73 2.73l.22.38a2 2 0 0 0 2.73.73l.15-.08a2 2 0 0 1 2 0l.43.25a2 2 0 0 1 1 1.73V20a2 2 0 0 0 2 2h.44a2 2 0 0 0 2-2v-.18a2 2 0 0 1 1-1.73l.43-.25a2 2 0 0 1 2 0l.15.08a2 2 0 0 0 2.73-.73l.22-.39a2 2 0 0 0-.73-2.73l-.15-.08a2 2 0 0 1-1-1.74v-.5a2 2 0 0 1 1-1.74l.15-.09a2 2 0 0 0 .73-2.73l-.22-.38a2 2 0 0 0-2.73-.73l-.15.08a2 2 0 0 1-2 0l-.43-.25a2 2 0 0 1-1-1.73V4a2 2 0 0 0-2-2z">
+                                    </path>
+                                    <circle cx="12" cy="12" r="3"></circle>
+                                </svg><span>Settings</span></a><a
+                                class="group flex items-center px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900"
+                                role="menuitem" href="#" rel="ugc"><svg xmlns="http://www.w3.org/2000/svg" width="24"
+                                    height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                    stroke-linecap="round" stroke-linejoin="round"
+                                    class="mr-3 h-5 w-5 text-gray-400 group-hover:text-gray-500">
+                                    <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"></path>
+                                    <polyline points="16 17 21 12 16 7"></polyline>
+                                    <line x1="21" x2="9" y1="12" y2="12"></line>
+                                </svg><span>Logout</span></a></div>
+                    </div>
+                </div>
+            </div>
+        </header>
+        <div class="flex flex-1 overflow-hidden">
+            <nav
+                class="flex flex-col items-start py-4 space-y-1 bg-white w-64 border-r dark:bg-gray-900 overflow-y-auto">
+                <a class="flex items-center px-6 py-2 text-lg font-semibold text-black dark:text-gray-400 hover:bg-gray-200 dark:hover:bg-gray-700 rounded-lg relative"
+                    onclick="toggleMain('messages')" href="#" rel="ugc"><svg xmlns="http://www.w3.org/2000/svg"
+                        width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                        stroke-linecap="round" stroke-linejoin="round" class="w-5 h-5">
+                        <rect width="20" height="16" x="2" y="4" rx="2"></rect>
+                        <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"></path>
+                    </svg><span class="ml-4">Messages</span><span
+                        class="absolute top-0 right-0 h-3 w-3 bg-red-500 rounded-full"></span></a>
+                <a class="flex items-center px-6 py-2 text-lg font-semibold text-black dark:text-gray-400 hover:bg-gray-200 dark:hover:bg-gray-700 rounded-lg"
+                    onclick="toggleMain('blogs')" href="#"><svg xmlns="http://www.w3.org/2000/svg" width="24"
+                        height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                        stroke-linecap="round" stroke-linejoin="round" class="w-5 h-5">
+                        <path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"></path>
+                        <path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"></path>
+                    </svg><span class="ml-4">Blog</span></a><a
+                    class="flex items-center px-6 py-2 text-lg font-semibold text-black dark:text-gray-400 hover:bg-gray-200 dark:hover:bg-gray-700 rounded-lg"
+                    onclick="toggleMain('docs')" href="#"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                        viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round" class="w-5 h-5">
+                        <path d="M14.5 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7.5L14.5 2z"></path>
+                        <polyline points="14 2 14 8 20 8"></polyline>
+                        <line x1="16" x2="8" y1="13" y2="13"></line>
+                        <line x1="16" x2="8" y1="17" y2="17"></line>
+                        <line x1="10" x2="8" y1="9" y2="9"></line>
+                    </svg><span class="ml-4">Documentation</span></a><a
+                    class="flex items-center px-6 py-2 text-lg font-semibold text-black dark:text-gray-400 hover:bg-gray-200 dark:hover:bg-gray-700 rounded-lg"
+                    onclick="toggleMain('profiles')" href="#" rel="ugc"><svg xmlns="http://www.w3.org/2000/svg"
+                        width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                        stroke-linecap="round" stroke-linejoin="round" class="w-5 h-5">
+                        <path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"></path>
+                        <circle cx="12" cy="7" r="4"></circle>
+                    </svg><span class="ml-4">Profile</span></a><a
+                    class="flex items-center px-6 py-2 text-lg font-semibold text-black dark:text-gray-400 hover:bg-gray-200 dark:hover:bg-gray-700 rounded-lg"
+                    onclick="toggleMain('set')" href="#" rel="ugc"><svg xmlns="http://www.w3.org/2000/svg" width="24"
+                        height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                        stroke-linecap="round" stroke-linejoin="round" class="w-5 h-5">
+                        <path d="M12 20a8 8 0 1 0 0-16 8 8 0 0 0 0 16Z"></path>
+                        <path d="M12 14a2 2 0 1 0 0-4 2 2 0 0 0 0 4Z"></path>
+                        <path d="M12 2v2"></path>
+                        <path d="M12 22v-2"></path>
+                        <path d="m17 20.66-1-1.73"></path>
+                        <path d="M11 10.27 7 3.34"></path>
+                        <path d="m20.66 17-1.73-1"></path>
+                        <path d="m3.34 7 1.73 1"></path>
+                        <path d="M14 12h8"></path>
+                        <path d="M2 12h2"></path>
+                        <path d="m20.66 7-1.73 1"></path>
+                        <path d="m3.34 17 1.73-1"></path>
+                        <path d="m17 3.34-1 1.73"></path>
+                        <path d="m11 13.73-4 6.93"></path>
+                    </svg><span class="ml-4">Settings</span></a><a
+                    class="mx-auto mt-4 px-6 py-2 bg-gray-500 hover:bg-gray-800 rounded-full text-lg text-white"
+                    href="#" rel="ugc" onclick="toggleMain('posts')">Post</a>
+            </nav>
+            <main id="messages" class="flex-1 p-6">
+                <h1 class="text-2xl font-semibold text-gray-800 dark:text-gray-100">Messages</h1>
+                <div class="mt-8">
+                    <div class="flex flex-col space-y-4">
+                        <div class="flex items-center space-x-2"><a href="#">
+                                <h2 class="text-lg font-semibold text-gray-800 dark:text-gray-100"
+                                    onclick="showConversation('User Name 1')">Chibueze Otueh</h2>
+                            </a><span class="text-sm text-gray-500 ml-2">3 min ago</span></div>
+                        <div class="bg-white dark:bg-gray-800 p-4 rounded-md shadow w-1/2">
+                            <p class="text-sm text-gray-600 dark:text-gray-400">This is a message from the user. It's an
+                                intriguing piece that will pique your interest.</p>
+                        </div>
+                        <div class="flex items-center space-x-2"><a href="#">
+                                <h2 class="text-lg font-semibold text-gray-800 dark:text-gray-100"
+                                    onclick="showConversation('User Name 2')">Top-Man Paul</h2>
+                            </a><span class="text-sm text-gray-500 ml-2">5 min ago</span></div>
+                        <div class="bg-white dark:bg-gray-800 p-4 rounded-md shadow w-1/2">
+                            <p class="text-sm text-gray-600 dark:text-gray-400">Another message from a different user.
+                                It's
+                                equally intriguing.</p>
+                        </div>
+                        <div class="flex items-center space-x-2"><a href="#">
+                                <h2 class="text-lg font-semibold text-gray-800 dark:text-gray-100"
+                                    onclick="showConversation('User Name 3')">David Gregs</h2>
+                            </a><span class="text-sm text-gray-500 ml-2">7 min ago</span></div>
+                        <div class="bg-white dark:bg-gray-800 p-4 rounded-md shadow w-1/2">
+                            <p class="text-sm text-gray-600 dark:text-gray-400">A third message from another user. This
+                                one
+                                is also quite intriguing.</p>
+                        </div>
+                    </div>
+                </div>
+                <section class="flex justify-center p-4"><a
+                        class="text-lg font-medium hover:underline underline-offset-4" href="#">
+                        See More
+                    </a></section>
+            </main>
+            <main id="blogs" class="flex-1 p-6">
+                <h1 class="text-2xl font-semibold text-gray-800 dark:text-gray-100">Blogs not yet implemented</h1>
+            </main>
+            <main id="docs" class="flex-1 p-6">
+                <h1 class="text-2xl font-semibold text-gray-800 dark:text-gray-100">Documentation not yet implemented
+                </h1>
+            </main>
+            <main id="set" class="flex-1 p-6">
+                <h1 class="text-2xl font-semibold text-gray-800 dark:text-gray-100">Settings not yet implemented
+                </h1>
+            </main>
+            <main id="profiles" class="flex-1 p-6">
+                <h1 class="text-2xl font-semibold text-gray-800 dark:text-gray-100">User Profile</h1>
+                <div class="mt-8">
+                    <div class="flex flex-col space-y-4">
+                        <div class="bg-white dark:bg-gray-800 p-4 rounded-md shadow w-3/4">
+                            <div class="flex items-center space-x-4"><span
+                                    class="relative flex shrink-0 overflow-hidden rounded-full h-24 w-24"><span
+                                        class="flex h-full w-full items-center justify-center rounded-full bg-muted"><img
+                                            src="../static/images/default.png" alt="user-image"></span></span>
+                                <div>
+                                    <h2 class="text-lg font-semibold text-gray-800 dark:text-gray-100">User Name</h2>
+                                    <div class="flex items-center"><svg xmlns="http://www.w3.org/2000/svg" width="24"
+                                            height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                            stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                                            class="w-4 h-4 mr-2 text-gray-500 dark:text-gray-400">
+                                            <rect width="20" height="16" x="2" y="4" rx="2"></rect>
+                                            <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"></path>
+                                        </svg>
+                                        <p class="text-sm text-gray-600 dark:text-gray-400">Email: user@example.com</p>
+                                    </div>
+                                    <div class="flex items-center"><svg xmlns="http://www.w3.org/2000/svg" width="24"
+                                            height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                            stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                                            class="w-4 h-4 mr-2 text-gray-500 dark:text-gray-400">
+                                            <path
+                                                d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z">
+                                            </path>
+                                        </svg>
+                                        <p class="text-sm text-gray-600 dark:text-gray-400">Phone: +1 234 567 890</p>
+                                    </div>
+                                    <p class="text-sm text-gray-600 dark:text-gray-400">Gender: Male</p>
+                                    <p class="text-sm text-gray-600 dark:text-gray-400">Town: Springfield</p>
+                                    <p class="text-sm text-gray-600 dark:text-gray-400">City: Anytown</p>
+                                    <p class="text-sm text-gray-600 dark:text-gray-400">State: Anystate</p>
+                                    <p class="text-sm text-gray-600 dark:text-gray-400">Joined: January 2024</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="bg-white dark:bg-gray-800 p-4 rounded-md shadow w-3/4">
+                            <h2 class="text-lg font-semibold text-gray-800 dark:text-gray-100">Bio</h2>
+                            <p class="text-sm text-gray-600 dark:text-gray-400">This is a short bio about the user. It
+                                includes information about their interests, hobbies, and more.</p>
+                        </div>
+                        <h2 class="text-lg font-semibold text-gray-800 dark:text-gray-100">Posts</h2>
+                        <div class="grid grid-cols-2 gap-4">
+                            <div class="card rounded-lg shadow-lg overflow-hidden"><img
+                                    src="../static/images/gadget3.jpg" alt="item image" class="w-full h-48 object-cover"
+                                    width="200" height="200" style="aspect-ratio: 200 / 200; object-fit: cover;">
+                                <div class="p-4">
+                                    <h2 class="font-bold text-lg mb-2">Digital Watch</h2>
+                                    <p class="text-gray-600">Watches never lie get yourself one today!.</p>
+                                    <div class="flex items-center justify-between mt-4"><span
+                                            class="font-bold text-lg">$79.99</span>
+                                        <div class="flex items-center gap-2"><button
+                                                class="inline-flex items-center justify-center rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 border border-input bg-background hover:bg-accent hover:text-accent-foreground h-10 w-10"><svg
+                                                    xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                                    viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                                    stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                                                    class="h-6 w-6">
+                                                    <path d="M7 10v12"></path>
+                                                    <path
+                                                        d="M15 5.88 14 10h5.83a2 2 0 0 1 1.92 2.56l-2.33 8A2 2 0 0 1 17.5 22H4a2 2 0 0 1-2-2v-8a2 2 0 0 1 2-2h2.76a2 2 0 0 0 1.79-1.11L12 2h0a3.13 3.13 0 0 1 3 3.88Z">
+                                                    </path>
+                                                </svg></button><button
+                                                class="inline-flex items-center justify-center rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 border border-input bg-background hover:bg-accent hover:text-accent-foreground h-10 w-10"><svg
+                                                    xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                                    viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                                    stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                                                    class="h-6 w-6">
+                                                    <path d="M17 14V2"></path>
+                                                    <path
+                                                        d="M9 18.12 10 14H4.17a2 2 0 0 1-1.92-2.56l2.33-8A2 2 0 0 1 6.5 2H20a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2h-2.76a2 2 0 0 0-1.79 1.11L12 22h0a3.13 3.13 0 0 1-3-3.88Z">
+                                                    </path>
+                                                </svg></button><button
+                                                class="inline-flex items-center justify-center rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 border border-input bg-background hover:bg-accent hover:text-accent-foreground h-10 w-10"><svg
+                                                    xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                                    viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                                    stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                                                    class="h-6 w-6">
+                                                    <circle cx="8" cy="21" r="1"></circle>
+                                                    <circle cx="19" cy="21" r="1"></circle>
+                                                    <path
+                                                        d="M2.05 2.05h2l2.66 12.42a2 2 0 0 0 2 1.58h9.78a2 2 0 0 0 1.95-1.57l1.65-7.43H5.12">
+                                                    </path>
+                                                </svg></button><button
+                                                class="inline-flex items-center justify-center rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 border border-input bg-background hover:bg-accent hover:text-accent-foreground h-10 w-10"><svg
+                                                    xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                                    viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                                    stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                                                    class="h-6 w-6">
+                                                    <path d="M3 3h6l6 18h6"></path>
+                                                    <path d="M14 3h7"></path>
+                                                </svg></button></div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="card rounded-lg shadow-lg overflow-hidden"><img
+                                    src="../static/images/images.jpg" alt="item image" class="w-full h-48 object-cover"
+                                    width="200" height="200" style="aspect-ratio: 200 / 200; object-fit: cover;">
+                                <div class="p-4">
+                                    <h2 class="font-bold text-lg mb-2">Samsung Z fold</h2>
+                                    <p class="text-gray-600">It's never too late to grab yourself one of samsumg's
+                                        finest series, promo runs
+                                        while stocks lasts!.</p>
+                                    <div class="flex items-center justify-between mt-4"><span
+                                            class="font-bold text-lg">$69.99</span>
+                                        <div class="flex items-center gap-2"><button
+                                                class="inline-flex items-center justify-center rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 border border-input bg-background hover:bg-accent hover:text-accent-foreground h-10 w-10"><svg
+                                                    xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                                    viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                                    stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                                                    class="h-6 w-6">
+                                                    <path d="M7 10v12"></path>
+                                                    <path
+                                                        d="M15 5.88 14 10h5.83a2 2 0 0 1 1.92 2.56l-2.33 8A2 2 0 0 1 17.5 22H4a2 2 0 0 1-2-2v-8a2 2 0 0 1 2-2h2.76a2 2 0 0 0 1.79-1.11L12 2h0a3.13 3.13 0 0 1 3 3.88Z">
+                                                    </path>
+                                                </svg></button><button
+                                                class="inline-flex items-center justify-center rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 border border-input bg-background hover:bg-accent hover:text-accent-foreground h-10 w-10"><svg
+                                                    xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                                    viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                                    stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                                                    class="h-6 w-6">
+                                                    <path d="M17 14V2"></path>
+                                                    <path
+                                                        d="M9 18.12 10 14H4.17a2 2 0 0 1-1.92-2.56l2.33-8A2 2 0 0 1 6.5 2H20a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2h-2.76a2 2 0 0 0-1.79 1.11L12 22h0a3.13 3.13 0 0 1-3-3.88Z">
+                                                    </path>
+                                                </svg></button><button
+                                                class="inline-flex items-center justify-center rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 border border-input bg-background hover:bg-accent hover:text-accent-foreground h-10 w-10"><svg
+                                                    xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                                    viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                                    stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                                                    class="h-6 w-6">
+                                                    <circle cx="8" cy="21" r="1"></circle>
+                                                    <circle cx="19" cy="21" r="1"></circle>
+                                                    <path
+                                                        d="M2.05 2.05h2l2.66 12.42a2 2 0 0 0 2 1.58h9.78a2 2 0 0 0 1.95-1.57l1.65-7.43H5.12">
+                                                    </path>
+                                                </svg></button><button
+                                                class="inline-flex items-center justify-center rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 border border-input bg-background hover:bg-accent hover:text-accent-foreground h-10 w-10"><svg
+                                                    xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                                    viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                                    stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                                                    class="h-6 w-6">
+                                                    <path d="M3 3h6l6 18h6"></path>
+                                                    <path d="M14 3h7"></path>
+                                                </svg></button></div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="card rounded-lg shadow-lg overflow-hidden"><img
+                                    src="../static/images/images (5).jpg" alt="item image"
+                                    class="w-full h-48 object-cover" width="200" height="200"
+                                    style="aspect-ratio: 200 / 200; object-fit: cover;">
+                                <div class="p-4">
+                                    <h2 class="font-bold text-lg mb-2">Headset</h2>
+                                    <p class="text-gray-600">Listen to great music with our new headsets in town, rush
+                                        and order yours..</p>
+                                    <div class="flex items-center justify-between mt-4"><span
+                                            class="font-bold text-lg">$69.99</span>
+                                        <div class="flex items-center gap-2"><button
+                                                class="inline-flex items-center justify-center rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 border border-input bg-background hover:bg-accent hover:text-accent-foreground h-10 w-10"><svg
+                                                    xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                                    viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                                    stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                                                    class="h-6 w-6">
+                                                    <path d="M7 10v12"></path>
+                                                    <path
+                                                        d="M15 5.88 14 10h5.83a2 2 0 0 1 1.92 2.56l-2.33 8A2 2 0 0 1 17.5 22H4a2 2 0 0 1-2-2v-8a2 2 0 0 1 2-2h2.76a2 2 0 0 0 1.79-1.11L12 2h0a3.13 3.13 0 0 1 3 3.88Z">
+                                                    </path>
+                                                </svg></button><button
+                                                class="inline-flex items-center justify-center rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 border border-input bg-background hover:bg-accent hover:text-accent-foreground h-10 w-10"><svg
+                                                    xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                                    viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                                    stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                                                    class="h-6 w-6">
+                                                    <path d="M17 14V2"></path>
+                                                    <path
+                                                        d="M9 18.12 10 14H4.17a2 2 0 0 1-1.92-2.56l2.33-8A2 2 0 0 1 6.5 2H20a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2h-2.76a2 2 0 0 0-1.79 1.11L12 22h0a3.13 3.13 0 0 1-3-3.88Z">
+                                                    </path>
+                                                </svg></button><button
+                                                class="inline-flex items-center justify-center rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 border border-input bg-background hover:bg-accent hover:text-accent-foreground h-10 w-10"><svg
+                                                    xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                                    viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                                    stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                                                    class="h-6 w-6">
+                                                    <circle cx="8" cy="21" r="1"></circle>
+                                                    <circle cx="19" cy="21" r="1"></circle>
+                                                    <path
+                                                        d="M2.05 2.05h2l2.66 12.42a2 2 0 0 0 2 1.58h9.78a2 2 0 0 0 1.95-1.57l1.65-7.43H5.12">
+                                                    </path>
+                                                </svg></button><button
+                                                class="inline-flex items-center justify-center rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 border border-input bg-background hover:bg-accent hover:text-accent-foreground h-10 w-10"><svg
+                                                    xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                                    viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                                    stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                                                    class="h-6 w-6">
+                                                    <path d="M3 3h6l6 18h6"></path>
+                                                    <path d="M14 3h7"></path>
+                                                </svg></button></div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="card rounded-lg shadow-lg overflow-hidden"><img
+                                    src="../static/images/photo-1491933382434-500287f9b54b.avif" alt="item image"
+                                    class="w-full h-48 object-cover" width="200" height="200"
+                                    style="aspect-ratio: 200 / 200; object-fit: cover;">
+                                <div class="p-4">
+                                    <h2 class="font-bold text-lg mb-2">Apple Essentials</h2>
+                                    <p class="text-gray-600">A one time offer to get yourself an apple product to aid
+                                        you in you day to day
+                                        life.</p>
+                                    <div class="flex items-center justify-between mt-4"><span
+                                            class="font-bold text-lg">$69.99</span>
+                                        <div class="flex items-center gap-2"><button
+                                                class="inline-flex items-center justify-center rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 border border-input bg-background hover:bg-accent hover:text-accent-foreground h-10 w-10"><svg
+                                                    xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                                    viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                                    stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                                                    class="h-6 w-6">
+                                                    <path d="M7 10v12"></path>
+                                                    <path
+                                                        d="M15 5.88 14 10h5.83a2 2 0 0 1 1.92 2.56l-2.33 8A2 2 0 0 1 17.5 22H4a2 2 0 0 1-2-2v-8a2 2 0 0 1 2-2h2.76a2 2 0 0 0 1.79-1.11L12 2h0a3.13 3.13 0 0 1 3 3.88Z">
+                                                    </path>
+                                                </svg></button><button
+                                                class="inline-flex items-center justify-center rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 border border-input bg-background hover:bg-accent hover:text-accent-foreground h-10 w-10"><svg
+                                                    xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                                    viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                                    stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                                                    class="h-6 w-6">
+                                                    <path d="M17 14V2"></path>
+                                                    <path
+                                                        d="M9 18.12 10 14H4.17a2 2 0 0 1-1.92-2.56l2.33-8A2 2 0 0 1 6.5 2H20a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2h-2.76a2 2 0 0 0-1.79 1.11L12 22h0a3.13 3.13 0 0 1-3-3.88Z">
+                                                    </path>
+                                                </svg></button><button
+                                                class="inline-flex items-center justify-center rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 border border-input bg-background hover:bg-accent hover:text-accent-foreground h-10 w-10"><svg
+                                                    xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                                    viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                                    stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                                                    class="h-6 w-6">
+                                                    <circle cx="8" cy="21" r="1"></circle>
+                                                    <circle cx="19" cy="21" r="1"></circle>
+                                                    <path
+                                                        d="M2.05 2.05h2l2.66 12.42a2 2 0 0 0 2 1.58h9.78a2 2 0 0 0 1.95-1.57l1.65-7.43H5.12">
+                                                    </path>
+                                                </svg></button><button
+                                                class="inline-flex items-center justify-center rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 border border-input bg-background hover:bg-accent hover:text-accent-foreground h-10 w-10"><svg
+                                                    xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                                    viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                                    stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                                                    class="h-6 w-6">
+                                                    <path d="M3 3h6l6 18h6"></path>
+                                                    <path d="M14 3h7"></path>
+                                                </svg></button></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </main>
+            <main id="posts" class="flex-1 p-6">
+                <h1 class="text-2xl font-semibold text-gray-800 dark:text-gray-100">Create new post</h1>
+                <div class="mt-8">
+                    <form class="flex flex-col space-y-4">
+                        <div class="bg-white dark:bg-gray-800 p-4 rounded-md shadow w-3/4">
+                            <h2 class="text-lg font-semibold text-gray-800 dark:text-gray-100">New Item</h2>
+                            <input
+                                class="flex h-10 w-full bg-background text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 border-2 border-gray-300 rounded-md p-2 mt-4"
+                                placeholder="Item Name">
+                            <textarea placeholder="Description"
+                                class="border-2 border-gray-300 rounded-md p-2 mt-4 h-32"></textarea>
+                            <input
+                                class="flex h-10 w-full bg-background text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 border-2 border-gray-300 rounded-md p-2 mt-4"
+                                placeholder="Price">
+                            <div class="grid grid-cols-3 gap-4 mt-4">
+                                <!-- File input for Photo 1 -->
+                                <input type="file" accept="image/*" class="" id="file1" />
+                                <label for="file1" class="cursor-pointer">
+
+                                </label>
+
+                                <!-- File input for Photo 2 -->
+                                <input type="file" accept="image/*" class="" id="file2" />
+                                <label for="file2" class="cursor-pointer">
+
+                                </label>
+
+                                <!-- File input for Photo 3 -->
+                                <input type="file" accept="image/*" class="" id="file3" />
+                                <label for="file3" class="cursor-pointer">
+
+                                </label>
+                            </div>
+                            <button
+                                class="inline-flex items-center justify-center whitespace-nowrap text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 h-10 text-white bg-gray-500 hover:bg-gray-600 rounded-md px-4 py-2 mt-4">Submit</button>
+                        </div>
+                    </form>
+                </div>
+            </main>
+            <aside class="w-96 border-l dark:bg-gray-900 overflow-y-auto">
+                <div id="User Name 1Conversation" class="p-6 dashboard-section">
+                    <h2 class="text-xl font-semibold text-gray-800 dark:text-gray-100">Conversation with Chibueze Otueh
+                    </h2>
+                    <div class="mt-4 space-y-4">
+                        <div class="flex items-start space-x-2"><span
+                                class="relative flex shrink-0 overflow-hidden rounded-full h-6 w-6"><span
+                                    class="flex h-full w-full items-center justify-center rounded-full bg-muted"><img
+                                        src="../static/images/default.png" alt="user-image"></span></span>
+                            <div class="bg-gray-200 dark:bg-gray-700 p-2 rounded-md">
+                                <p class="text-sm text-gray-800 dark:text-gray-100">Hello, Chibueze Otueh. How can I
+                                    assist
+                                    you
+                                    today?</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start space-x-2"><span
+                                class="relative flex shrink-0 overflow-hidden rounded-full h-6 w-6"><span
+                                    class="flex h-full w-full items-center justify-center rounded-full bg-muted"><img
+                                        src="../static/images/default.png" alt="user-image"></span></span>
+                            <div class="bg-gray-200 dark:bg-gray-700 p-2 rounded-md">
+                                <p class="text-sm text-gray-800 dark:text-gray-100">Hi, I need help with my account.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="mt-6"><input
+                            class="flex h-10 bg-background text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 w-full border-2 border-gray-300 rounded-md p-2"
+                            placeholder="Type your message...">
+                        <div class="mt-2 flex justify-end"><button
+                                class="inline-flex items-center justify-center whitespace-nowrap text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 h-10 text-white bg-gray-500 hover:bg-gray-600 rounded-md px-4 py-2">Reply</button>
+                        </div>
+                    </div>
+                </div>
+                <div id="User Name 2Conversation" class="p-6 dashboard-section">
+                    <h2 class="text-xl font-semibold text-gray-800 dark:text-gray-100">Conversation with Top-Man Paul
+                    </h2>
+                    <div class="mt-4 space-y-4">
+                        <div class="flex items-start space-x-2"><span
+                                class="relative flex shrink-0 overflow-hidden rounded-full h-6 w-6"><span
+                                    class="flex h-full w-full items-center justify-center rounded-full bg-muted"><img
+                                        src="../static/images/default.png" alt="user-image"></span></span>
+                            <div class="bg-gray-200 dark:bg-gray-700 p-2 rounded-md">
+                                <p class="text-sm text-gray-800 dark:text-gray-100">Hello, Top-Man Paul. How can I
+                                    assist
+                                    you
+                                    today?</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start space-x-2"><span
+                                class="relative flex shrink-0 overflow-hidden rounded-full h-6 w-6"><span
+                                    class="flex h-full w-full items-center justify-center rounded-full bg-muted"><img
+                                        src="../static/images/default.png" alt="user-image"></span></span>
+                            <div class="bg-gray-200 dark:bg-gray-700 p-2 rounded-md">
+                                <p class="text-sm text-gray-800 dark:text-gray-100">Hi, I need help with my account.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="mt-6"><input
+                            class="flex h-10 bg-background text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 w-full border-2 border-gray-300 rounded-md p-2"
+                            placeholder="Type your message...">
+                        <div class="mt-2 flex justify-end"><button
+                                class="inline-flex items-center justify-center whitespace-nowrap text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 h-10 text-white bg-gray-500 hover:bg-gray-600 rounded-md px-4 py-2">Reply</button>
+                        </div>
+                    </div>
+                </div>
+                <div id="User Name 3Conversation" class="p-6 dashboard-section">
+                    <h2 class="text-xl font-semibold text-gray-800 dark:text-gray-100">Conversation with David Gregs
+                    </h2>
+                    <div class="mt-4 space-y-4">
+                        <div class="flex items-start space-x-2"><span
+                                class="relative flex shrink-0 overflow-hidden rounded-full h-6 w-6"><span
+                                    class="flex h-full w-full items-center justify-center rounded-full bg-muted"><img
+                                        src="../static/images/default.png" alt="user-image"></span></span>
+                            <div class="bg-gray-200 dark:bg-gray-700 p-2 rounded-md">
+                                <p class="text-sm text-gray-800 dark:text-gray-100">Hello, David Gregs. How can I assist
+                                    you
+                                    today?</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start space-x-2"><span
+                                class="relative flex shrink-0 overflow-hidden rounded-full h-6 w-6"><span
+                                    class="flex h-full w-full items-center justify-center rounded-full bg-muted"><img
+                                        src="../static/images/default.png" alt="user-image"></span></span>
+                            <div class="bg-gray-200 dark:bg-gray-700 p-2 rounded-md">
+                                <p class="text-sm text-gray-800 dark:text-gray-100">Hi, I need help with my account.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="mt-6"><input
+                            class="flex h-10 bg-background text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 w-full border-2 border-gray-300 rounded-md p-2"
+                            placeholder="Type your message...">
+                        <div class="mt-2 flex justify-end"><button
+                                class="inline-flex items-center justify-center whitespace-nowrap text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 h-10 text-white bg-gray-500 hover:bg-gray-600 rounded-md px-4 py-2">Reply</button>
+                        </div>
+                    </div>
+                </div>
+            </aside>
+        </div>
+        <footer class="bg-gray-900 text-white py-4 text-center">
+            <div class="max-w-7xl mx-auto grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-20">
+                <div class="space-y-2">
+                    <h4 class="text-base font-semibold">Product</h4>
+                    <a class="text-sm hover:underline" href="#">
+                        Features
+                    </a>
+                    <a class="text-sm hover:underline" href="#">
+                        Pricing
+                    </a>
+                    <a class="text-sm hover:underline" href="#">
+                        Documentation
+                    </a>
+                </div>
+                <div class="space-y-2">
+                    <h4 class="text-base font-semibold">Company</h4>
+                    <a class="text-sm hover:underline" href="#">
+                        About Us
+                    </a>
+                    <a class="text-sm hover:underline" href="#">
+                        Careers
+                    </a>
+                    <a class="text-sm hover:underline" href="#">
+                        Contact Us
+                    </a>
+                </div>
+                <div class="space-y-2">
+                    <h4 class="text-base font-semibold">Legal</h4>
+                    <a class="text-sm hover:underline" href="#">
+                        Terms of Service
+                    </a>
+                    <a class="text-sm hover:underline" href="#">
+                        Privacy Policy
+                    </a>
+                    <a class="text-sm hover:underline" href="#">
+                        Cookie Policy
+                    </a>
+                </div>
+                <div class="space-y-2">
+                    <h4 class="text-base font-semibold">Social</h4>
+                    <a class="text-sm hover:underline" href="#">
+                        Twitter
+                    </a>
+                    <a class="text-sm hover:underline" href="#">
+                        Facebook
+                    </a>
+                    <a class="text-sm hover:underline" href="#">
+                        Instagram
+                    </a>
+                </div>
+            </div>
+            <div class="max-w-7xl mx-auto mt-6 text-center text-sm">
+                <p>© tradeQuick 2024. All rights reserved.</p>
+            </div>
+        </footer>
+    </div>
+</body>
+
+</html>
